@@ -52,6 +52,17 @@ router.post('/sign-in', (req, res, next) => {
     });
 });
 
+//rota para editar user
+router.put('/edit/:userid', (req, res, next) => {
+  User.findByIdAndUpdate(req.params.userid, req.body, { new: true })
+    .then(user => {
+      res.json(user);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
 router.post('/sign-out', (req, res, next) => {
   req.session.destroy();
   res.json({});
