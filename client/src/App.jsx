@@ -8,6 +8,8 @@ import Home from './views/home';
 import WorkspaceDashboard from './views/workspaceDashboard';
 import Upgrade from './views/upgrade';
 import PaymentMethodView from './views/paymentMethodList';
+import PaymentMethodCreateView from './views/paymentMethodCreate';
+
 
 import { loadUserInformation } from './services/authentication';
 
@@ -56,6 +58,9 @@ class App extends Component {
                         />
             <Route exact path="/payment-method/list" 
                           render={props => <PaymentMethodView user={this.state.user}  {...props}/> }               
+                        />
+            <Route exact path="/payment-method/create" 
+                          render={props => <PaymentMethodCreateView user={this.state.user}  {...props}/> }               
                         />
           </Switch>
         </BrowserRouter>

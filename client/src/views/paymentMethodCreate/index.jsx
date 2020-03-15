@@ -12,6 +12,10 @@ class PaymentMethodView extends Component {
     super(props);
     this.state = {};
 
+
+    this.handleFormSubmission = this.handleFormSubmission.bind(this);
+
+    this.stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
   }
 
   componentDidMount() {
@@ -34,7 +38,6 @@ class PaymentMethodView extends Component {
     }
   }
 
-
   render() {
     return (
       <div>
@@ -49,11 +52,10 @@ class PaymentMethodView extends Component {
               </form>
             )}
           </ElementsConsumer>
-        </Elements> 
+        </Elements>
       </div>
-    )
+    );
   }
-};
-
+}
 
 export default PaymentMethodView;

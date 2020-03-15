@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 import { list as listPaymentMethods } from '../../services/payment-method';
 
@@ -24,6 +26,10 @@ export default class PaymentMethodView extends Component {
     return (
       <div>
         <h1>Payment Method LIST</h1>
+        {this.state.paymentMethods.map(method => (
+          <div>Payment Method</div>
+        ))}
+        <Link to="/payment-method/create">Add new Payment Method</Link>
       </div>
     )
   }
