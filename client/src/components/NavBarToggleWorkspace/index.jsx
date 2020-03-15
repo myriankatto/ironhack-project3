@@ -14,8 +14,8 @@ const NavBarToggleWorkspace = (props) => {
         <NavDropdown.Divider />
         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
       </NavDropdown>
-      <Nav.Link href="/upgrade">Upgrade</Nav.Link>
-      <Nav.Link href="#pricing">Left</Nav.Link>
+      <Nav.Link href="/checkout">Upgrade</Nav.Link>
+      
     </div>
   )
 };

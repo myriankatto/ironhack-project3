@@ -52,6 +52,7 @@ class Home extends Component {
   changeHistory(){
     this.props.history.push('/dashboard');
   }
+  
   render() {
     return (
       <div>

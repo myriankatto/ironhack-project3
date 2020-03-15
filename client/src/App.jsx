@@ -6,9 +6,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 /*VIEWS*/
 import Home from './views/home';
 import WorkspaceDashboard from './views/workspaceDashboard';
-import Upgrade from './views/upgrade';
 import PaymentMethodView from './views/paymentMethodList';
 import PaymentMethodCreateView from './views/paymentMethodCreate';
+import CheckoutView from './views/CheckoutView';
 
 
 import { loadUserInformation } from './services/authentication';
@@ -53,14 +53,16 @@ class App extends Component {
             <Route path="/dashboard" 
               render={props => <WorkspaceDashboard user={this.state.user}  {...props}/> }               
             />
-            <Route exact path="/upgrade" 
-                          render={props => <Upgrade user={this.state.user}  {...props}/> }               
-                        />
+           
             <Route exact path="/payment-method/list" 
-                          render={props => <PaymentMethodView user={this.state.user}  {...props}/> }               
+                          render={props => <PaymentMethodView user={this.state.user} cart={this.state.cart}  {...props}/> }               
                         />
             <Route exact path="/payment-method/create" 
                           render={props => <PaymentMethodCreateView user={this.state.user}  {...props}/> }               
+                        />
+
+            <Route exact path="/checkout" 
+                          render={props => <CheckoutView user={this.state.user}  {...props}/> }               
                         />
           </Switch>
         </BrowserRouter>

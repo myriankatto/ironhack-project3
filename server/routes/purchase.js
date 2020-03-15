@@ -9,7 +9,6 @@ const stripe = require('stripe');
 const stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
 
 const Purchase = require('./../models/purchase');
-const Product = require('./../models/product');
 const PaymentMethod = require('./../models/payment-method');
 
 router.get('/list', async (req, res, next) => {
@@ -22,24 +21,19 @@ router.get('/list', async (req, res, next) => {
 });
 
 router.post('/create', async (req, res, next) => {
-  const { products: productIds } = req.body;
+  const plans = req.body.plans;
   try {
-    const products = await Product.find({ _id: productIds });
-    const amount = products.reduce((total, product) => total + product.price.amount, 0);
+  
+    const amount = 70;
     const paymentMethod = await PaymentMethod.findOne({ owner: req.user._id });
     const purchase = await Purchase.create({
       user: req.user._id,
-      products: productIds,
+      plan: plans,
       price: { amount, currency: 'EUR' },
       charged: false
     });
 
-    // const charge = await stripeInstance.charges.create({
-    //   amount,
-    //   currency: 'EUR',
-    //   customer: paymentMethod.token
-    //   // source: 'src_18eYalAHEMiOZZp1l9ZTjSU0'
-    // });
+    
 
     console.log(`Purchase of ${amount} being made to customer ${paymentMethod.token}`);
 
