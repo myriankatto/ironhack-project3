@@ -5,7 +5,7 @@ class WorkspaceDashboard extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar user={this.props.user} />
         <h1>DASHBOARD</h1>
       </div>
     );

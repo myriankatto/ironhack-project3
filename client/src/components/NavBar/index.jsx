@@ -2,58 +2,81 @@
 
 import React, { Component } from 'react';
 import NavBarToggleWorkspace from './../NavBarToggleWorkspace';
+import NavBarProfile from './../NavBarProfile';
+import NavBarProfileButton from './../NavBarProfileButton';
 import MenuButton from '../NavBarMenuButton';
 import './style.scss';
 import { loadUserInformation } from './../../services/authentication';
 
 // import { Swipeable } from 'react-swipeable';
-// import SwipeComponent from './../Swipe';
 
 class Navbar extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      visible: false,
-      sidebar: false
+      visibleWorkspace: false,
+      sidebarWorkspace: false,
+      visibleProfile: false,
+      sidebarProfile: false
     };
-    this.handleMouseDown = this.handleMouseDown.bind(this);
-    this.toggleMenu = this.toggleMenu.bind(this);
-    this.toggleSwipe = this.toggleSwipe.bind(this);
+    this.handleMouseDownWorkspace = this.handleMouseDownWorkspace.bind(this);
+    this.toggleMenuWorkspace = this.toggleMenuWorkspace.bind(this);
+    this.toggleSwipeWorkspace = this.toggleSwipeWorkspace.bind(this);
+    this.handleMouseDownProfile = this.handleMouseDownProfile.bind(this);
+    this.toggleMenuProfile = this.toggleMenuProfile.bind(this);
+    this.toggleSwipeProfile = this.toggleSwipeProfile.bind(this);
   }
-  handleMouseDown() {
-    this.toggleMenu();
+  //for the Toggle Workshop Menu
+  handleMouseDownWorkspace() {
+    this.toggleMenuWorkspace();
     // e.stopPropagation();
   }
 
-  toggleMenu() {
+  toggleMenuWorkspace() {
     this.setState({
-      visible: !this.state.visible
+      visibleWorkspace: !this.state.visibleWorkspace
     });
   }
-  toggleSwipe() {
-    console.log(this.state.sidebar);
+  toggleSwipeWorkspace() {
     this.setState({
-      sidebar: !this.state.sidebar
+      sidebarWorkspace: !this.state.sidebarWorkspace
+    });
+  }
+  //for the profile Menu
+  handleMouseDownProfile() {
+    this.toggleMenuProfile();
+    // e.stopPropagation();
+  }
+
+  toggleMenuProfile() {
+    this.setState({
+      visibleProfile: !this.state.visibleProfile
+    });
+  }
+  toggleSwipeProfile() {
+    this.setState({
+      sidebarProfile: !this.state.sidebarProfile
     });
   }
   render() {
-    const user = loadUserInformation();
-    console.log(user.picture);
     return (
       <nav
         className="nav-style"
         // style={{ display: 'flex', justifyContent: 'space-between', width: '100' }}
       >
-        <MenuButton handleMouseDown={this.handleMouseDown} />
+        <MenuButton handleMouseDown={this.handleMouseDownWorkspace} />
         <NavBarToggleWorkspace
-          handleMouseDown={this.handleMouseDown}
-          menuVisibility={this.state.visible}
+          handleMouseDown={this.handleMouseDownWorkspace}
+          menuVisibility={this.state.visibleWorkspace}
         />
-        {/* <SwipeComponent toggleSwipe={this.toggleSwipe} sidebar={this.state.sidebar} />
-        <Swipeable onSwipedLeft={this.toggleSwipe}>
-          <li></li>
-          <li></li>
-        </Swipeable> */}
+        <NavBarProfile
+          handleMouseDownProfile={this.handleMouseDownProfile}
+          menuVisibility={this.state.visibleProfile}
+        />
+        <NavBarProfileButton
+          handleMouseDownProfile={this.handleMouseDownProfile}
+          user={this.props.updateUserInformation}
+        />
       </nav>
     );
   }
