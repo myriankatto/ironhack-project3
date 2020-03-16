@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-import {create} from './../../services/workspace'
+import { create } from './../../services/workspace';
 
 class CreateWorkspace extends Component {
   constructor(props) {
@@ -20,8 +20,6 @@ class CreateWorkspace extends Component {
     });
   }
 
-
-
   handleFormSubmission(event) {
     event.preventDefault();
     const name = this.state.workspaceName;
@@ -30,10 +28,10 @@ class CreateWorkspace extends Component {
       name
     };
     create(name)
-    .then()
-    .catch(error => {
-      console.log(error);
-    })
+      .then()
+      .catch(error => {
+        console.log(error);
+      });
     this.setState({
       workspaceName: ''
     });
@@ -47,11 +45,11 @@ class CreateWorkspace extends Component {
             name="workspaceName"
             value={this.state.workspaceName}
             onChange={this.handleInputChange}
-            placeholder="Create a new Workspace..."
+            placeholder="Your workspace name"
             autoComplete="off"
           />
           <Button variant="primary" type="submit">
-            +
+            Create
           </Button>
         </Form.Group>
       </Form>

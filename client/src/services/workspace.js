@@ -9,7 +9,6 @@ const list = async () => {
   try {
     const result = await instance.get('/');
     const workspaces = result.data;
-    console.log(workspaces);
     return workspaces;
   } catch (error) {
     throw error;
