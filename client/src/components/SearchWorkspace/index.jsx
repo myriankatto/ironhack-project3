@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 import './style.scss';
 
@@ -61,7 +63,7 @@ class SearchWorkspace extends Component {
         <ul className="workspaces__list">
           {this.filteredWorkspaces.map(workspace => (
             <li key={workspace._id} className="workspace__item">
-              {workspace.name}
+                <Link to={`/dashboard/${workspace._id}`}>{workspace.name}</Link>
               <button className="workspace__btn">+</button>
             </li>
           ))}

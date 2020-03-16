@@ -45,6 +45,8 @@ export default class WorkspaceDashboard extends Component {
             <span>or</span>
           </p>
           <SearchWorkspace />
+
+          
         </div>
       </div>
     );
