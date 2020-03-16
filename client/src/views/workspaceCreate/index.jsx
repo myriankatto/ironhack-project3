@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-import navBar from '../../components/NavBar';
 import createWorkspace from '../../components/CreateWorkspace';
-import searchWorkspace from '../../components/serchWorkspace';
-
+import searchWorkspace from '../../components/searchWorkspace';
 
 class workspaceCreate extends Component {
   render() {
