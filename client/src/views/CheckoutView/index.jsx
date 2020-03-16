@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 class CheckoutView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
    
 
     this.handlePurchase = this.handlePurchase.bind(this);
@@ -15,9 +15,9 @@ class CheckoutView extends Component {
   };
 
   async handlePurchase() {
-    const ids = 3;
+    const plan = 3;
     try {
-      await createPurchase(ids);
+      await createPurchase(plan);
     } catch (error) {
       console.log(error);
     }

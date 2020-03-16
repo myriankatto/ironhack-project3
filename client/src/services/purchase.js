@@ -6,12 +6,12 @@ const instance = axios.create({
 
 const list = async () => {
   const result = await instance.get('/list');
-  const purchases = result.data.purchases;
+  const purchases = result.data;
   return purchases;
 };
 
 const create = async plan => {
-  await instance.post('/create', { plan });
+  await instance.post(`/create`, {plan});
 };
 
 export { list, create };

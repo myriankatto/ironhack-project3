@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 import { list as listPaymentMethods } from '../../services/payment-method';
 
-import { list as listPurchase } from '../../services/purchase';
-
 
 import { Button, Form, Col } from 'react-bootstrap';
 
+/*Componentes Por Purchase*/
+import PurchaseItem from '../../components/PurchaseFolder';
 
 
 
@@ -15,15 +15,14 @@ export default class PaymentMethodView extends Component {
   constructor(props){
     super(props);
     this.state = {
-      paymentMethods: [],
-      listPurchase: []
+      paymentMethods: []
     };
   };
 
   async fetchData() {
     const paymentMethods = await listPaymentMethods();
     //const listPurchase = await listPurchase();
-    this.setState( paymentMethods);
+    this.setState( paymentMethods );
     
   }
 
@@ -36,7 +35,7 @@ export default class PaymentMethodView extends Component {
     return (
       <div>
         <h1>Plan - Purchase</h1>
-
+        <PurchaseItem />
         <h1>Payment Method LIST</h1>
         <Form>
             <Form.Group controlId="cards">
