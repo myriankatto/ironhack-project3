@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
+import {create} from './../../services/workspace'
+
 class CreateWorkspace extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +20,8 @@ class CreateWorkspace extends Component {
     });
   }
 
+
+
   handleFormSubmission(event) {
     event.preventDefault();
     const name = this.state.workspaceName;
@@ -25,7 +29,11 @@ class CreateWorkspace extends Component {
     const workspace = {
       name
     };
-    this.props.addTask(workspace);
+    create(name)
+    .then()
+    .catch(error => {
+      console.log(error);
+    })
     this.setState({
       workspaceName: ''
     });

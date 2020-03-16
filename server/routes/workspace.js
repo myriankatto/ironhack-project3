@@ -46,7 +46,7 @@ router.post('/create', (req, res, next) => {
 
 //rota para editar workspace
 router.put('/edit/:workspaceid', (req, res, next) => {
-Workspace.findByIdAndUpdate(req.params.workspaceid, req.body, {new:true})
+  Workspace.findByIdAndUpdate(req.params.workspaceid, req.body, { new: true })
     .then(workspace => {
       res.json(workspace);
     })
