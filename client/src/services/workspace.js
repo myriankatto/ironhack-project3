@@ -9,6 +9,7 @@ const list = async () => {
   try {
     const result = await instance.get('/');
     const workspaces = result.data;
+    console.log(workspaces);
     return workspaces;
   } catch (error) {
     throw error;
@@ -23,14 +24,14 @@ const single = async id => {
 };
 
 //service para criar um workspace
-const create = async () => {
-  const result = await instance.post(`/create`, { name, operator });
+const create = async name => {
+  const result = await instance.post(`/create`, { name });
   const newWorkspace = result.data;
   return newWorkspace;
 };
 
 //service para editar um workspace
-const edit = async id => {
+const edit = async (id, name) => {
   const result = await instance.put(`/edit/${id}`, { name });
   const workspace = result.data;
   return workspace;

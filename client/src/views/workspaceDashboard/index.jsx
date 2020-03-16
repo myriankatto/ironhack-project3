@@ -2,24 +2,33 @@ import React, { Component } from 'react';
 
 import NavBar from '../../components/NavBar';
 
-const WorkspaceDashboard = props => {
+
+export default class WorkspaceDashboard extends Component {
+  constructor(props){
+    super(props);
+  };
+
   
-  return (
-          <div>
-            <NavBar user={props.user}/>
+  render() {
+    return (
+      <div>
+         <NavBar user={this.props.user}/>
 
-            NOME DO USUÁRIO: <br></br>
+          NOME DO USUÁRIO: <br></br>
 
-            {
-              props.user ? props.user.name : 'NADA'
-            }<br></br>
-            
-            NOME DA PAGINA: <br></br>
-            DASHBOARD
+          {
+            this.props.user ? this.props.user.name : 'NADA'
+          }<br></br>
 
-          </div>
-        );
-  
-};
+          NOME DA PAGINA: <br></br>
+          DASHBOARD
 
-export default WorkspaceDashboard;
+      </div>
+    )
+  }
+}
+
+
+
+
+
