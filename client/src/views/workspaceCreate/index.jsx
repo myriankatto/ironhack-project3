@@ -1,18 +1,13 @@
 
-<<<<<<< HEAD
-import createWorkspace from '../../components/CreateWorkspace';
-import searchWorkspace from '../../components/searchWorkspace';
+
 import NavBar from './../../components/NavBar'
-=======
 import React, { Component, Fragment } from 'react';
 
-import NavBar from '../../components/NavBar';
->>>>>>> main
+
 
 import {single as singleWorkspace } from '../../services/workspace';
 
-//import createWorkspace from '../../components/CreateWorkspace';
-//import searchWorkspace from '../../components/serchWorkspace';
+
 
 import AddTask from '../../components/AddTask';
 
@@ -43,22 +38,16 @@ export default class WorkspaceCreate extends Component {
 
   
   render() {
-<<<<<<< HEAD
-    return (
-      <div>
-        <NavBar
-          user={this.props.user}
-          {...this.props}
-          updateUserInformation={this.props.updateUserInformation}
-        />
-      </div>
-    );
-=======
+    
     const { workspace } = this.state;
     
     return (
       <div>
-         <NavBar user={this.props.user} workspace={workspace.name}/>
+         <NavBar
+          user={this.props.user}
+          {...this.props}
+          updateUserInformation={this.props.updateUserInformation}
+        />
 
           {workspace.name}:
           
@@ -66,24 +55,8 @@ export default class WorkspaceCreate extends Component {
           <AddTask idWorkspace={workspace._id}/>
 
 
-
-
-          {/* NOME DO USUÁRIO: <br></br>
-
-          {
-            this.props.user ? this.props.user.name : 'NADA'
-          }<br></br>
-           */}
-          {/* {
-            workspace.operator === this.props.user._id ? 'ele é operador' : 'não é operador' 
-          } */}
-
-
-         
-          
          
       </div>
     )
->>>>>>> main
   }
 }

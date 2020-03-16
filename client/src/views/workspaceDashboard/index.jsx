@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-<<<<<<< HEAD
 import NavBar from './../../components/NavBar';
 import CreateWorkspace from '../../components/CreateWorkspace';
 import SearchWorkspace from '../../components/SearchWorkspace';
@@ -49,35 +48,12 @@ class WorkspaceDashboard extends Component {
         </div>
       </div>
     );
-=======
-import NavBar from '../../components/NavBar';
-
-
-export default class WorkspaceDashboard extends Component {
-  constructor(props){
-    super(props);
-  };
-
-  
-  render() {
-    return (
-      <div>
-         <NavBar user={this.props.user}/>
-
-          NOME DO USUÁRIO: <br></br>
-
-          {
-            this.props.user ? this.props.user.name : 'NADA'
-          }<br></br>
-
-          NOME DA PAGINA: <br></br>
-          DASHBOARD
-
-      </div>
-    )
->>>>>>> main
   }
 }
+
+
+
+export default WorkspaceDashboard;
 
 
 
