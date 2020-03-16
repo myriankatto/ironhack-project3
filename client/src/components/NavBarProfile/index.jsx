@@ -31,14 +31,14 @@ class NavBarProfile extends Component {
     return (
       <Swipeable onSwipedRight={this.props.handleMouseDownProfile}>
         <div id="flyoutSidebarProfile" className={visibility}>
+          <img src={this.props.user.picture} alt={this.props.user.name} />
+          <h2>{this.props.user.name}</h2>
+          <button onClick={this.handleSignOut}>Log-Out</button>
           <h2>
             <a href="#" onMouseDown={this.props.handleMouseDownProfile}>
               Go Back
             </a>
           </h2>
-          <img src={this.props.user.picture} alt={this.props.user.name} />
-          <h2>{this.props.user.name}</h2>
-          <button onClick={this.handleSignOut}>Log-Out</button>
         </div>
       </Swipeable>
     );

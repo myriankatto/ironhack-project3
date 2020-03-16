@@ -19,10 +19,16 @@ class NavBarToggleWorkspace extends Component {
           </a>
         </h2>
         <h2>
-          <a href="#">Components</a>
+          <Link to={}>Edit Workspace</Link>to {}{' '}
         </h2>
         <h2>
-          <a href="#">Others</a>
+          <a href="#">Share</a>
+        </h2>
+        <h2>
+          <a href="#">List of Users</a>
+        </h2>
+        <h2>
+          <a href="#">Upgrade</a>
         </h2>
       </div>
     );
