@@ -57,7 +57,7 @@ class SearchWorkspace extends Component {
             />
           </form>
         </div>
-      
+
         <ul className="workspaces__list">
           {this.filteredWorkspaces.map(workspace => (
             <li key={workspace._id} className="workspace__item">
