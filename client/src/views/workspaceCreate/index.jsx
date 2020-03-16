@@ -1,9 +1,8 @@
-
 import React, { Component, Fragment } from 'react';
 
 import NavBar from '../../components/NavBar';
 
-import {single as singleWorkspace } from '../../services/workspace';
+import { single as singleWorkspace } from '../../services/workspace';
 
 //import createWorkspace from '../../components/CreateWorkspace';
 //import searchWorkspace from '../../components/serchWorkspace';
@@ -11,12 +10,12 @@ import {single as singleWorkspace } from '../../services/workspace';
 import AddTask from '../../components/AddTask';
 
 export default class WorkspaceCreate extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       workspace: []
     };
-  };
+  }
 
   componentDidMount() {
     this.fetchData();
@@ -24,10 +23,10 @@ export default class WorkspaceCreate extends Component {
 
   fetchData() {
     const id = this.props.match.params.id;
-    
+
     singleWorkspace(id)
       .then(workspace => {
-        this.setState( workspace );
+        this.setState(workspace);
         //console.log(this.state.workspace)
       })
       .catch(error => {
@@ -35,11 +34,8 @@ export default class WorkspaceCreate extends Component {
       });
   }
 
-  
   render() {
-
     const { workspace } = this.state;
-
     return (
       <div>
         <NavBar
@@ -47,7 +43,7 @@ export default class WorkspaceCreate extends Component {
           {...this.props}
           updateUserInformation={this.props.updateUserInformation}
         />
-        <AddTask idWorkspace={workspace._id}/>
+        <AddTask idWorkspace={workspace._id} />
       </div>
     );
   }
