@@ -6,7 +6,7 @@ import SearchWorkspace from '../../components/SearchWorkspace';
 
 import './style.scss';
 
-class WorkspaceDashboard extends Component {
+export default class WorkspaceDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,12 +50,3 @@ class WorkspaceDashboard extends Component {
     );
   }
 }
-
-
-
-export default WorkspaceDashboard;
-
-
-
-
-
