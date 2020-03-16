@@ -9,6 +9,9 @@ import PaymentMethodCreateView from './views/paymentMethodCreate';
 import CheckoutView from './views/CheckoutView';
 import WorkspaceCreate from './views/workspaceCreate';
 import { loadUserInformation } from './services/authentication';
+
+import ProtectedRoute from './components/ProtectedRoute';
+
 class App extends Component {
   constructor() {
     super();
@@ -31,21 +34,22 @@ class App extends Component {
   }
 
   updateUserInformation(user) {
+    console.log('app' + user);
     this.setState({
       user
     });
   }
 
-
-
-  render(){
+  render() {
+    console.log('user: ' + this.state.user);
     return (
       <div className="App">
         <BrowserRouter>
           <Switch>
             <Route path="/" exact redirect={'/dashboard'} component={Home} />
-            <Route
+            <ProtectedRoute
               path="/dashboard"
+              authorized={this.state.user}
               exact
               render={props => (
                 <WorkspaceDashboard
@@ -55,24 +59,49 @@ class App extends Component {
                 />
               )}
             />
+            {/* <Route
+              path="/dashboard"
+              exact
+              render={props => (
+                <WorkspaceDashboard
+                  user={this.state.user}
+                  {...props}
+                  updateUserInformation={this.updateUserInformation}
+                />
+              )}
+            /> */}
 
             {/* ROTAS PARA PAGAMENTO E COMPRA */}
-            <Route exact path="/payment-method/list" 
-                          render={props => <PaymentMethodView user={this.state.user} cart={this.state.cart}  {...props}/> }               
-                        />
-            <Route exact path="/payment-method/create" 
-                          render={props => <PaymentMethodCreateView user={this.state.user}  {...props}/> }               
-                        />
+            <ProtectedRoute
+              exact
+              authorized={this.state.user}
+              path="/payment-method/list"
+              render={props => (
+                <PaymentMethodView user={this.state.user} cart={this.state.cart} {...props} />
+              )}
+            />
+            <ProtectedRoute
+              exact
+              authorized={this.state.user}
+              path="/payment-method/create"
+              render={props => <PaymentMethodCreateView user={this.state.user} {...props} />}
+            />
 
-            <Route exact path="/checkout" 
-                          render={props => <CheckoutView user={this.state.user}  {...props}/> }               
-                        />
-            {/* FINAL ROTAS PARA PAGAMENTO E COMPRA */ }
+            <ProtectedRoute
+              exact
+              authorized={this.state.user}
+              path="/checkout"
+              render={props => <CheckoutView user={this.state.user} {...props} />}
+            />
+            {/* FINAL ROTAS PARA PAGAMENTO E COMPRA */}
 
-            {/* ROTA PARA WORKSPACE EM SINGLE */ }
-            <Route exact path="/dashboard/:id" 
-                          render={props => <WorkspaceCreate user={this.state.user}  {...props}/> } 
-                          />
+            {/* ROTA PARA WORKSPACE EM SINGLE */}
+            <ProtectedRoute
+              exact
+              authorized={this.state.user}
+              path="/dashboard/:id"
+              render={props => <WorkspaceCreate user={this.state.user} {...props} />}
+            />
           </Switch>
         </BrowserRouter>
       </div>
