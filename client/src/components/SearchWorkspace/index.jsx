@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Form, Button } from 'react-bootstrap';
+import './style.scss';
 
 import { list } from './../../services/workspace';
 
@@ -44,9 +44,10 @@ class SearchWorkspace extends Component {
   render() {
     return (
       <React.Fragment>
-        <Form>
-          <Form.Group controlId="formBasicSearch">
-            <Form.Control
+        <div className="workspace__search__form">
+          <form className="workspace__search__form">
+            <input
+              className="workspace__input__form"
               type="search"
               name="query"
               value={this.state.query}
@@ -54,16 +55,14 @@ class SearchWorkspace extends Component {
               placeholder="Search for a Workspace.."
               autoComplete="off"
             />
-          </Form.Group>
-        </Form>
-
+          </form>
+        </div>
+      
         <ul className="workspaces__list">
           {this.filteredWorkspaces.map(workspace => (
             <li key={workspace._id} className="workspace__item">
               {workspace.name}
-              <Button variant="secondary" type="submit">
-                +
-              </Button>
+              <button className="workspace__btn">+</button>
             </li>
           ))}
         </ul>

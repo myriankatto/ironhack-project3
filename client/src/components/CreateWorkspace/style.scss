@@ -1,0 +1,31 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+.form {
+  margin: 0 auto;
+  .form__input {
+    outline: 0;
+    border-width: 0 0 1px;
+    border-color: black;
+    color: $darkColor;
+    font-size: 0.9em;
+    font-weight: 400;
+    width: 90%;
+    margin: 1em;
+  }
+  input:focus {
+    border-color: $purple;
+  }
+  .form__btn {
+    background-color: $purple;
+    border-radius: 1em;
+    border: none;
+    color: white;
+    font-size: 1em;
+    display: block;
+    margin: 1em auto 0 auto;
+    padding: 0.2em 1em;
+    text-align: center;
+  }
+}

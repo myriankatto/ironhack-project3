@@ -1,0 +1,34 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+.workspace__search__form {
+  margin: 0 1em;
+  .workspace__input__form {
+    width: 100%;
+    border-radius: 2em;
+    border: solid 0.5px $darkColor;
+    padding: 1em 2em;
+  }
+}
+
+.workspaces__list {
+  margin: 0 auto;
+  padding: 0;
+  .workspace__item {
+    display: flex;
+    margin: 1em 3em;
+    background-color: $purple;
+    color: white;
+    padding: 0.5em 1.5em;
+    border-radius: 2em;
+    text-align: left;
+    &:first-child {
+      margin-top: 2em;
+    }
+    .workspace__btn {
+      color: white;
+      font-weight: 600;
+    }
+  }
+}

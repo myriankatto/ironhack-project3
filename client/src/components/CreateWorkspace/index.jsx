@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
 
 import { create } from './../../services/workspace';
+
+import './style.scss';
 
 class CreateWorkspace extends Component {
   constructor(props) {
@@ -38,21 +39,18 @@ class CreateWorkspace extends Component {
   }
   render() {
     return (
-      <Form onSubmit={this.handleFormSubmission}>
-        <Form.Group controlId="formBasicName">
-          <Form.Control
-            type="text"
-            name="workspaceName"
-            value={this.state.workspaceName}
-            onChange={this.handleInputChange}
-            placeholder="Your workspace name"
-            autoComplete="off"
-          />
-          <Button variant="primary" type="submit">
-            Create
-          </Button>
-        </Form.Group>
-      </Form>
+      <form className="form" onSubmit={this.handleFormSubmission}>
+        <input
+          className="form__input"
+          type="text"
+          name="workspaceName"
+          value={this.state.workspaceName}
+          onChange={this.handleInputChange}
+          placeholder="Your workspace name"
+          autoComplete="off"
+        />
+        <button className="form__btn">Create</button>
+      </form>
     );
   }
 }
