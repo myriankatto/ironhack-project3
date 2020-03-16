@@ -1,7 +1,7 @@
 #flyoutSidebarProfile {
   width: 100vw;
   height: 100%;
-  background-color: #b5e3f1;
+  background-color: #544bd8;
   border: 5px solid #0e6d8a;
   border-radius: 30px;
   position: fixed;
@@ -36,4 +36,7 @@
   background-color: #544bd8;
   justify-content: space-between;
   width: 100;
+  img {
+    width: 100%;
+  }
 }

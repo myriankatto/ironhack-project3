@@ -1,8 +1,8 @@
 //it is the pink menu
 import './style.scss';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { signOut } from './../../services/authentication';
+import { useSwipeable, Swipeable } from 'react-swipeable';
 
 class NavBarProfile extends Component {
   constructor(props) {
@@ -12,7 +12,10 @@ class NavBarProfile extends Component {
   handleSignOut = () => {
     signOut()
       .then(() => {
+        console.log(this.props);
+
         this.props.updateUserInformation(null);
+        return this.props.handleMouseDownProfile();
       })
       .catch(error => {
         console.log(error);
@@ -26,16 +29,18 @@ class NavBarProfile extends Component {
     }
 
     return (
-      <div id="flyoutSidebarProfile" className={visibility}>
-        <h2>
-          <a href="#" onMouseDown={this.props.handleMouseDownProfile}>
-            Go Back
-          </a>
-        </h2>
-        <img src="#" alt="profile image" />
-        <h2>Name</h2>
-        <button onClick={this.handleSignOut}>Log-Out</button>
-      </div>
+      <Swipeable onSwipedRight={this.props.handleMouseDownProfile}>
+        <div id="flyoutSidebarProfile" className={visibility}>
+          <img src={this.props.user.picture} alt={this.props.user.name} />
+          <h2>{this.props.user.name}</h2>
+          <button onClick={this.handleSignOut}>Log-Out</button>
+          <h2>
+            <a href="#" onMouseDown={this.props.handleMouseDownProfile}>
+              Go Back
+            </a>
+          </h2>
+        </div>
+      </Swipeable>
     );
   }
 }

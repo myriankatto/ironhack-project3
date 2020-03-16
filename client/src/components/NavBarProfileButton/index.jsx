@@ -7,15 +7,14 @@ class NavBarProfileButton extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
-      <h1 onMouseDown={this.props.handleMouseDownProfile}>profile button</h1>
-      // <img
-      //   href={this.props.user.picture}
-      //   id="imgButton"
-      //
-      //   alt={this.props.user.name}
-      // ></img>
+      <img
+        id="buttonImg"
+        src={this.props.user.picture}
+        alt={this.props.user.name}
+        onMouseDown={this.props.handleMouseDownProfile}
+      />
     );
   }
 }

@@ -25,7 +25,11 @@ class WorkspaceDashboard extends Component {
   render() {
     return (
       <div className="dashboard">
-        <NavBar />
+        <NavBar
+          user={this.props.user}
+          {...this.props}
+          updateUserInformation={this.props.updateUserInformation}
+        />
         <div className="dashboard__content">
           <figure>
             <img className="team-image" src="./../images/team.svg" alt="workspace image" />
@@ -37,7 +41,9 @@ class WorkspaceDashboard extends Component {
             </button>
             {this.state.active && <CreateWorkspace />}
           </div>
-          <p><span>or</span></p>
+          <p>
+            <span>or</span>
+          </p>
           <SearchWorkspace />
         </div>
       </div>
