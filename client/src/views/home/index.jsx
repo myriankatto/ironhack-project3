@@ -53,14 +53,14 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Button variant="secondary" onClick={this.handleAuthentication}>
-          {this.state.signIn ? 'Create an Account' : 'Sign-In'}
-        </Button>
         {this.state.signIn ? (
           <SignIn updateUserInformation={this.updateUserInformation} changeHistory={this.changeHistory}/>
         ) : (
           <SignUp updateUserInformation={this.updateUserInformation} changeHistory={this.changeHistory}/>
         )}
+        <Button variant="secondary" onClick={this.handleAuthentication}>
+          {this.state.signIn ? 'Create an Account' : 'Sign-In'}
+        </Button>
       </div>
     );
   }

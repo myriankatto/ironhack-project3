@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import NavBar from './../../components/NavBar';
 
+import CreateWorkspace from '../../components/CreateWorkspace';
+// import NavBar from '../../components/NavBar';
+// import SearchWorkspace from '../../components/serchWorkspace';
+
 class WorkspaceDashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: ''
+    };
+  }
+
   render() {
     return (
       <div>
-        <NavBar user={this.props.user} />
-        <h1>DASHBOARD</h1>
+        <NavBar />
+        <CreateWorkspace />
       </div>
     );
   }

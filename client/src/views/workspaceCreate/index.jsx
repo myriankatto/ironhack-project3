@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 import React, { Component } from 'react';
 
 import createWorkspace from '../../components/CreateWorkspace';
@@ -10,3 +12,4 @@ class workspaceCreate extends Component {
 }
 
 export default workspaceCreate;
+>>>>>>> 5391e9a9a841f4665c1799dd6049100696cc9880
