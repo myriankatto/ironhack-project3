@@ -58,6 +58,7 @@ class Navbar extends Component {
       sidebarProfile: !this.state.sidebarProfile
     });
   }
+
   render() {
     return (
       <nav
@@ -70,12 +71,14 @@ class Navbar extends Component {
           menuVisibility={this.state.visibleWorkspace}
         />
         <NavBarProfile
+          user={this.props.user}
           handleMouseDownProfile={this.handleMouseDownProfile}
           menuVisibility={this.state.visibleProfile}
+          updateUserInformation={this.props.updateUserInformation}
         />
         <NavBarProfileButton
+          user={this.props.user}
           handleMouseDownProfile={this.handleMouseDownProfile}
-          user={this.props.updateUserInformation}
         />
       </nav>
     );

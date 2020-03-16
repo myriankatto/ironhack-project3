@@ -1,7 +1,6 @@
 //it is the pink menu
 import './style.scss';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 class NavBarToggleWorkspace extends Component {
   render() {

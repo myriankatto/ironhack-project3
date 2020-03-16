@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 import NavBar from './../../components/NavBar';
 import CreateWorkspace from '../../components/CreateWorkspace';
 import SearchWorkspace from '../../components/SearchWorkspace';
@@ -10,7 +9,7 @@ class WorkspaceDashboard extends Component {
     super(props);
     this.state = {
       name: '',
-      active: false,
+      active: false
     };
     this.toogleWorkspace = this.toogleWorkspace.bind(this);
   }
@@ -21,12 +20,14 @@ class WorkspaceDashboard extends Component {
     }));
   }
 
- 
-
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar
+          user={this.props.user}
+          {...this.props}
+          updateUserInformation={this.props.updateUserInformation}
+        />
         <button onClick={this.toogleWorkspace}>Create a new Workspace</button>
         {this.state.active && <CreateWorkspace />}
         <p>______or______</p>

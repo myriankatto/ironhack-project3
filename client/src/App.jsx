@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 /*VIEWS*/
 import Home from './views/home';
 import WorkspaceDashboard from './views/workspaceDashboard';
@@ -30,10 +30,10 @@ class App extends Component {
       });
   }
   updateUserInformation(user) {
+    console.log('user info: ' + user);
     this.setState({
       user
     });
-    return <Redirect to={'/'} />;
   }
   render() {
     return (
