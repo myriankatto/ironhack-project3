@@ -1,13 +1,7 @@
 
-<<<<<<< HEAD
-import createWorkspace from '../../components/CreateWorkspace';
-import searchWorkspace from '../../components/searchWorkspace';
-import NavBar from './../../components/NavBar'
-=======
 import React, { Component, Fragment } from 'react';
 
 import NavBar from '../../components/NavBar';
->>>>>>> main
 
 import {single as singleWorkspace } from '../../services/workspace';
 
@@ -43,7 +37,9 @@ export default class WorkspaceCreate extends Component {
 
   
   render() {
-<<<<<<< HEAD
+
+    const { workspace } = this.state;
+
     return (
       <div>
         <NavBar
@@ -51,39 +47,8 @@ export default class WorkspaceCreate extends Component {
           {...this.props}
           updateUserInformation={this.props.updateUserInformation}
         />
+        <AddTask idWorkspace={workspace._id}/>
       </div>
     );
-=======
-    const { workspace } = this.state;
-    
-    return (
-      <div>
-         <NavBar user={this.props.user} workspace={workspace.name}/>
-
-          {workspace.name}:
-          
-
-          <AddTask idWorkspace={workspace._id}/>
-
-
-
-
-          {/* NOME DO USUÁRIO: <br></br>
-
-          {
-            this.props.user ? this.props.user.name : 'NADA'
-          }<br></br>
-           */}
-          {/* {
-            workspace.operator === this.props.user._id ? 'ele é operador' : 'não é operador' 
-          } */}
-
-
-         
-          
-         
-      </div>
-    )
->>>>>>> main
   }
 }
