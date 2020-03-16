@@ -23,7 +23,7 @@ router.get('/:workspaceid', (req, res, next) => {
   Workspace.findById(req.params.workspaceid)
     .populate('owner')
     .then(workspace => {
-      res.json(workspace);
+      res.json({workspace});
     })
     .catch(error => {
       res.json(error);

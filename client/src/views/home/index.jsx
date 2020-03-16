@@ -15,6 +15,8 @@ class Home extends Component {
       user: null,
       signIn: true
     };
+
+    
     this.updateUserInformation = this.updateUserInformation.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.changeHistory = this.changeHistory.bind(this);
@@ -50,6 +52,7 @@ class Home extends Component {
   changeHistory(){
     this.props.history.push('/dashboard');
   }
+  
   render() {
     return (
       <div>
