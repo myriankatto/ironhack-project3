@@ -47,7 +47,7 @@ export default class WorkspaceCreate extends Component {
           updateUserInformation={this.props.updateUserInformation}
         />
         
-        <div className="dashboard__content">
+        <div className="dashboard__content mt-2">
           <Tasks idWorkspace={this.props.match.params.id} />
           <FooterWorkspace idWorkspace={this.props.match.params.id} />
         </div>

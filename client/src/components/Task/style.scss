@@ -2,54 +2,9 @@ $darkColor: #3f3d56;
 $purple: #6c63ff;
 $lightGrey: #e2e2e2;
 
-.dashboard {
-  
-    width: 100%;
- 
-    h1 {
-      font-size: 1em;
-      font-weight: 400;
-      color: $darkColor;
-      display: inline-block;
-      margin: 0;
-    }
-    .arrow-icon {
-      width: 1.2em;
-      margin: 0 0 0 2em;
-    }
-
-    .team-image {
-      width: 15em;
-      margin: 3em 0;
-    }
-    p {
-      margin: 2em auto;
-      text-align: center;
-      font-size: 1em;
-      position: relative;
-      color: $lightGrey;
-    }
-    p:after {
-      content: '';
-      display: block;
-      width: 60%;
-      height: 1px;
-      background: rgb(236, 236, 236);
-      position: absolute;
-      right: 20%;
-      top: 50%;
-      z-index: -2;
-    }
-    span {
-      background: #fff;
-      padding: 0 0.4em;
-    }
-
-    .dashboard__workspace__create {
-      border-radius: 2em;
-      border: solid 0.5px $darkColor;
-      margin: 0 2em;
-      padding: 1em;
-    }
-  
+.dashboard__task__list {
+  margin: 0 2em;
+  padding: 1em;
 }
+
+

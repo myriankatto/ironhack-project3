@@ -43,13 +43,23 @@ class Tasks extends Component {
   render() {
    
     return (
-      <Accordion className="container" defaultActiveKey="0">
-        {
-          this.state.tasks.map(task => (
-            <ItemTask  key={task._id} name={task.name} toggle={task._id}/>
-          ))
-        }
-      </Accordion>
+      <div>
+        <Accordion className="dashboard__task__list" defaultActiveKey="0">
+          {
+            this.state.tasks.map(task => (
+              <ItemTask  
+              key={task._id} 
+              name={task.name}
+              description={task.description} 
+              toggle={task._id}
+              level={task.level}
+              frequency={task.frequency}
+              />
+            ))
+          }
+        </Accordion>
+      </div>
+      
     );
   }
 }

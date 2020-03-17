@@ -1,10 +1,47 @@
-.cardTask{
-  margin-bottom: 5em;
-  
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
 
+.cardTask{
+  margin-bottom: 2em;
+  
   .arrow-icon {
     width: 1.2em;
     margin: 0 0 0 2em;
   }
+
+  .title_Card{
+    text-decoration: none;
+    color: red;
+  }
+
+  .cardTask__paragraph{
+    color:$darkColor;
+    text-decoration: none;
+    text-transform: none;
+  }:hover{
+    color:$purple;
+  }
+
+  .cardTask_title{
+    border: 1px solid green;
+    padding-top: 1em;
+    color:$darkColor;
+  }
+
+  .cardTask_level{
+    color:$purple;
+    
+  }
+
+  .cardTask_col{
+   
+    /*display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;*/
+  }
+  
 }
+
 
