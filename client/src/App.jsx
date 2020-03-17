@@ -8,6 +8,7 @@ import PaymentMethodView from './views/paymentMethodList';
 import PaymentMethodCreateView from './views/paymentMethodCreate';
 import CheckoutView from './views/CheckoutView';
 import WorkspaceCreate from './views/workspaceCreate';
+import EditWorkspace from './views/EditWorkspace';
 import { loadUserInformation } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
@@ -65,6 +66,13 @@ class App extends Component {
                   updateUserInformation={this.updateUserInformation}
                 />
               )}
+            />
+            <ProtectedRoute
+              path="/editWorkspace"
+              authorized={this.state.user}
+              redirect={'/'}
+              exact
+              render={props => <EditWorkspace user={this.state.user} {...props} />}
             />
 
             {/* ROTAS PARA PAGAMENTO E COMPRA */}

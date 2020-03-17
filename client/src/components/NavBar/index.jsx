@@ -45,7 +45,6 @@ class Navbar extends Component {
   //for the profile Menu
   handleMouseDownProfile() {
     this.toggleMenuProfile();
-    // e.stopPropagation();
   }
 
   toggleMenuProfile() {
@@ -61,10 +60,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav
-        className="nav-style"
-        // style={{ display: 'flex', justifyContent: 'space-between', width: '100' }}
-      >
+      <nav className="nav-style">
         <MenuButton handleMouseDown={this.handleMouseDownWorkspace} />
         <NavBarToggleWorkspace
           handleMouseDown={this.handleMouseDownWorkspace}
