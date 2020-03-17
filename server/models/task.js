@@ -18,6 +18,7 @@ const schema = new mongoose.Schema(
       enum: ['easy', 'medium', 'hard'],
       default:'easy'
     },
+
     //usuário que vai realizar a tarefa
     owner: {
       type: mongoose.Schema.Types.ObjectId,

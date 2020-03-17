@@ -15,6 +15,8 @@ export default class WorkspaceCreate extends Component {
     this.state = {
       workspace: []
     };
+
+    
   }
 
   componentDidMount() {
@@ -23,7 +25,7 @@ export default class WorkspaceCreate extends Component {
 
   fetchData() {
     const id = this.props.match.params.id;
-
+    
     singleWorkspace(id)
       .then(workspace => {
         this.setState(workspace);
@@ -36,6 +38,8 @@ export default class WorkspaceCreate extends Component {
 
   render() {
     const { workspace } = this.state;
+   
+
     return (
       <div>
         <NavBar
@@ -47,10 +51,10 @@ export default class WorkspaceCreate extends Component {
 
         <Tasks idWorkspace={this.props.match.params.id} />
         
-        {/* <AddTask idWorkspace={workspace._id} />
+        {/* <AddTask idWorkspace={workspace._id} /> */}
 
 
-        <FooterWorkspace /> */}
+        <FooterWorkspace idWorkspace={this.props.match.params.id} />
       </div>
     );
   }

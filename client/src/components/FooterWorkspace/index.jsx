@@ -15,7 +15,8 @@ class FooterWorkspacce extends Component {
     super(props, context);
     this.state = {
       visibleAddTasks: false,
-      sidebarAddTasks: false
+      sidebarAddTasks: false,
+      
     };
     this.handleMouseUpAddTasks = this.handleMouseUpAddTasks.bind(this);
     this.toggleAddTasks = this.toggleAddTasks.bind(this);
@@ -38,29 +39,24 @@ class FooterWorkspacce extends Component {
   }
 
   render() {
+    //console.log('FOOTER WORKSPACE PROP', this.props.idWorkspace);
     return (
       <footer className="footer-style">
         <FooterShowScores />
+        
         <FooterAddTasksToggle
           handleMouseUp={this.handleMouseUpAddTasks}
           menuVisibility={this.state.visibleAddTasks}
+          idWorkspace={this.props.idWorkspace}
         />
         <FooterAddTaskButton
           handleMouseUp={this.handleMouseUpAddTasks}
           menuVisibility={this.state.visibleAddTasks}
           user={this.props.user}
           updateUserInformation={this.props.updateUserInformation}
+         
         />
-        {/* <NavBarProfile
-          user={this.props.user}
-          handleMouseDownProfile={this.handleMouseDownProfile}
-          menuVisibility={this.state.visibleProfile}
-          updateUserInformation={this.props.updateUserInformation}
-        />
-        <NavBarProfileButton
-          user={this.props.user}
-          handleMouseDownProfile={this.handleMouseDownProfile}
-        />  */}
+        
       </footer>
     );
   }

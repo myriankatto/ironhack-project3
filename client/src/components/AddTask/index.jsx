@@ -10,13 +10,13 @@ class AddTask extends Component {
     super(props);
     this.state = {
       name: '',
-      level: '', 
+      level: 'easy', 
       urgency:false,
       category:'',
       personal:false,
       frequency: '',
       description: '',
-      checked: null
+      
       
     };
 
@@ -61,11 +61,10 @@ class AddTask extends Component {
     const frequency = Number(this.state.frequency);
     const description = this.state.description;
     
-    console.log('STATE', this.state);
-    //console.log('typeof frequency', typeof frequency);
-
+  
     const id = this.props.idWorkspace;
-   
+    console.log('ID NO ADD TASK', id);
+    console.log('STATE DO ADD', this.state)
     //if (!name || !level || !urgency || !category || !personal) return;
     
     create({id,name, level, urgency, personal, category, frequency, description })
@@ -85,13 +84,11 @@ class AddTask extends Component {
         checked: null
       });
 
-      console.log('THIS STATE RESET',this.state)
+    
       
   };
 
   resetTotal(){
-    console.log('BEFORE THIS STATE RESET TOTAL',this.state)
-
     this.setState({
       name: '',
       level: '', 
@@ -102,8 +99,7 @@ class AddTask extends Component {
       description: ''
     });
 
-    console.log('THIS STATE RESET TOTAL',this.state)
-
+  
   }
 
  

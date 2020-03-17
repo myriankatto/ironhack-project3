@@ -10,18 +10,20 @@ class FooterAddTasksToggle extends Component {
 
   showOperatorAddTasks() {}
   render() {
+    //console.log('PROP NO FOOTER ADD', this.props.idWorkspace)
     var visibility = 'hide';
 
     if (this.props.menuVisibility) {
       visibility = 'show';
     }
 
+    
     return (
       <Swipeable onSwipedLeft={this.props.handleMouseUp}>
         <div id="flyoutMenu_AddTask" className={visibility}>
        
           <h2>Add Tasks Form</h2>
-       <AddTask />
+          <AddTask idWorkspace={this.props.idWorkspace}/>
 
             <a onMouseUp={this.props.handleMouseUp}>
               {' '}

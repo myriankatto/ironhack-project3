@@ -4,30 +4,11 @@ const instance = axios.create({
   baseURL: '/api/task'
 });
 
-// const signIn = data =>
-//   new Promise((resolve, reject) => {
-//     instance
-//       .post('/sign-in', data)
-//       .then(result => {
-//         const user = result.data.user;
-//         resolve(user);
-//       })
-//       .catch(reject);
-//   });
-
-// const list = async () => {
-//   try {
-//     const result = await instance.get('/product/list');
-//     const products = result.data.products;
-//     return products;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
 
 //service para criar uma task com base no id do workspace
 const create = async data => {
-  console.log('server works', data);
+  // console.log('services works ', data);
+  // console.log('name no services', data.name);
 
   const name = data.name;
   const level = data.level;
