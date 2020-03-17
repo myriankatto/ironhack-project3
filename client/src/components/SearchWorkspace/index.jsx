@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
 import './style.scss';
 
 import { list } from './../../services/workspace';
+import askPermissionWorkspace from './../../services/workspaceUser';
 
 class SearchWorkspace extends Component {
   constructor(props) {
@@ -36,6 +36,10 @@ class SearchWorkspace extends Component {
       });
   }
 
+  addWorkspaceToUser(workspaceId) {
+    askPermissionWorkspace(this.props.user._id, workspaceId.split(' '));
+  }
+
   get filteredWorkspaces() {
     const filteredWorkspaces = this.state.workspaces.filter(workspace => {
       return workspace.name.toLowerCase().includes(this.state.query.toLowerCase());
@@ -63,8 +67,13 @@ class SearchWorkspace extends Component {
         <ul className="workspaces__list">
           {this.filteredWorkspaces.map(workspace => (
             <li key={workspace._id} className="workspace__item">
-                <Link to={`/dashboard/${workspace._id}`}>{workspace.name}</Link>
-              <button className="workspace__btn">+</button>
+              <Link to={`/dashboard/${workspace._id}`}>{workspace.name}</Link>
+              <button
+                className="workspace__btn"
+                onClick={() => this.addWorkspaceToUser(workspace._id)}
+              >
+                +
+              </button>
             </li>
           ))}
         </ul>
