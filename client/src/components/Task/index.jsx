@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import {Accordion, Card, Button } from 'react-bootstrap';
+
 
 import { list as listTasks }  from './../../services/task';
 import './style.scss';
 
+import ItemTask from '../ItemTask';
 
 class Tasks extends Component {
   constructor(props) {
@@ -12,6 +14,8 @@ class Tasks extends Component {
       tasks:[],
       id: this.props.idWorkspace
     };
+
+    
   };
 
   componentDidMount() {
@@ -38,14 +42,13 @@ class Tasks extends Component {
   render() {
    
     return (
-      <div>
+      <Accordion defaultActiveKey="0">
         {
           this.state.tasks.map(task => (
-            <div>{task.name}</div>
+            <ItemTask  key={task._id} name={task.name} toggle={task._id}/>
           ))
         }
-      </div>
-      
+      </Accordion>
     );
   }
 }

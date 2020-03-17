@@ -27,7 +27,7 @@ export default class WorkspaceCreate extends Component {
     singleWorkspace(id)
       .then(workspace => {
         this.setState(workspace);
-        //console.log(this.state.workspace)
+       
       })
       .catch(error => {
         console.log(error);
@@ -47,10 +47,10 @@ export default class WorkspaceCreate extends Component {
 
         <Tasks idWorkspace={this.props.match.params.id} />
         
-        <AddTask idWorkspace={workspace._id} />
+        {/* <AddTask idWorkspace={workspace._id} />
 
 
-        <FooterWorkspace />
+        <FooterWorkspace /> */}
       </div>
     );
   }
