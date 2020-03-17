@@ -16,17 +16,16 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      loaded: false,
       user: null
     };
+    this.updateUserInformation = this.updateUserInformation.bind(this);
   }
+
   componentDidMount() {
     loadUserInformation()
       .then(user => {
-        this.updateUserInformation(user);
-        this.setState({
-          loaded: true
-        });
+        console.log(user);
+        return this.updateUserInformation(user);
       })
       .catch(error => {
         console.log(error);
@@ -34,19 +33,26 @@ class App extends Component {
   }
 
   updateUserInformation(user) {
-    console.log('app' + user);
+    console.log(user);
     this.setState({
       user
     });
   }
 
   render() {
-    console.log('user: ' + this.state.user);
     return (
       <div className="App">
         <BrowserRouter>
           <Switch>
-            <Route path="/" exact redirect={'/dashboard'} component={Home} />
+            <ProtectedRoute
+              path="/"
+              exact
+              authorized={!this.state.user}
+              redirect={'/dashboard'}
+              render={props => (
+                <Home {...props} updateUserInformation={this.updateUserInformation} />
+              )}
+            />
             <ProtectedRoute
               path="/dashboard"
               authorized={this.state.user}
@@ -59,17 +65,6 @@ class App extends Component {
                 />
               )}
             />
-            {/* <Route
-              path="/dashboard"
-              exact
-              render={props => (
-                <WorkspaceDashboard
-                  user={this.state.user}
-                  {...props}
-                  updateUserInformation={this.updateUserInformation}
-                />
-              )}
-            /> */}
 
             {/* ROTAS PARA PAGAMENTO E COMPRA */}
             <ProtectedRoute

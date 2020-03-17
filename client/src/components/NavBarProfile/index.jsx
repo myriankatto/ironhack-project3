@@ -9,11 +9,11 @@ class NavBarProfile extends Component {
     super(props);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
-  //this function is for the sign out. it need to send information to the user state in th app.js => still not working, the function tree is passing but not updating he state
+
   handleSignOut = () => {
     signOut()
       .then(() => {
-        this.props.updateUserInformation('the info is passing but the state is not being updated');
+        this.props.updateUserInformation(null);
         return this.props.handleMouseDownProfile();
       })
       .catch(error => {
@@ -35,7 +35,7 @@ class NavBarProfile extends Component {
           <button onClick={this.handleSignOut}>Log-Out</button>
           <h2>
             <a href="#" onMouseDown={this.props.handleMouseDownProfile}>
-              Go Back
+              Go Back / click or swipe
             </a>
           </h2>
         </div>
