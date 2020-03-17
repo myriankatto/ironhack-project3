@@ -22,7 +22,7 @@ export default class ItemTask extends Component {
 
   render() {
     return (
-      <Card className="cardTask" onClick={this.toogleWorkspace}>
+      <Card className="cardTask border border-secondary rounded-pill" onClick={this.toogleWorkspace}>
         <Accordion.Toggle as={Button} variant="link" eventKey={this.props.toggle}>
             {this.props.name}
 

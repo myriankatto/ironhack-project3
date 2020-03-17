@@ -7,6 +7,7 @@ import './style.scss';
 
 import ItemTask from '../ItemTask';
 
+/*COMPONENTE QUE LISTA AS TASKS*/
 class Tasks extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +43,7 @@ class Tasks extends Component {
   render() {
    
     return (
-      <Accordion defaultActiveKey="0">
+      <Accordion className="container" defaultActiveKey="0">
         {
           this.state.tasks.map(task => (
             <ItemTask  key={task._id} name={task.name} toggle={task._id}/>
