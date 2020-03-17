@@ -25,7 +25,7 @@ class FooterAddTasksToggle extends Component {
 
             <a onMouseUp={this.props.handleMouseUp}>
               {' '}
-              <img src="./../images/right-white.svg" alt="go back icon" />
+              <img src="./../images/right.svg" alt="go back icon" />
             </a>
         </div>
       </Swipeable>

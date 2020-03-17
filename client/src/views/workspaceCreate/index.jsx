@@ -47,10 +47,10 @@ export default class WorkspaceCreate extends Component {
 
         <Tasks idWorkspace={this.props.match.params.id} />
         
-        {/* <AddTask idWorkspace={workspace._id} />
+          <AddTask idWorkspace={workspace._id} /> 
 
 
-        <FooterWorkspace /> */}
+        <FooterWorkspace /> 
       </div>
     );
   }

@@ -62,18 +62,19 @@ class EditProfileView extends Component {
     const user = this.props.user;
     return (
       <div className="edit__profile">
+        <img className="exit-icon" src="./../../images/exit.svg" alt="exit icon" />
         <h1>Edit Your Profile</h1>
 
         <figure>
           <img
-            style={{ width: '50%', margin: '0 auto', borderRadius: '50%' }}
+           className="profile-img-edit"
             src={user.picture}
             alt={user.name}
           />
         </figure>
 
         <form className="editProfile__form" onSubmit={this.handleFormSubmission}>
-        <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name</label>
           <input
             className="editProfile__input"
             id="name"

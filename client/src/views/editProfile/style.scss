@@ -4,7 +4,14 @@ $lightGrey: #e2e2e2;
 
 .edit__profile {
   margin: 1em;
-  h1{
+  .profile-img-edit {
+    width: 12em;
+    height: 12em;
+    margin: 0 auto;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  h1 {
     color: $purple;
     font-weight: 200;
     font-size: 1.6em;
@@ -24,7 +31,7 @@ $lightGrey: #e2e2e2;
     label {
       text-align: left;
       color: #3f3d56;
-      margin-left: 1em
+      margin-left: 1em;
     }
     .editProfile__btn {
       background-color: $purple;
@@ -33,5 +40,10 @@ $lightGrey: #e2e2e2;
       padding: 0.4em 1em;
       margin: 0.5em 0 0;
     }
+  }
+
+  .exit-icon {
+    width: 2em;
+    float: right;
   }
 }
