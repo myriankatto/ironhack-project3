@@ -30,9 +30,16 @@ const create = async data => {
   console.log('server works', data);
 
   const name = data.name;
+  const level = data.level;
+  const urgency = data.urgency;
+  const personal = data.personal;
+  const category = data.category;
+  const frequency = data.frequency;
+  const description = data.description
+
   //console.log(typeof );
   try {
-    const result = await instance.post(`/create/${data.id}`, { name });
+    const result = await instance.post(`/create/${data.id}`, { name, frequency, level, personal, urgency, description});
     // const newTask = result.data;
     // return newTask;
   } catch (error) {

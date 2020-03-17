@@ -15,7 +15,8 @@ const schema = new mongoose.Schema(
     },
     level: {
       type: String,
-      enum: ['easy', 'medium', 'hard']
+      enum: ['easy', 'medium', 'hard'],
+      default:'easy'
     },
     //usuário que vai realizar a tarefa
     owner: {
@@ -36,7 +37,8 @@ const schema = new mongoose.Schema(
       type: String
     },
     personal: {
-      type: Boolean
+      type: Boolean,
+      default:false
     },
     //usuário que inventou a tarefa
     creator: {
