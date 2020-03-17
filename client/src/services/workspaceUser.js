@@ -18,4 +18,10 @@ const editWorkspace = async userId => {
   return result.data;
 };
 
-export { editWorkspace, askPermissionWorkspace };
+//route to retrieve the users from single workspace
+const usersFromWorkspace = async workspaceId => {
+  const result = await instance.get(`/usersFromWorkspace/${workspaceId}`);
+  return result.data;
+};
+
+export { editWorkspace, askPermissionWorkspace, usersFromWorkspace };
