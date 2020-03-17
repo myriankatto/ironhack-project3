@@ -43,15 +43,16 @@ router.get('/:taskid', (req, res, next) => {
 
 //rota para criar task
 router.post('/create/:id', (req, res, next) => {
-  console.log("REQ.BODY",req.body);
-  // console.log('USER ID:      '+req.user._id);
-
+  
   Task.create({
     name: req.body.name,
-    // level:req.body.level,
-    // urgency:req.body.urgency,
-    // user:req.user._id
-    // workspace:req.params.id
+    frequency: req.body.frequency,
+    level:req.body.level,
+    personal: req.body.personal,
+    urgency:req.body.urgency,
+    user:req.user._id,
+    workspace:req.params.id,
+    description: req.body.description
     
   })
     .then(task => {

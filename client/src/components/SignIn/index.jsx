@@ -36,8 +36,6 @@ class SignIn extends Component {
     this.setState({
       [name]: value
     });
-
-    console.log(value, name);
   }
 
   render() {

@@ -9,13 +9,12 @@ class NavBarProfile extends Component {
     super(props);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
+
   handleSignOut = () => {
     signOut()
       .then(() => {
-        console.log(this.props);
-
         this.props.updateUserInformation(null);
-        return this.props.handleMouseDownProfile();
+        // return this.props.handleMouseDownProfile();
       })
       .catch(error => {
         console.log(error);
@@ -36,7 +35,7 @@ class NavBarProfile extends Component {
           <button onClick={this.handleSignOut}>Log-Out</button>
           <h2>
             <a href="#" onMouseDown={this.props.handleMouseDownProfile}>
-              Go Back
+              Go Back / click or swipe
             </a>
           </h2>
         </div>
