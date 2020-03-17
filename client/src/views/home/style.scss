@@ -1,0 +1,16 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+.home-btn {
+  background-color: $darkColor;
+  border-radius: 2em;
+  color: white;
+  padding: 0.3em 1em;
+  width: 50%;
+}
+
+.span-home {
+  display: block;
+  margin-bottom: 0.1em;
+}

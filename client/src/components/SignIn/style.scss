@@ -1,0 +1,70 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+.signin__container {
+  margin: 2em 0 0 0;
+  background-color: green($color: #000000);
+  h3 {
+    color: $purple;
+    font-weight: 200;
+    font-size: 1.6em;
+  }
+  p {
+    color: $darkColor;
+    font-weight: 100;
+    font-size: 1em;
+  }
+  h2 {
+    color: $darkColor;
+    font-weight: 600;
+    font-size: 1em;
+  }
+  .signin__form {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    box-shadow: 0 0 1.8em -0.5em rgb(209, 209, 209);
+    border-radius: 0.5em;
+    overflow: hidden;
+    margin: 2em;
+    padding: 1em;
+    position: relative;
+    background-color: white;
+    overflow: hidden;
+    .signin__input {
+      border-radius: 2em;
+      border: solid 0.5px $darkColor;
+      padding: 0.3em 1em;
+      background-color: white;
+      margin: 0.5em 0;
+      color: $purple;
+    }
+  }
+  .signin__btn {
+    background-color: $purple;
+    border-radius: 2em;
+    color: white;
+    padding: 0.3em 1em;
+    margin: 0.5em 0 0;
+  }
+}
+
+.home__img-signin {
+  width: 90%;
+  margin-top: -3em;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid $darkColor;
+  -webkit-text-fill-color: $darkColor;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(248, 248, 248) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

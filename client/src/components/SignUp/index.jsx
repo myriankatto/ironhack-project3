@@ -3,6 +3,8 @@ import { Form, Button } from 'react-bootstrap';
 
 import { signUp } from './../../services/authentication';
 
+import './style.scss';
+
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -42,45 +44,51 @@ class SignUp extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleFormSubmission}>
-        <Form.Group controlId="formBasicName">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
+      <div className="signup__container">
+        <h3>Welcome to APP</h3>
+        <p>Description phrase</p>
+  
+        <form onSubmit={this.handleFormSubmission} className="signup__form">
+          <h2>Create an account to get started</h2>
+
+          <input
+            className="signup__input"
             onChange={this.handleInputChange}
             value={this.state.name}
             name="name"
             type="text"
             placeholder="Enter name"
+            autoComplete="none"
           />
-        </Form.Group>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
+
+          <input
+            className="signup__input"
             onChange={this.handleInputChange}
             value={this.state.email}
             type="email"
             name="email"
             placeholder="Enter email"
+            autoComplete="none"
           />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+
+          <input
+            className="signup__input"
             onChange={this.handleInputChange}
             value={this.state.password}
             type="password"
             name="password"
             placeholder="Password"
+            autoComplete="none"
           />
-        </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Create an account
-        </Button>
-      </Form>
+          <button className="signup__btn">Create an account</button>
+        </form>
+        <img
+          className="home__img"
+          src="./../../../images/home.svg"
+          alt="working space ilustration"
+        />
+      </div>
     );
   }
 }

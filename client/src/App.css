@@ -25,7 +25,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #6c63ff;
 }
 
 @keyframes App-logo-spin {
@@ -42,3 +42,12 @@ button {
   border: none;
   background-color: inherit;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+
+
+

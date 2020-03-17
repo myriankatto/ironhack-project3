@@ -5,7 +5,7 @@ import SignIn from './../../components/SignIn';
 
 import { loadUserInformation } from './../../services/authentication';
 
-import { Button } from 'react-bootstrap';
+import './style.scss'
 
 class Home extends Component {
   constructor() {
@@ -57,13 +57,15 @@ class Home extends Component {
     return (
       <div>
         {this.state.signIn ? (
+          
           <SignIn updateUserInformation={this.updateUserInformation} changeHistory={this.changeHistory}/>
         ) : (
+         
           <SignUp updateUserInformation={this.updateUserInformation} changeHistory={this.changeHistory}/>
         )}
-        <Button variant="secondary" onClick={this.handleAuthentication}>
-          {this.state.signIn ? 'Create an Account' : 'Sign-In'}
-        </Button>
+        <span onClick={this.handleAuthentication}> 
+          {this.state.signIn ? <React.Fragment><span className="span-home">Don’t have an account?</span><button className="home-btn">Create an Account</button></React.Fragment> : <React.Fragment><span className="span-home">Already have an account?</span> <button className="home-btn">Sign In</button></React.Fragment>}
+        </span>
       </div>
     );
   }

@@ -3,6 +3,8 @@ import { Form, Button } from 'react-bootstrap';
 
 import { signIn } from './../../services/authentication';
 
+import './style.scss';
+
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -40,32 +42,40 @@ class SignIn extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleFormSubmission}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
+      <div className="signin__container">
+        <h3>Welcome to APP</h3>
+        <p>Description phrase</p>
+
+        <form onSubmit={this.handleFormSubmission} className="signin__form">
+        <h2>Log in to your account to continue</h2>
+
+          <input
+            className="signin__input"
             onChange={this.handleInputChange}
             value={this.state.email}
             type="email"
             name="email"
             placeholder="Enter email"
           />
-        </Form.Group>
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+    
+          <input
+          className="signin__input"
             onChange={this.handleInputChange}
             value={this.state.password}
             type="password"
             name="password"
             placeholder="Password"
           />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
+        <button className="signin__btn">
           Sign In
-        </Button>
-      </Form>
+        </button>
+      </form>
+      <img
+          className="home__img-signin"
+          src="./../../../images/home.svg"
+          alt="working space ilustration"
+        />
+      </div>
     );
   }
 }
