@@ -34,6 +34,12 @@ const schema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Workspace'
     }
+  ],
+  workspaceApproved: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Workspace'
+    }
   ]
 });
 

@@ -44,9 +44,7 @@ export default class WorkspaceDashboard extends Component {
           <p>
             <span>or</span>
           </p>
-          <SearchWorkspace />
-
-          
+          <SearchWorkspace user={this.props.user} />
         </div>
       </div>
     );

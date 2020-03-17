@@ -15,7 +15,6 @@ class NavBarProfile extends Component {
     signOut()
       .then(() => {
         this.props.updateUserInformation(null);
-        // return this.props.handleMouseDownProfile();
       })
       .catch(error => {
         console.log(error);
