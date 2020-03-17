@@ -47,4 +47,18 @@ const create = async data => {
   }
 };
 
-export { create };
+const list = async id => {
+  console.log(id);
+  try{
+    const result = await instance.get(`/list/${id}`);
+    const tasks = result.data;
+    return tasks;
+  }catch (error) {
+    throw error;
+  }
+}
+
+
+
+
+export { create, list };

@@ -6,9 +6,12 @@ const routeGuard = require('./../middleware/route-guard');
 
 const Task = require('./../models/task');
 
+
 //rota para tasks geral
-router.get('/', (req, res, next) => {
-  Task.find()
+router.get('/list/:workspaceId', (req, res, next) => {
+  const id = req.params.workspaceId;
+  
+  Task.find({"workspace": id})
     .populate('owner', 'creator')
     .then(tasks => {
       res.json(tasks);
@@ -30,16 +33,6 @@ router.get('/:taskid', (req, res, next) => {
     });
 });
 
-//rota para criar task
-// router.post('/create', (req, res, next) => {
-//   Task.create({ ...req.body })
-//     .then(task => {
-//       res.json(task);
-//     })
-//     .catch(error => {
-//       res.json(error);
-//     });
-// });
 
 //rota para criar task
 router.post('/create/:id', (req, res, next) => {
@@ -56,7 +49,7 @@ router.post('/create/:id', (req, res, next) => {
     
   })
     .then(task => {
-      console.log('HEREEEE '+task);
+      
       res.json(task);
     })
     .catch(error => {
