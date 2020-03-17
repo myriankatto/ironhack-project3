@@ -8,7 +8,7 @@ import PaymentMethodView from './views/paymentMethodList';
 import PaymentMethodCreateView from './views/paymentMethodCreate';
 import CheckoutView from './views/CheckoutView';
 import WorkspaceCreate from './views/workspaceCreate';
-import EditWorkspace from './views/editWorkspace';
+import EditWorkspace from './views/EditWorkspace';
 import { loadUserInformation } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
