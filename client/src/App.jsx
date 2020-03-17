@@ -8,7 +8,7 @@ import PaymentMethodView from './views/paymentMethodList';
 import PaymentMethodCreateView from './views/paymentMethodCreate';
 import CheckoutView from './views/CheckoutView';
 import WorkspaceCreate from './views/workspaceCreate';
-import EditWorkspace from './views/EditWorkspace';
+import EditWorkspace from './views/editWorkspace';
 import { loadUserInformation } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
@@ -76,7 +76,7 @@ class App extends Component {
               render={props => <EditWorkspace user={this.state.user} {...props} />}
             />
 
-        {/* ROTA PARA EDITAR PERFIL */}
+            {/* ROTA PARA EDITAR PERFIL */}
 
             <ProtectedRoute
               path="/edit"
@@ -84,7 +84,11 @@ class App extends Component {
               authorized={this.state.user}
               redirect={'/dashboard'}
               render={props => (
-                <EditProfileView {...props}  user={this.state.user} updateUserInformation={this.updateUserInformation} />
+                <EditProfileView
+                  {...props}
+                  user={this.state.user}
+                  updateUserInformation={this.updateUserInformation}
+                />
               )}
             />
 

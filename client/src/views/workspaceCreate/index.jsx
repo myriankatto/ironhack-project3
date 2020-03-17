@@ -4,7 +4,7 @@ import NavBar from '../../components/NavBar';
 
 import { single as singleWorkspace } from '../../services/workspace';
 
-
+import FooterWorkspacce from '../../components/FooterWorkspace';
 
 import AddTask from '../../components/AddTask';
 
@@ -37,12 +37,13 @@ export default class WorkspaceCreate extends Component {
     const { workspace } = this.state;
     return (
       <div>
-         <NavBar
+        <NavBar
           user={this.props.user}
           {...this.props}
           updateUserInformation={this.props.updateUserInformation}
         />
         <AddTask idWorkspace={workspace._id} />
+        <FooterWorkspacce />
       </div>
     );
   }

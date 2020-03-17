@@ -1,0 +1,14 @@
+.add-task {
+  display: flex;
+  flex-direction: column;
+  .add-btn {
+    width: 2em;
+    float: right;
+    display: block;
+  }
+  small {
+    color: white;
+    font-size: 0.5em;
+    margin: 0.3em 0 0 0;
+  }
+}

@@ -67,7 +67,7 @@ class NavBarProfile extends Component {
             Edit Profile
           </Link>
 
-          <button style={{ color: 'white' }} onClick={this.handleSignOut}>
+          <button style={{ color: 'white'}} onClick={this.handleSignOut}>
             <img
               style={{ width: '1.6em', margin: '1em' }}
               src="./../images/logout.svg"
