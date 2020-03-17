@@ -3,6 +3,7 @@ import './style.scss';
 import React, { Component } from 'react';
 import { signOut } from './../../services/authentication';
 import { useSwipeable, Swipeable } from 'react-swipeable';
+import { Link } from 'react-router-dom';
 
 class NavBarProfile extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class NavBarProfile extends Component {
         console.log(error);
       });
   };
+
   render() {
     var visibility = 'hide';
 
@@ -30,14 +32,51 @@ class NavBarProfile extends Component {
     return (
       <Swipeable onSwipedRight={this.props.handleMouseDownProfile}>
         <div id="flyoutSidebarProfile" className={visibility}>
-          <img src={this.props.user.picture} alt={this.props.user.name} />
-          <h2>{this.props.user.name}</h2>
-          <button onClick={this.handleSignOut}>Log-Out</button>
-          <h2>
-            <a href="#" onMouseDown={this.props.handleMouseDownProfile}>
-              Go Back / click or swipe
-            </a>
+          <a href="#" onMouseDown={this.props.handleMouseDownProfile}>
+            <img
+              style={{
+                width: '2em',
+                float: 'right',
+                position: 'relative',
+                margin: '2em 1em'
+              }}
+              src="./../images/right-white.svg"
+              alt="go back icon"
+            />
+          </a>
+          <img
+            style={{ width: '10em', height: '10em', margin: '0 auto', borderRadius: '50%' }}
+            src={this.props.user.picture}
+            alt={this.props.user.name}
+          />
+          <h2 style={{ color: 'white', fontWeight: '500', marginTop: '1em' }}>
+            {this.props.user.name}
           </h2>
+          <p style={{ color: 'white', fontWeight: '200' }}>{this.props.user.email}</p>
+
+          <Link
+            style={{
+              backgroundColor: '#3f3d56',
+              fontWeight: '200',
+              color: 'white',
+              margin: '3em 6em 7em 6em',
+              borderRadius: '2em',
+              padding: '0.3em 1em'
+            }}
+            to="/edit"
+          >
+            Edit Profile
+          </Link>
+
+          <button style={{ color: 'white' }} onClick={this.handleSignOut}>
+            <img
+              style={{ width: '1.6em', margin: '1em' }}
+              src="./../images/logout.svg"
+              alt="logout icon"
+            />
+            Logout
+          </button>
+          <h2></h2>
         </div>
       </Swipeable>
     );

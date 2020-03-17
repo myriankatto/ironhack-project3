@@ -19,8 +19,7 @@ const schema = new mongoose.Schema({
   },
   picture: {
     type: String,
-    default:
-      'https://img.favpng.com/2/12/12/computer-icons-portable-network-graphics-user-profile-avatar-png-favpng-L1ihcbxsHbnBKBvjjfBMFGbb7.jpg'
+    default: 'https://res.cloudinary.com/dq4jevckc/image/upload/v1584440915/avatar_kletok.svg'
   },
   operator: {
     type: Boolean,

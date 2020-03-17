@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100%;
   background-color: #b5e3f1;
-  border: 5px solid #0e6d8a;
+  border: none;
   border-radius: 30px;
   position: fixed;
   top: 0;
@@ -36,4 +36,7 @@
   background-color: #544bd8;
   justify-content: space-between;
   width: 100;
+  .profile_name {
+    color: white;
+  }
 }

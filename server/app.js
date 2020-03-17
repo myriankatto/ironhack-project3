@@ -18,9 +18,6 @@ const workspaceRouter = require('./routes/workspace');
 const paymentMethodRouter = require('./routes/payment-method');
 const purchaseRouter = require('./routes/purchase');
 
-
-
-
 const app = express();
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
@@ -53,8 +50,6 @@ app.use('/api/task', taskRouter);
 app.use('/api/payment-method', paymentMethodRouter);
 app.use('/api/workspace', workspaceRouter);
 app.use('/api/purchase', purchaseRouter);
-
-
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
