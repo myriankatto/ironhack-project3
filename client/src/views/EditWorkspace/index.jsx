@@ -18,7 +18,7 @@ class EditWorkspace extends Component {
     console.log(this.state.workspaces);
     return (
       <h3>Workspaces from {this.props.user.name}</h3>
-      {this.state.workspaces.map(workspace => <h1 key={workspace._id}>{workspace.name}</h1>)}
+      // {this.state.workspaces.map(workspace => <h1 key={workspace._id}>{workspace.name}</h1>)}
     );
   }
 }
