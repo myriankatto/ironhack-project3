@@ -12,6 +12,7 @@ import EditWorkspace from './views/EditWorkspace';
 import { loadUserInformation } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import EditProfileView from './views/editProfile';
 
 class App extends Component {
   constructor() {
@@ -73,6 +74,18 @@ class App extends Component {
               redirect={'/'}
               exact
               render={props => <EditWorkspace user={this.state.user} {...props} />}
+            />
+
+        {/* ROTA PARA EDITAR PERFIL */}
+
+            <ProtectedRoute
+              path="/edit"
+              exact
+              authorized={this.state.user}
+              redirect={'/dashboard'}
+              render={props => (
+                <EditProfileView {...props}  user={this.state.user} updateUserInformation={this.updateUserInformation} />
+              )}
             />
 
             {/* ROTAS PARA PAGAMENTO E COMPRA */}

@@ -1,0 +1,37 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+.edit__profile {
+  margin: 1em;
+  h1{
+    color: $purple;
+    font-weight: 200;
+    font-size: 1.6em;
+    margin: 1.5em 0;
+  }
+  .editProfile__form {
+    display: flex;
+    flex-direction: column;
+    .editProfile__input {
+      border-radius: 2em;
+      border: solid 0.5px $darkColor;
+      padding: 0.3em 1em;
+      background-color: white;
+      color: $purple;
+      margin-bottom: 1em;
+    }
+    label {
+      text-align: left;
+      color: #3f3d56;
+      margin-left: 1em
+    }
+    .editProfile__btn {
+      background-color: $purple;
+      border-radius: 2em;
+      color: white;
+      padding: 0.4em 1em;
+      margin: 0.5em 0 0;
+    }
+  }
+}
