@@ -1,6 +1,13 @@
-footer {
-  background-color: red;
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+.footer-style {
   display: flex;
-  align-items:center;
-  justify-content: end;
+  background-color: $darkColor;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5em 1em;
 }

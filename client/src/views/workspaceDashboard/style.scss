@@ -5,7 +5,7 @@ $lightGrey: #e2e2e2;
 .dashboard {
   .dashboard__content {
     width: 100%;
- 
+
     h1 {
       font-size: 1em;
       font-weight: 400;
@@ -50,6 +50,12 @@ $lightGrey: #e2e2e2;
       border: solid 0.5px $darkColor;
       margin: 0 2em;
       padding: 1em;
+      :focus {
+        outline: none;
+      }
     }
   }
+}
+:focus {
+  outline: none;
 }

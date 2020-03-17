@@ -38,7 +38,7 @@ export default class WorkspaceCreate extends Component {
     const { workspace } = this.state;
     return (
       <div>
-         <NavBar
+        <NavBar
           user={this.props.user}
           {...this.props}
           updateUserInformation={this.props.updateUserInformation}
