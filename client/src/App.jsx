@@ -56,6 +56,7 @@ class App extends Component {
             <ProtectedRoute
               path="/dashboard"
               authorized={this.state.user}
+              redirect={'/'}
               exact
               render={props => (
                 <WorkspaceDashboard
@@ -70,6 +71,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               authorized={this.state.user}
+              redirect={'/'}
               path="/payment-method/list"
               render={props => (
                 <PaymentMethodView user={this.state.user} cart={this.state.cart} {...props} />
@@ -78,6 +80,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               authorized={this.state.user}
+              redirect={'/'}
               path="/payment-method/create"
               render={props => <PaymentMethodCreateView user={this.state.user} {...props} />}
             />
@@ -85,6 +88,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               authorized={this.state.user}
+              redirect={'/'}
               path="/checkout"
               render={props => <CheckoutView user={this.state.user} {...props} />}
             />
@@ -94,6 +98,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               authorized={this.state.user}
+              redirect={'/'}
               path="/dashboard/:id"
               render={props => <WorkspaceCreate user={this.state.user} {...props} />}
             />
