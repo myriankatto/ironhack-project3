@@ -10,7 +10,7 @@ import './style.scss';
 
 // import { Swipeable } from 'react-swipeable';
 
-class FooterWorkspacce extends Component {
+class FooterWorkspace extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -51,10 +51,9 @@ class FooterWorkspacce extends Component {
           user={this.props.user}
           updateUserInformation={this.props.updateUserInformation}
         />
-
       </footer>
     );
   }
 }
 
-export default FooterWorkspacce;
+export default FooterWorkspace;

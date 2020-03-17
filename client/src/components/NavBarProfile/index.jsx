@@ -57,7 +57,7 @@ class NavBarProfile extends Component {
           <h2 style={{ color: 'white', fontWeight: '500', marginTop: '1em' }}>
             {this.props.user.name}
           </h2>
-          <p style={{ color: 'white', fontWeight: '200' }}>{this.props.user.email}</p>
+          <small style={{ color: 'white', fontWeight: '200' }}>{this.props.user.email}</small>
 
           <Link
             style={{

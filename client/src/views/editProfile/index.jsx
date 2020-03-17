@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { editUserInformation } from './../../services/authentication';
 
@@ -13,7 +14,7 @@ class EditProfileView extends Component {
       picture: ''
     };
 
-    console.log(this.state.user);
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
     this.handleFileInputChange = this.handleFileInputChange.bind(this);
@@ -62,15 +63,13 @@ class EditProfileView extends Component {
     const user = this.props.user;
     return (
       <div className="edit__profile">
-        <img className="exit-icon" src="./../../images/exit.svg" alt="exit icon" />
+        <Link to="/dashboard">
+          <img className="exit-icon" src="./../../images/close.svg" alt="close icon" />
+        </Link>
         <h1>Edit Your Profile</h1>
 
         <figure>
-          <img
-           className="profile-img-edit"
-            src={user.picture}
-            alt={user.name}
-          />
+          <img className="profile-img-edit" src={user.picture} alt={user.name} />
         </figure>
 
         <form className="editProfile__form" onSubmit={this.handleFormSubmission}>

@@ -17,7 +17,7 @@ class FooterAddTasksToggle extends Component {
     }
 
     return (
-      <Swipeable onSwipedLeft={this.props.handleMouseUp}>
+      <Swipeable onSwipedRight={this.props.handleMouseUp}>
         <div id="flyoutMenu_AddTask" className={visibility}>
        
           <h2>Add Tasks Form</h2>
