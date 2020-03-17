@@ -56,7 +56,6 @@ class FooterWorkspacce extends Component {
           updateUserInformation={this.props.updateUserInformation}
          
         />
-        
       </footer>
     );
   }
