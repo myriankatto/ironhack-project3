@@ -12,4 +12,10 @@ const askPermissionWorkspace = async (userId, workspace) => {
   return result.data;
 };
 
-export default askPermissionWorkspace;
+//this service will retrieve all the workspaces that the user is the operator
+const editWorkspace = async userId => {
+  const result = await instance.get(`/editWorkspace/${userId}`);
+  return result.data;
+};
+
+export { editWorkspace, askPermissionWorkspace };

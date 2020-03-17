@@ -2,8 +2,18 @@
 import './style.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { useSwipeable, Swipeable } from 'react-swipeable';
+import { editWorkspace } from './../../services/workspaceUser';
 
 class NavBarToggleWorkspace extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      workspace: []
+    };
+  }
+
+  showOperatorWorkSpace() {}
   render() {
     var visibility = 'hide';
 
@@ -12,23 +22,25 @@ class NavBarToggleWorkspace extends Component {
     }
 
     return (
-      <div id="flyoutMenu" className={visibility}>
-        <h2>
-          <a onMouseDown={this.props.handleMouseDown}>Go Back</a>
-        </h2>
-        <h2>
-          <Link to={'/'}>Edit Workspace</Link>
-        </h2>
-        <h2>
-          <a href="#">Share</a>
-        </h2>
-        <h2>
-          <a href="#">List of Users</a>
-        </h2>
-        <h2>
-          <a href="#">Upgrade</a>
-        </h2>
-      </div>
+      <Swipeable onSwipedLeft={this.props.handleMouseDown}>
+        <div id="flyoutMenu" className={visibility}>
+          <h2>
+            <a onMouseDown={this.props.handleMouseDown}>Go Back by click or swipe left</a>
+          </h2>
+          <h2>
+            <Link to={'/editWorkspace'}>Edit Workspace</Link>
+          </h2>
+          <h2>
+            <a href="#">Share</a>
+          </h2>
+          <h2>
+            <a href="#">List of Users</a>
+          </h2>
+          <h2>
+            <a href="#">Upgrade</a>
+          </h2>
+        </div>
+      </Swipeable>
     );
   }
 }

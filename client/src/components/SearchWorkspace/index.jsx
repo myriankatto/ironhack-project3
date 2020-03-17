@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 import { list } from './../../services/workspace';
-import askPermissionWorkspace from './../../services/workspaceUser';
+import { askPermissionWorkspace } from './../../services/workspaceUser';
 
 class SearchWorkspace extends Component {
   constructor(props) {
