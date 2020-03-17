@@ -51,16 +51,6 @@ class FooterWorkspacce extends Component {
           user={this.props.user}
           updateUserInformation={this.props.updateUserInformation}
         />
-        {/* <NavBarProfile
-          user={this.props.user}
-          handleMouseDownProfile={this.handleMouseDownProfile}
-          menuVisibility={this.state.visibleProfile}
-          updateUserInformation={this.props.updateUserInformation}
-        />
-        <NavBarProfileButton
-          user={this.props.user}
-          handleMouseDownProfile={this.handleMouseDownProfile}
-        />  */}
       </footer>
     );
   }
