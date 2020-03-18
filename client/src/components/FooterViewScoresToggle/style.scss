@@ -21,36 +21,72 @@ small {
   flex-direction: column;
 
   .users__scores__list {
-    margin-left: 0;
-    width: 90%;
+    margin: 1em auto;
+    max-width: 90%;
+    min-width: 80%;
+    list-style: none;
+    counter-reset: item;
+
     .userScore_Single {
-      background-color: #3f3d56dc;
-      margin: 1em 3em;
-      background-color: inherit;
+      background-color: #6b63ff4b;
       color: white;
-      font-size: 1em;
-      border-bottom: solid 1px $purple;
-      padding-top: 2em;
+      font-size: 1.4em;
+      font-size: 100;
+      border-radius: 0.5em;
       text-align: left;
+      padding: 0.5em 1em;
+      counter-increment: item;
+      margin-bottom: 0.4em;
+      display: flex;
+      align-content: center;
+      justify-content: flex-start;
+.scores_name{
+  margin-left: auto;
+}
+      &:first-child {
+        background-color: #6b63ff9f;
+      }
+      &:before {
+        content: counter(item);
+        background: #3f3d5633;
+        border-radius: 50%;
+        color: white;
+        width: 1.4em;
+        height: 1.4em;
+        text-align: center;
+        display: inline-block;
+      }
+      .scores_picture {
+        .picture__scores {
+          float: left;
+          width: 2em;
+          border-radius: 50%;
+          margin: 0 0.5em;
+        }
+      }
+  
+      h5 {
+        margin-right: 0.5em;
+        font-size: 1em;
+        font-weight: 200;
+        color: white;
+        display: inline-block;
+      }
     }
   }
 
-  img {
+  .down-icon {
     width: 2em;
     position: fixed;
     bottom: 2em;
     left: 45%;
   }
-  h2 {
-    color: white;
-    font-weight: 100;
-    margin: 1em 0 0 0;
-    font-size: 1em;
-  }
+
   h3 {
     color: white;
-    font-weight: 300;
-    font-size: 2em;
+    font-weight: 200;
+    font-size: 1.4em;
+    margin: 1em 0 0 0;
   }
   li {
     color: white;

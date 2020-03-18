@@ -32,17 +32,28 @@ class FooterViewScoresToggle extends Component {
     return (
       <Swipeable onSwipedDown={this.props.handleMouseUp}>
         <div id="flyoutMenu_ViewScores" className={visibility}>
-          <h2>Users Scores for</h2>
-          <h3>{this.props.workspaceName}</h3>
+          <h3>{this.props.workspaceName}'s Scores</h3>
+          <img
+            style={{ maxWidth: '70%', margin: '1em auto' }}
+            src="./../images/winners.svg"
+            alt="winner illustration"
+          />
 
           <ol className="users__scores__list">
             {this.state.approvedUsers.map(approvedUser => (
               <Fragment key={approvedUser._id}>
                 <li className="userScore_Single">
-                  {' '}
-                  <strong>{approvedUser.name}</strong>: {approvedUser.score}
-
-        
+                  <div className="scores_picture">
+                    {' '}
+                    <img
+                      className="picture__scores"
+                      src={approvedUser.picture}
+                      alt={approvedUser.name}
+                    />
+                  </div>
+                  <div className="scores_name">
+                    <h5>{approvedUser.name}</h5> <small>{approvedUser.score}</small>
+                  </div>
                 </li>
               </Fragment>
             ))}
@@ -50,7 +61,7 @@ class FooterViewScoresToggle extends Component {
 
           <a onMouseUp={this.props.handleMouseUp}>
             {' '}
-            <img src="./../images/down-white.svg" alt="go down icon" />
+            <img className="down-icon" src="./../images/down-white.svg" alt="go down icon" />
           </a>
         </div>
       </Swipeable>

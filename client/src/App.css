@@ -47,3 +47,7 @@ a {
   color: white;
   text-decoration: none;
 }
+
+ol {
+  padding: 0;
+}

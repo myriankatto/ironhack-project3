@@ -63,6 +63,8 @@ class FooterWorkspace extends Component {
   componentWillUnmount() {}
 
   render() {
+
+
     // console.log('FOOTER WORKSPACE PROP', this.props.idWorkspace);
     return (
       <footer className="footer-style">
@@ -74,11 +76,11 @@ class FooterWorkspace extends Component {
           handleMouseUp={this.handleMouseUpViewScores}
           menuVisibility={this.state.visibleViewScores}
           idWorkspace={this.props.idWorkspace}
-          workspaceName={this.props.workspaceName}
+          workspaceName={this.props.workspace.name}
         />
 
         <h5>
-          <small>SCORE:</small> {this.props.score}
+          <small>SCORE:</small> {this.props.workspace.score}
         </h5>
         <FooterAddTasksToggle
           handleMouseUp={this.handleMouseUpAddTasks}
