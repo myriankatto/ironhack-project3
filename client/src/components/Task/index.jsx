@@ -20,7 +20,10 @@ class Tasks extends Component {
   };
 
   componentDidMount() {
+    this.fetchData();
+  }
 
+  componentDidUpdate(){
     this.fetchData();
   }
 
