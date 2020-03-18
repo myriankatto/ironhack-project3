@@ -1,0 +1,59 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+small {
+  color: white;
+}
+
+#flyoutMenu_ViewScores {
+  width: 100vw;
+  height: 92vh;
+  background-color: #3f3d56f8;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+  overflow: scroll;
+  z-index: 1000;
+  color: #3f3d56;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    width: 2em;
+    position: fixed;
+    bottom: 2em;
+    left: 45%;
+  }
+  h2 {
+    color: white;
+    font-weight: 100;
+    margin: 1em 0 0 0;
+    font-size: 1em;
+  }
+  h3 {
+    color: white;
+    font-weight: 300;
+    font-size: 2em;
+  }
+}
+
+#flyoutMenu_ViewScores.hide {
+  transform: translate3d(0, 170vw, 0);
+}
+
+#flyoutMenu_ViewScores.show {
+  transform: translate3d(0, 0vw, 0);
+  overflow: hidden;
+}
+
+#flyoutMenu_ViewScores h2 a {
+  color: white;
+  margin-left: 0;
+  text-decoration: none;
+}
+
+#flyoutMenu_AddTask h2 a:hover {
+  text-decoration: underline;
+}

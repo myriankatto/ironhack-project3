@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react';
 import AddTask from '../AddTask';
-import FooterAddTaskButton from '../FooterAddTaskButton';
-import FooterShowScores from '../FooterShowScores';
 import FooterAddTasksToggle from '../FooterAddTasksToggle';
+import FooterAddTaskButton from '../FooterAddTaskButton';
+import FooterViewScoresToggle from '../FooterViewScoresToggle';
+import FooterViewScoresButton from '../FooterViewScoresButton';
 import './style.scss';
 // import { loadUserInformation } from './../../services/authentication';
 
@@ -15,11 +16,16 @@ class FooterWorkspace extends Component {
     super(props, context);
     this.state = {
       visibleAddTasks: false,
-      sidebarAddTasks: false
+      sidebarAddTasks: false,
+      visibleViewScores: false,
+      sidebarViewScores: false
     };
     this.handleMouseUpAddTasks = this.handleMouseUpAddTasks.bind(this);
     this.toggleAddTasks = this.toggleAddTasks.bind(this);
     this.toggleSwipeAddTasks = this.toggleSwipeAddTasks.bind(this);
+    this.handleMouseUpViewScores = this.handleMouseUpViewScores.bind(this);
+    this.toggleViewScores = this.toggleViewScores.bind(this);
+    this.toggleSwipeViewScores = this.toggleSwipeViewScores.bind(this);
   }
   //for the Toggle AddTask Form
   handleMouseUpAddTasks() {
@@ -37,13 +43,42 @@ class FooterWorkspace extends Component {
     });
   }
 
+  //for the Toggle View Scores
+  handleMouseUpViewScores() {
+    this.toggleViewScores();
+  }
+
+  toggleViewScores() {
+    this.setState({
+      visibleViewScores: !this.state.visibleViewScores
+    });
+  }
+  toggleSwipeViewScores() {
+    this.setState({
+      sidebarViewScores: !this.state.sidebarViewScores
+    });
+  }
+
   render() {
+    //console.log('FOOTER WORKSPACE PROP', this.props.idWorkspace);
     return (
       <footer className="footer-style">
-        <FooterShowScores />
+        <FooterViewScoresButton
+          handleMouseUp={this.handleMouseUpViewScores}
+          menuVisibility={this.state.visibleViewScores}
+        />
+        <FooterViewScoresToggle
+          handleMouseUp={this.handleMouseUpViewScores}
+          menuVisibility={this.state.visibleViewScores}
+          idWorkspace={this.props.idWorkspace}
+          workspaceName={this.props.name}
+        />
+
+<h5><small>SCORE:</small> {this.props.score}</h5>
         <FooterAddTasksToggle
           handleMouseUp={this.handleMouseUpAddTasks}
           menuVisibility={this.state.visibleAddTasks}
+          idWorkspace={this.props.idWorkspace}
         />
         <FooterAddTaskButton
           handleMouseUp={this.handleMouseUpAddTasks}

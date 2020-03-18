@@ -6,7 +6,6 @@ import { single as singleWorkspace } from '../../services/workspace';
 
 /*COMPONENTES*/
 import FooterWorkspace from '../../components/FooterWorkspace';
-import AddTask from '../../components/AddTask';
 import Tasks from '../../components/Task';
 
 export default class WorkspaceCreate extends Component {
@@ -35,6 +34,7 @@ export default class WorkspaceCreate extends Component {
 
   render() {
     const { workspace } = this.state;
+
     return (
       <div>
         <NavBar
@@ -44,9 +44,10 @@ export default class WorkspaceCreate extends Component {
         />
 
         <Tasks idWorkspace={this.props.match.params.id} />
-          {/* <AddTask idWorkspace={workspace._id} />   */}
 
-        <FooterWorkspace />
+        {/* <AddTask idWorkspace={workspace._id} /> */}
+
+        <FooterWorkspace idWorkspace={this.props.match.params.id} {...workspace} />
       </div>
     );
   }
