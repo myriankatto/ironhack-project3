@@ -58,9 +58,11 @@ router.post('/create/:id', (req, res, next) => {
     });
 });
 
-//rota para editar Task
+//rota para editar Task - Apenas Operador pode faze-lo
 router.put('/edit/:taskid', (req, res, next) => {
-  
+  console.log('ROTA TÁ FUNCIONANDO');
+  console.log('EDIT',req.body);
+
   Task.findByIdAndUpdate(req.params.taskid, req.body, { new: true })
     .then(task => {
       res.json(task);

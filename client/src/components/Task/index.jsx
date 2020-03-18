@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Accordion, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 
 
 import { list as listTasks }  from './../../services/task';
@@ -9,6 +11,8 @@ import ItemTask from '../ItemTask';
 
 /*COMPONENTE QUE LISTA AS TASKS*/
 class Tasks extends Component {
+  _isMounted = false;  //Solucao para erro: Can't perform a React state update on an unmounted component
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,11 +24,21 @@ class Tasks extends Component {
   };
 
   componentDidMount() {
+    //Solucao para erro: Can't perform a React state update on an unmounted component:
+    this._isMounted = true; 
+
     this.fetchData();
   }
 
   componentDidUpdate(){
     this.fetchData();
+  }
+
+  // Warning: Can't perform a React state update on an unmounted component. 
+  // This is a no-op, but it indicates a memory leak in your application. 
+  // To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   fetchData(){
@@ -57,6 +71,7 @@ class Tasks extends Component {
               toggle={task._id}
               level={task.level}
               frequency={task.frequency}
+              taskId={task._id}
               />
             ))
           }

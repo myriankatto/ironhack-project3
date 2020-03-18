@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 /*VIEWS*/
 import Home from './views/home';
 import WorkspaceDashboard from './views/workspaceDashboard';
@@ -8,12 +9,13 @@ import PaymentMethodView from './views/paymentMethodList';
 import PaymentMethodCreateView from './views/paymentMethodCreate';
 import CheckoutView from './views/CheckoutView';
 import WorkspaceCreate from './views/workspaceCreate';
-import EditWorkspace from './views/editWorkspace';
+import EditWorkspace from './views/EditWorkspace';
 import { loadUserInformation } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import EditProfileView from './views/editProfile';
 import ListWorkspaceUsers from './views/ListWorkspaceUsers';
+import EditTaskOperator from './views/EditTaskOperator';
 
 class App extends Component {
   constructor() {
@@ -134,6 +136,17 @@ class App extends Component {
               redirect={'/'}
               path="/dashboard/:id"
               render={props => <WorkspaceCreate user={this.state.user} {...props} />}
+            />
+            {/* FINAL ROTA PARA WORKSPACE EM SINGLE */}
+            
+
+            {/* ROTA PARA EDITAR TASK */}
+            <ProtectedRoute
+              exact
+              authorized={this.state.user}
+              redirect={'/'}
+              path="/edit/task/:idTask"
+              render={props => <EditTaskOperator user={this.state.user} {...props} />}
             />
           </Switch>
         </BrowserRouter>
