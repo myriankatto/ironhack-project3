@@ -1,18 +1,31 @@
 import './style.scss';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Swipeable } from 'react-swipeable';
+import UsersScoresList from './../UsersScoresList';
+
+import { approvedUser } from './../../services/workspaceUser';
 
 class FooterViewScoresToggle extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
+    this.state = {
+      approvedUsers: []
+    };
+  }
+
+  componentDidMount() {
+    approvedUser(this.props.workspaceId).then(users => this.setState({ approvedUsers: users }));
+  }
+
+  componentDidUpdate() {
+    approvedUser(this.props.workspaceId).then(users => this.setState({ approvedUsers: users }));
   }
 
   showOperatorViewScores() {}
+
   render() {
     //console.log('PROP NO FOOTER ADD', this.props.idWorkspace)
     var visibility = 'hide';
-
     if (this.props.menuVisibility) {
       visibility = 'show';
     }
@@ -22,6 +35,8 @@ class FooterViewScoresToggle extends Component {
         <div id="flyoutMenu_ViewScores" className={visibility}>
           <h2>Users Scores for</h2>
           <h3>{this.props.workspaceName}</h3>
+
+          <UsersScoresList approvedUsers={this.state.approvedUsers} />
 
           <a onMouseUp={this.props.handleMouseUp}>
             {' '}

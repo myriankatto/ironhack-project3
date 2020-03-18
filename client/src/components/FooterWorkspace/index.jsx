@@ -20,6 +20,7 @@ class FooterWorkspace extends Component {
       visibleViewScores: false,
       sidebarViewScores: false
     };
+
     this.handleMouseUpAddTasks = this.handleMouseUpAddTasks.bind(this);
     this.toggleAddTasks = this.toggleAddTasks.bind(this);
     this.toggleSwipeAddTasks = this.toggleSwipeAddTasks.bind(this);
@@ -59,8 +60,10 @@ class FooterWorkspace extends Component {
     });
   }
 
+  componentWillUnmount() {}
+
   render() {
-    //console.log('FOOTER WORKSPACE PROP', this.props.idWorkspace);
+    // console.log('FOOTER WORKSPACE PROP', this.props.idWorkspace);
     return (
       <footer className="footer-style">
         <FooterViewScoresButton
@@ -74,7 +77,9 @@ class FooterWorkspace extends Component {
           workspaceName={this.props.name}
         />
 
-<h5><small>SCORE:</small> {this.props.score}</h5>
+        <h5>
+          <small>SCORE:</small> {this.props.score}
+        </h5>
         <FooterAddTasksToggle
           handleMouseUp={this.handleMouseUpAddTasks}
           menuVisibility={this.state.visibleAddTasks}
