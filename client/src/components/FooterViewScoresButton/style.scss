@@ -1,0 +1,15 @@
+.scores-task {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  .scores-btn {
+    float: left;
+    width: 2em;
+    display: block;
+  }
+  small {
+    color: white;
+    font-size: 0.5em;
+    margin: 0.3em 0 0 0;
+  }
+}

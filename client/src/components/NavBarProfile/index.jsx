@@ -44,14 +44,20 @@ class NavBarProfile extends Component {
             />
           </a>
           <img
-            style={{ width: '10em', height: '10em', margin: '0 auto', borderRadius: '50%' }}
+            style={{
+              width: '10em',
+              height: '10em',
+              margin: '0 auto',
+              borderRadius: '50%',
+              objectFit: 'cover'
+            }}
             src={this.props.user.picture}
             alt={this.props.user.name}
           />
           <h2 style={{ color: 'white', fontWeight: '500', marginTop: '1em' }}>
             {this.props.user.name}
           </h2>
-          <p style={{ color: 'white', fontWeight: '200' }}>{this.props.user.email}</p>
+          <small style={{ color: 'white', fontWeight: '200' }}>{this.props.user.email}</small>
 
           <Link
             style={{
@@ -67,7 +73,7 @@ class NavBarProfile extends Component {
             Edit Profile
           </Link>
 
-          <button style={{ color: 'white'}} onClick={this.handleSignOut}>
+          <button style={{ color: 'white' }} onClick={this.handleSignOut}>
             <img
               style={{ width: '1.6em', margin: '1em' }}
               src="./../images/logout.svg"

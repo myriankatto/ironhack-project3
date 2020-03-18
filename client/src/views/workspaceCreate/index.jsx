@@ -17,8 +17,6 @@ export default class WorkspaceCreate extends Component {
     this.state = {
       workspace: []
     };
-
-    
   }
 
   componentDidMount() {
@@ -28,7 +26,7 @@ export default class WorkspaceCreate extends Component {
 
   fetchData() {
     const id = this.props.match.params.id;
-    
+
     singleWorkspace(id)
       .then(workspace => {
         this.setState(workspace);
@@ -57,12 +55,11 @@ export default class WorkspaceCreate extends Component {
           {...this.props}
           updateUserInformation={this.props.updateUserInformation}
         />
-        
+
         <div className="dashboard__content mt-2">
           <Tasks idWorkspace={WorkspaceId} />
           <FooterWorkspace idWorkspace={WorkspaceId} />
         </div>
-        
       </div>
     );
   }

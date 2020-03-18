@@ -19,7 +19,7 @@ class FooterAddTasksToggle extends Component {
 
     
     return (
-      <Swipeable onSwipedLeft={this.props.handleMouseUp}>
+      <Swipeable onSwipedRight={this.props.handleMouseUp}>
         <div id="flyoutMenu_AddTask" className={visibility}>
        
           <h2>Add Tasks Form</h2>
@@ -27,7 +27,7 @@ class FooterAddTasksToggle extends Component {
 
             <a onMouseUp={this.props.handleMouseUp}>
               {' '}
-              <img src="./../images/right-white.svg" alt="go back icon" />
+              <img src="./../images/right.svg" alt="go back icon" />
             </a>
         </div>
       </Swipeable>
