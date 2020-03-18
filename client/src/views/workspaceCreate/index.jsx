@@ -36,18 +36,17 @@ export default class WorkspaceCreate extends Component {
     const { workspace } = this.state;
 
     return (
-      <div>
+      <div className="dashboard">
         <NavBar
           user={this.props.user}
           {...this.props}
           updateUserInformation={this.props.updateUserInformation}
         />
 
-        <Tasks idWorkspace={this.props.match.params.id} />
-
-        {/* <AddTask idWorkspace={workspace._id} /> */}
-
-        <FooterWorkspace idWorkspace={this.props.match.params.id} {...workspace} />
+        <div className="dashboard__content mt-2">
+          <Tasks idWorkspace={this.props.match.params.id} />
+          <FooterWorkspace idWorkspace={this.props.match.params.id} {...workspace} />
+        </div>
       </div>
     );
   }

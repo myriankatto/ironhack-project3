@@ -13,6 +13,7 @@ import { loadUserInformation } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import EditProfileView from './views/editProfile';
+import ListWorkspaceUsers from './views/ListWorkspaceUsers';
 
 class App extends Component {
   constructor() {
@@ -74,6 +75,13 @@ class App extends Component {
               redirect={'/'}
               exact
               render={props => <EditWorkspace user={this.state.user} {...props} />}
+            />
+            <ProtectedRoute
+              path="/listWorkspaceUsers"
+              authorized={this.state.user}
+              redirect={'/'}
+              exact
+              render={props => <ListWorkspaceUsers user={this.state.user} {...props} />}
             />
 
             {/* ROTA PARA EDITAR PERFIL */}

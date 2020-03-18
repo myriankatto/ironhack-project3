@@ -58,8 +58,9 @@ router.post('/create/:id', (req, res, next) => {
     });
 });
 
-//rota para editar workspace
+//rota para editar Task
 router.put('/edit/:taskid', (req, res, next) => {
+  
   Task.findByIdAndUpdate(req.params.taskid, req.body, { new: true })
     .then(task => {
       res.json(task);

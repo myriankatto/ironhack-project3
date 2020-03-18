@@ -18,10 +18,41 @@ const editWorkspace = async userId => {
   return result.data;
 };
 
-//route to retrieve the users from single workspace
+//route to retrieve the users from single workspace for approval
 const usersFromWorkspace = async workspaceId => {
   const result = await instance.get(`/usersFromWorkspace/${workspaceId}`);
   return result.data;
 };
+//route to retrieve the users from single workspaceAPPROVED APPROVED
+const approvedUser = async workspaceId => {
+  const result = await instance.get(`/approvedUser/${workspaceId}`);
+  return result.data;
+};
 
-export { editWorkspace, askPermissionWorkspace, usersFromWorkspace };
+//route to approve the users
+const usersApproved = async (userId, userWorkspaceId) => {
+  console.log(userId.userWorkspaceId);
+  const result = await instance.put(`/accept/${userId}/${userWorkspaceId}`);
+  return result.data;
+};
+//route to reject the users that were never approved. pending users
+const usersReject = async (userId, userWorkspaceId) => {
+  const result = await instance.put(`/reject/${userId}/${userWorkspaceId}`);
+  return result.data;
+};
+
+//route to remove the users that were previously approved
+const approvedUsersReject = async (userId, userWorkspaceId) => {
+  const result = await instance.put(`/rejectPreviouslyApprovedUser/${userId}/${userWorkspaceId}`);
+  return result.data;
+};
+
+export {
+  editWorkspace,
+  askPermissionWorkspace,
+  usersFromWorkspace,
+  approvedUser,
+  usersApproved,
+  usersReject,
+  approvedUsersReject
+};
