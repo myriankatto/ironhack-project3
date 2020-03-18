@@ -59,7 +59,7 @@ router.post('/create/:id', (req, res, next) => {
     level:req.body.level,
     personal: req.body.personal,
     urgency:req.body.urgency,
-    user:req.user._id,
+    creator:req.user._id,
     workspace:req.params.id,
     description: req.body.description,
     approved:req.body.approved
@@ -75,8 +75,8 @@ router.post('/create/:id', (req, res, next) => {
 
 //rota para editar Task - Apenas Operador pode faze-lo
 router.put('/edit/:taskid', (req, res, next) => {
-  console.log('ROTA TÁ FUNCIONANDO');
-  console.log('EDIT',req.body);
+  // console.log('ROTA TÁ FUNCIONANDO');
+  // console.log('EDIT',req.body);
 
   Task.findByIdAndUpdate(req.params.taskid, req.body, { new: true })
     .then(task => {

@@ -3,10 +3,12 @@ import {Accordion, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 /*IMPORTANTO TRASH ICON*/
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaRegCheckSquare } from 'react-icons/fa';
 
 /*Service para deletar*/
 import { remove as DeleteTask } from '../../services/task';
+import { edit } from '../../services/task';
+import { single } from '../../services/task';
 
 import './style.scss';
 
@@ -15,10 +17,19 @@ export default class ItemTask extends Component {
     super(props);
     this.state={
       active: false,
+      name: '',
+      level: '', 
+      urgency:'',
+      category:'',
+      personal:'',
+      frequency: '',
+      description: '',
+      workspace:''
     };
 
     this.toogleWorkspace = this.toogleWorkspace.bind(this);
     this.handleDeleteTask = this.handleDeleteTask.bind(this);
+    this.handleApproveTask = this.handleApproveTask.bind(this);
   };
 
   toogleWorkspace() {
@@ -29,14 +40,46 @@ export default class ItemTask extends Component {
 
   handleDeleteTask(){
     const id = this.props.taskId;
-    setTimeout(() => {
-      DeleteTask(id)
+   
+    DeleteTask(id)
       .then()
       .catch( error => {
         console.log(error);
       });
-    }, 3000);
   };
+
+  async handleApproveTask(){
+    const id = this.props.taskId;
+    console.log(id);
+
+    const beforeTask = await single(id);
+    console.log('BEFORE TASK',beforeTask);
+
+    this.setState({ 
+       name: beforeTask.name,
+       level: beforeTask.level,
+       urgency: beforeTask.urgency,
+       category: beforeTask.category,
+       personal: beforeTask.personal,
+       frequency: beforeTask.frequency,
+       description: beforeTask.description,
+       workspace:beforeTask.workspace
+    });
+
+    const name = this.state.name;
+    const level = this.state.level;
+    const urgency = this.state.urgency;
+    const personal = this.state.personal;
+    const category = this.state.category;
+    const frequency = Number(this.state.frequency);
+    const description = this.state.description;
+    const approved = true;
+
+
+    await edit({id,name, level, urgency, personal, category, frequency, description, approved });
+   
+
+  }
 
 
   // className={ this.state.active ? 
@@ -47,6 +90,7 @@ export default class ItemTask extends Component {
     const taskId = this.props.taskId;
     /*VERIFICAÇÃO SE O USER É O OPERADOR*/
     const operator = this.props.user._id === this.props.workspaceOperator;
+    
    
     return (
       <Card
@@ -100,16 +144,32 @@ export default class ItemTask extends Component {
                 </div>
               </div>
             </div>
-            
-            { operator &&
-              <Link  to={`/edit/task/${taskId}`} >Edit Task</Link>
-            }
+            <div className="row">
+              <div className="col">
+                { operator &&
+                <Link  to={`/edit/task/${taskId}`} >Edit Task</Link>
+                }
+              </div>
 
-            { operator && 
-              <button onClick={this.handleDeleteTask}>
-                <FaTrashAlt />
-              </button>
-            }
+              <div className="col">
+                { operator && 
+                  <button onClick={this.handleDeleteTask}>
+                    <FaTrashAlt />
+                  </button>
+                }
+              </div>
+
+              <div className="col">
+                { this.props.approved && operator &&
+                  <button onClick={this.handleApproveTask}>
+                    <FaRegCheckSquare />
+                  </button>
+                }
+              </div>
+            </div>
+            
+
+            
             
 
           </Card.Body>

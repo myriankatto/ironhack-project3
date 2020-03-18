@@ -29,6 +29,7 @@ export default class WorkspaceCreate extends Component {
   fetchData() {
     const id = this.props.match.params.id;
 
+
     singleWorkspace(id)
       .then(workspace => {
         this.setState(workspace);
@@ -46,7 +47,11 @@ export default class WorkspaceCreate extends Component {
   }
 
   render() {
-    const { workspace } = this.state;
+    let workspace;
+    if(this.state.workspace !== []){
+      workspace = this.state.workspace;
+    }
+    
     const WorkspaceId = this.props.match.params.id;
 
     return (
@@ -55,6 +60,9 @@ export default class WorkspaceCreate extends Component {
           user={this.props.user}
           {...this.props}
           updateUserInformation={this.props.updateUserInformation}
+          idWorkspace={WorkspaceId}
+          user={this.props.user}
+          workspaceOperator={workspace.operator}
         />
 
         <div className="dashboard__content mt-2">
@@ -63,7 +71,10 @@ export default class WorkspaceCreate extends Component {
           workspaceOperator={workspace.operator}/>
 
           <h1>TASKS PARA APROVAR:</h1>
-          <ApproveTasks idWorkspace={WorkspaceId} />
+          <ApproveTasks 
+          idWorkspace={WorkspaceId}
+          user={this.props.user}
+          workspaceOperator={workspace.operator} />
 
           <FooterWorkspace 
           idWorkspace={WorkspaceId} 
