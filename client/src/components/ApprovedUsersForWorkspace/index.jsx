@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { approvedUser, approvedUsersReject } from './../../services/workspaceUser';
+import './style.scss';
 
 class ApprovedUsersForWorkspace extends Component {
   constructor(props) {
@@ -22,13 +23,18 @@ class ApprovedUsersForWorkspace extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Users from {this.props.workspaceName}</h3>
+      <div className="approvedUser">
+        <h3>{this.props.workspaceName}'s Team</h3>
+        <img className="team__img__list" src="./../images/undraw_team_spirit_hrr4.svg" alt="team" />
         {this.state.approvedUsers.map(approvedUsers => (
-          <Fragment key={approvedUsers._id}>
-            <h3>{approvedUsers.name}</h3>
-            <button onClick={() => this.removeUserFromWorkspace(approvedUsers._id)}>X</button>
-          </Fragment>
+          <div className="singleUserFlex" key={approvedUsers._id}>
+            <div className="singleUser">
+              <h3>{approvedUsers.name}</h3>
+              <button onClick={() => this.removeUserFromWorkspace(approvedUsers._id)}>
+                <img className="remove__img__list" src="./../images/close-white.svg" alt="team" />
+              </button>
+            </div>
+          </div>
         ))}
       </div>
     );

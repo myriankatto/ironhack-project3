@@ -1,0 +1,24 @@
+.approvedUser {
+  background-color: #544bd8f3;
+  height: 100vh;
+  color: white;
+  padding-top: 2em;
+  .team__img__list {
+    width: 70%;
+  }
+  .singleUserFlex {
+    border-bottom: 1px solid white;
+    .singleUser {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      width: 90%;
+      margin: 2em auto;
+      .remove__img__list {
+        width: 1.5em;
+        float: left;
+        position: relative;
+      }
+    }
+  }
+}
