@@ -72,6 +72,8 @@ export default class ItemTask extends Component {
                     {this.props.level}
                   </p>
                 </div>
+
+                <Link  to={`/dashboard/${workspace._id}`} >Edit this Task</Link>
               </div>
             </div>
           </Card.Body>

@@ -7,8 +7,7 @@ const instance = axios.create({
 
 //service para criar uma task com base no id do workspace
 const create = async data => {
-  // console.log('services works ', data);
-  // console.log('name no services', data.name);
+  
 
   const name = data.name;
   const level = data.level;
@@ -18,7 +17,7 @@ const create = async data => {
   const frequency = data.frequency;
   const description = data.description
 
-  //console.log(typeof );
+  
   try {
     const result = await instance.post(`/create/${data.id}`, { name, frequency, level, personal, urgency, description});
     // const newTask = result.data;
@@ -40,6 +39,14 @@ const list = async id => {
 }
 
 
+//service para editar um Task
+const edit = async (id, name) => {
+  const result = await instance.put(`/edit/${id}`, { name });
+  const task = result.data;
+  return tasks;
+};
 
 
-export { create, list };
+
+
+export { create, list, edit };
