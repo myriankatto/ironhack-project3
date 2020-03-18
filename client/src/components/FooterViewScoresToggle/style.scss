@@ -9,7 +9,7 @@ small {
 #flyoutMenu_ViewScores {
   width: 100vw;
   height: 92vh;
-  background-color: #3f3d56f8;
+  background-color: #3f3d56fa;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -19,6 +19,21 @@ small {
   color: #3f3d56;
   display: flex;
   flex-direction: column;
+
+  .users__scores__list {
+    margin-left: 0;
+    width: 90%;
+    .userScore_Single {
+      background-color: #3f3d56dc;
+      margin: 1em 3em;
+      background-color: inherit;
+      color: white;
+      font-size: 1em;
+      border-bottom: solid 1px $purple;
+      padding-top: 2em;
+      text-align: left;
+    }
+  }
 
   img {
     width: 2em;

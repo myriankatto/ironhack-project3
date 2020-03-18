@@ -1,7 +1,6 @@
 import './style.scss';
 import React, { Component, Fragment } from 'react';
 import { Swipeable } from 'react-swipeable';
-import UsersScoresList from './../UsersScoresList';
 
 import { approvedUser } from './../../services/workspaceUser';
 
@@ -14,11 +13,11 @@ class FooterViewScoresToggle extends Component {
   }
 
   componentDidMount() {
-    approvedUser(this.props.workspaceId).then(users => this.setState({ approvedUsers: users }));
+    approvedUser(this.props.idWorkspace).then(users => this.setState({ approvedUsers: users }));
   }
 
   componentDidUpdate() {
-    approvedUser(this.props.workspaceId).then(users => this.setState({ approvedUsers: users }));
+    approvedUser(this.props.idWorkspace).then(users => this.setState({ approvedUsers: users }));
   }
 
   showOperatorViewScores() {}
@@ -36,7 +35,18 @@ class FooterViewScoresToggle extends Component {
           <h2>Users Scores for</h2>
           <h3>{this.props.workspaceName}</h3>
 
-          <UsersScoresList approvedUsers={this.state.approvedUsers} />
+          <ol className="users__scores__list">
+            {this.state.approvedUsers.map(approvedUser => (
+              <Fragment key={approvedUser._id}>
+                <li className="userScore_Single">
+                  {' '}
+                  <strong>{approvedUser.name}</strong>: {approvedUser.score}
+
+        
+                </li>
+              </Fragment>
+            ))}
+          </ol>
 
           <a onMouseUp={this.props.handleMouseUp}>
             {' '}
