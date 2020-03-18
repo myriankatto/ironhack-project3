@@ -1,24 +1,21 @@
-import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { edit, single }  from './../../services/task';
+import { Link } from 'react-router-dom';
 
-import { create, single }  from './../../services/task';
-import './style.scss';
+export default class EditTaskOperator extends Component {
+  
 
-
-class AddTask extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
-    this.state = {
+    this.state={
       name: '',
-      level: 'easy', 
-      urgency:false,
+      level: '', 
+      urgency:'',
       category:'',
-      personal:false,
+      personal:'',
       frequency: '',
       description: '',
       workspace:''
-      
-      
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,15 +23,42 @@ class AddTask extends Component {
     this.changePersonal = this.changePersonal.bind(this);
     this.changeUrgency = this.changeUrgency.bind(this);
     this.resetTotal = this.resetTotal.bind(this);
-  }
+  };
 
+  componentDidMount() {
+    this.fetchData();
+  };
+
+  fetchData() {
+    const id = this.props.match.params.idTask;
+
+    single(id)
+      .then(beforeTask => {
+        
+        this.setState({ 
+          name: beforeTask.name,
+          level: beforeTask.level,
+          urgency: beforeTask.urgency,
+          category: beforeTask.category,
+          personal: beforeTask.personal,
+          frequency: beforeTask.frequency,
+          description: beforeTask.description,
+          workspace: beforeTask.workspace
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  
   handleInputChange(event) {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
 
-    
+    console.log(this.state);
   }
 
   changePersonal(){
@@ -49,8 +73,9 @@ class AddTask extends Component {
     }));
   }
 
-  handleFormSubmission(event) {
+  async handleFormSubmission(event) {
     event.preventDefault();
+    const id = this.props.match.params.idTask;
 
     const name = this.state.name;
     const level = this.state.level;
@@ -59,55 +84,61 @@ class AddTask extends Component {
     const category = this.state.category;
     const frequency = Number(this.state.frequency);
     const description = this.state.description;
-    
-  
-    const id = this.props.idWorkspace;
-   
-    //if (!name || !level || !urgency || !category || !personal) return;
-    
-    create({id,name, level, urgency, personal, category, frequency, description })
+     
+    edit({id,name, level, urgency, personal, category, frequency, description })
       .then()
       .catch(error => {
         console.log(error);
       });
 
-      this.setState({
-        name: '',
-        level: 'easy', 
-        urgency:false,
-        category:'',
-        personal:false,
-        frequency: '',
-        description: '',
+      single(id)
+      .then(beforeTask => { 
+        this.setState({ 
+          name: beforeTask.name,
+          level: beforeTask.level,
+          urgency: beforeTask.urgency,
+          category: beforeTask.category,
+          personal: beforeTask.personal,
+          frequency: beforeTask.frequency,
+          description: beforeTask.description,
+          workspace:beforeTask.workspace
+        });
+      })
+      .catch(error => {
+        console.log(error);
       });
 
-
-      
-
+      this.props.history.push(`/dashboard/${this.state.workspace}`);
   };
 
-  resetTotal(){
-    this.setState({
-      name: '',
-      level: 'easy', 
-      urgency:false,
-      category:'',
-      personal:false,
-      frequency: '',
-      description: ''
-    });
 
-  
+  resetTotal(){
+    const id = this.props.match.params.idTask;
+
+    single(id)
+      .then(beforeTask => {
+        
+        this.setState({ 
+          name: beforeTask.name,
+          level: beforeTask.level,
+          urgency: beforeTask.urgency,
+          category: beforeTask.category,
+          personal: beforeTask.personal,
+          frequency: beforeTask.frequency,
+          description: beforeTask.description,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
- 
-    
-  
-
-
   render() {
+   
     return (
-      <form onSubmit={this.handleFormSubmission}>
+      <div>
+        
+        <form onSubmit={this.handleFormSubmission}>
         {/*Task's name */}
         <input type="text" 
           id="fname" 
@@ -173,7 +204,7 @@ class AddTask extends Component {
           <span className={`react-switch-button`} />
         </label>
 
-         {/*Category*/}
+        {/*Category*/}
         <select 
           as="select"
           name="category"
@@ -196,19 +227,18 @@ class AddTask extends Component {
           autoComplete="off">
         </textarea>
 
-        <input type="submit" value="Submit"> 
+        
+        <input type="submit" value="Edit Task"> 
         </input>
+        
+        
+
 
         <button type="reset" onClick={this.resetTotal}>| Reset form</button>
 
       </form>
-
-
-
-
-     
-    );
+    </div>
+    )
   }
-}
 
-export default AddTask;
+}

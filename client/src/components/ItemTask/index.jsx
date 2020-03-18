@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Accordion, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 
 import './style.scss';
 
@@ -72,10 +74,11 @@ export default class ItemTask extends Component {
                     {this.props.level}
                   </p>
                 </div>
-
-                <Link  to={`/dashboard/${workspace._id}`} >Edit this Task</Link>
               </div>
             </div>
+
+            <Link  to={`/edit/task/${this.props.taskId}`} >Edit this Task</Link>
+            
           </Card.Body>
         </Accordion.Collapse>
       </Card>

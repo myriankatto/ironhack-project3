@@ -6,10 +6,12 @@ import { single as singleWorkspace } from '../../services/workspace';
 
 /*COMPONENTES*/
 import FooterWorkspace from '../../components/FooterWorkspace';
-import AddTask from '../../components/AddTask';
 import Tasks from '../../components/Task';
 
 export default class WorkspaceCreate extends Component {
+  //Solucao para erro: Can't perform a React state update on an unmounted component:
+   _isMounted = false; 
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +22,7 @@ export default class WorkspaceCreate extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     this.fetchData();
   }
 
@@ -35,9 +38,17 @@ export default class WorkspaceCreate extends Component {
       });
   }
 
+  // Warning: Can't perform a React state update on an unmounted component. 
+  // This is a no-op, but it indicates a memory leak in your application. 
+  // To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+
   render() {
     const { workspace } = this.state;
-   
+    const WorkspaceId = this.props.match.params.id;
 
     return (
       <div className="dashboard">
@@ -48,8 +59,8 @@ export default class WorkspaceCreate extends Component {
         />
         
         <div className="dashboard__content mt-2">
-          <Tasks idWorkspace={this.props.match.params.id} />
-          <FooterWorkspace idWorkspace={this.props.match.params.id} />
+          <Tasks idWorkspace={WorkspaceId} />
+          <FooterWorkspace idWorkspace={WorkspaceId} />
         </div>
         
       </div>

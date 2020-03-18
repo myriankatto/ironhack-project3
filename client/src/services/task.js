@@ -19,7 +19,7 @@ const create = async data => {
 
   
   try {
-    const result = await instance.post(`/create/${data.id}`, { name, frequency, level, personal, urgency, description});
+    const result = await instance.post(`/create/${data.id}`, { name, frequency, level, personal, urgency, description, category});
     // const newTask = result.data;
     // return newTask;
   } catch (error) {
@@ -27,8 +27,10 @@ const create = async data => {
   }
 };
 
+
+//Service para listar a task
 const list = async id => {
-  console.log(id);
+ 
   try{
     const result = await instance.get(`/list/${id}`);
     const tasks = result.data;
@@ -40,13 +42,34 @@ const list = async id => {
 
 
 //service para editar um Task
-const edit = async (id, name) => {
-  const result = await instance.put(`/edit/${id}`, { name });
+const edit = async data => {
+  const name = data.name;
+  const level = data.level;
+  const urgency = data.urgency;
+  const personal = data.personal;
+  const category = data.category;
+  const frequency = data.frequency;
+  const description = data.description
+
+  
+  const result = await instance.put(`/edit/${data.id}`, {name, frequency, level, personal, urgency, description, category });
   const task = result.data;
-  return tasks;
+  return task;
 };
 
+//service single para Taks
+const single = async id => {
+ 
+  try{
+    const result = await instance.get(`/${id}`);
+    const task = result.data;
+    return task;
+  }catch (error) {
+    throw error;
+  }
+}
 
 
 
-export { create, list, edit };
+
+export { create, list, edit, single };

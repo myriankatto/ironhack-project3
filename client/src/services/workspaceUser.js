@@ -35,9 +35,15 @@ const usersApproved = async (userId, userWorkspaceId) => {
   const result = await instance.put(`/accept/${userId}/${userWorkspaceId}`);
   return result.data;
 };
-//route to reject the users
+//route to reject the users that were never approved. pending users
 const usersReject = async (userId, userWorkspaceId) => {
   const result = await instance.put(`/reject/${userId}/${userWorkspaceId}`);
+  return result.data;
+};
+
+//route to remove the users that were previously approved
+const approvedUsersReject = async (userId, userWorkspaceId) => {
+  const result = await instance.put(`/rejectPreviouslyApprovedUser/${userId}/${userWorkspaceId}`);
   return result.data;
 };
 
@@ -47,5 +53,6 @@ export {
   usersFromWorkspace,
   approvedUser,
   usersApproved,
-  usersReject
+  usersReject,
+  approvedUsersReject
 };
