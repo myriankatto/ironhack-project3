@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {pending as PendingTasks } from '../../services';
+import {pending as PendingTasks } from '../../services/task';
 
 
 
@@ -18,8 +18,8 @@ export default class ApproveTasks extends Component {
 
   fetchData(){
     const id = this.props.idWorkspace;
-    PendingTasks(id)
-    .then
+    // PendingTasks(id)
+    // .then
   }
   render() {
     return (
