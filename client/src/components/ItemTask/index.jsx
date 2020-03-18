@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import {Accordion, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+/*IMPORTANTO TRASH ICON*/
+import { FaTrashAlt } from 'react-icons/fa';
+
+/*Service para deletar*/
+import { remove as DeleteTask } from '../../services/task';
 
 import './style.scss';
 
@@ -13,6 +18,7 @@ export default class ItemTask extends Component {
     };
 
     this.toogleWorkspace = this.toogleWorkspace.bind(this);
+    this.handleDeleteTask = this.handleDeleteTask.bind(this);
   };
 
   toogleWorkspace() {
@@ -21,12 +27,30 @@ export default class ItemTask extends Component {
     }));
   };
 
+  handleDeleteTask(){
+    const id = this.props.taskId;
+    setTimeout(() => {
+      DeleteTask(id)
+      .then()
+      .catch( error => {
+        console.log(error);
+      });
+    }, 3000);
+  };
 
+
+  // className={ this.state.active ? 
+  //   "p-2 cardTask border border-secondary rounded-lg shadow" :
+  //   "p-2 cardTask border border-secondary rounded-pill shadow"}
   render() {
+
+    const taskId = this.props.taskId;
+    /*VERIFICAÇÃO SE O USER É O OPERADOR*/
+    const operator = this.props.user._id === this.props.workspaceOperator;
+   
     return (
-      <Card className={ this.state.active ? 
-      "p-2 cardTask border border-secondary rounded-lg shadow" :
-      "p-2 cardTask border border-secondary rounded-pill shadow"}
+      <Card
+      className="p-2 cardTask border border-secondary rounded-lg shadow" 
       onClick={this.toogleWorkspace}>
         <Accordion.Toggle 
           as={Button} 
@@ -35,7 +59,7 @@ export default class ItemTask extends Component {
           eventKey={this.props.toggle}>
 
             <h1>{this.props.name}</h1>
-
+            
             {this.state.active ? 
               <img className="arrow-icon" src="./../images/down.svg" alt="down icon" /> :
               <img className="arrow-icon" src="./../images/up.svg" alt="down icon" /> }
@@ -76,9 +100,18 @@ export default class ItemTask extends Component {
                 </div>
               </div>
             </div>
-
-            <Link  to={`/edit/task/${this.props.taskId}`} >Edit this Task</Link>
             
+            { operator &&
+              <Link  to={`/edit/task/${taskId}`} >Edit Task</Link>
+            }
+
+            { operator && 
+              <button onClick={this.handleDeleteTask}>
+                <FaTrashAlt />
+              </button>
+            }
+            
+
           </Card.Body>
         </Accordion.Collapse>
       </Card>

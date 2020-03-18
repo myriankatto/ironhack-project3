@@ -69,7 +69,18 @@ const single = async id => {
   }
 }
 
+//Service para Delete Task
+const remove = async id => {
+  try{
+    const result = await instance.delete(`/${id}`);
+  }catch (error) {
+    throw error;
+  }
+  
+  // const workspace = result.data;
+  // return workspace;
+};
 
 
 
-export { create, list, edit, single };
+export { create, list, edit, single, remove };

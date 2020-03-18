@@ -56,7 +56,7 @@ export default class WorkspaceCreate extends Component {
         />
 
         <div className="dashboard__content mt-2">
-          <Tasks idWorkspace={WorkspaceId} />
+          <Tasks idWorkspace={WorkspaceId} user={this.props.user} workspaceOperator={workspace.operator}/>
           <FooterWorkspace idWorkspace={WorkspaceId} workspaceName={workspace.name} />
         </div>
       </div>
