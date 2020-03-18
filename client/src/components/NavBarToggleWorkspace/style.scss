@@ -28,3 +28,21 @@
 #flyoutMenu h2 a:hover {
   text-decoration: underline;
 }
+
+.buttonPlusMenu {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  h2 {
+    margin-top: 2em;
+    margin-left: 1em;
+    display: flex;
+    align-items: center;
+    img {
+      width: 1em;
+      float: left;
+      position: relative;
+      margin: 0;
+    }
+  }
+}
