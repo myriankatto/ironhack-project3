@@ -12,7 +12,7 @@ class AddTask extends Component {
       name: '',
       level: 'easy', 
       urgency:false,
-      category:'',
+      category:'Kitchen',
       personal:false,
       frequency: '',
       description: '',
@@ -75,14 +75,11 @@ class AddTask extends Component {
         name: '',
         level: 'easy', 
         urgency:false,
-        category:'',
+        category:'Kitchen',
         personal:false,
         frequency: '',
         description: '',
       });
-
-
-      
 
   };
 
@@ -91,7 +88,7 @@ class AddTask extends Component {
       name: '',
       level: 'easy', 
       urgency:false,
-      category:'',
+      category:'Kitchen',
       personal:false,
       frequency: '',
       description: ''
@@ -101,10 +98,6 @@ class AddTask extends Component {
   }
 
  
-    
-  
-
-
   render() {
     return (
       <form onSubmit={this.handleFormSubmission}>
@@ -122,6 +115,8 @@ class AddTask extends Component {
         <input 
           type="number"
           name="frequency"
+          min="1"
+          max="20"
           value={this.state.frequency}
           onChange={this.handleInputChange}
           placeholder="Set frequency"

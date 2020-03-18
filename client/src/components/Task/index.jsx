@@ -45,9 +45,11 @@ class Tasks extends Component {
     const id = this.state.id;
     listTasks(id)
       .then( tasks => {
-        this.setState({
-          tasks
-        });
+        if(tasks != this.state.tasks){
+          this.setState({
+            tasks
+          });
+        }
       })
       .catch( error => {
         console.log(error);
@@ -72,6 +74,8 @@ class Tasks extends Component {
               level={task.level}
               frequency={task.frequency}
               taskId={task._id}
+              user={this.props.user}
+              workspaceOperator={this.props.workspaceOperator}
               />
             ))
           }
