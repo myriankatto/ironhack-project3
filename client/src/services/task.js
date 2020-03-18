@@ -16,10 +16,11 @@ const create = async data => {
   const category = data.category;
   const frequency = data.frequency;
   const description = data.description
-
+  const approved = data.approved;
   
   try {
-    const result = await instance.post(`/create/${data.id}`, { name, frequency, level, personal, urgency, description, category});
+    const result = await instance.post(`/create/${data.id}`, 
+    { name, frequency, level, personal, urgency, description, category , approved});
     // const newTask = result.data;
     // return newTask;
   } catch (error) {
@@ -28,11 +29,22 @@ const create = async data => {
 };
 
 
-//Service para listar a task
+//Service para listar as tasks aprovadas
 const list = async id => {
  
   try{
     const result = await instance.get(`/list/${id}`);
+    const tasks = result.data;
+    return tasks;
+  }catch (error) {
+    throw error;
+  }
+}
+
+//Service para listar as tasks pendentes:
+const pending = async id => {
+  try{
+    const result = await instance.get(`/list/pending/${id}`);
     const tasks = result.data;
     return tasks;
   }catch (error) {
@@ -83,4 +95,4 @@ const remove = async id => {
 
 
 
-export { create, list, edit, single, remove };
+export { create, list, edit, single, remove, pending };

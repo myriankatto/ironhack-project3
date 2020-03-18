@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { usersFromWorkspace, usersApproved, usersReject } from './../../services/workspaceUser';
+import './style.scss';
 
 class ApproveUsersForWorkspace extends Component {
   constructor(props) {
@@ -28,13 +29,18 @@ class ApproveUsersForWorkspace extends Component {
 
   render() {
     return (
-      <div>
+      <div className="usersForApprovalDiv">
+        <h3>Pending Users</h3>
         {this.state.users.map(user => (
-          <Fragment key={user._id}>
+          <div className="usersForApproval" key={user._id}>
             <h3>{user.name}</h3>
-            <button onClick={() => this.approve(user._id)}>Approve</button>
-            <button onClick={() => this.reject(user._id)}>Reject</button>
-          </Fragment>
+            <button className="approve__btn" onClick={() => this.approve(user._id)}>
+              Approve
+            </button>
+            <button className="reject__btn" onClick={() => this.reject(user._id)}>
+              Reject
+            </button>
+          </div>
         ))}
       </div>
     );

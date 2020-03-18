@@ -7,8 +7,8 @@ small {
 }
 
 #flyoutMenu_ViewScores {
-  width: 100vw;
-  height: 92vh;
+  width: 100%;
+  height: calc(100% -3.5em);
   background-color: #3f3d56fa;
   position: fixed;
   bottom: 0;
@@ -40,9 +40,9 @@ small {
       display: flex;
       align-content: center;
       justify-content: flex-start;
-.scores_name{
-  margin-left: auto;
-}
+      .scores_name {
+        margin-left: auto;
+      }
       &:first-child {
         background-color: #6b63ff9f;
       }
@@ -64,7 +64,7 @@ small {
           margin: 0 0.5em;
         }
       }
-  
+
       h5 {
         margin-right: 0.5em;
         font-size: 1em;
@@ -94,12 +94,12 @@ small {
 }
 
 #flyoutMenu_ViewScores.hide {
-  transform: translate3d(0, 170vw, 0);
+  transform: translate(0, 100%);
 }
 
 #flyoutMenu_ViewScores.show {
-  transform: translate3d(0, 0vw, 0);
-  overflow: hidden;
+  transform: translate(0, 0);
+  overflow: hidden auto;
 }
 
 #flyoutMenu_ViewScores h2 a {

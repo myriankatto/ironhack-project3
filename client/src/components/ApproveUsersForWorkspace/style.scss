@@ -1,0 +1,40 @@
+.usersForApprovalDiv {
+  margin: 1.5em auto;
+  width: 100%;
+  .usersForApproval {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 2% auto;
+    border-bottom: 1px solid #3f3d56;
+    h3 {
+      line-height: normal;
+      flex-grow: 3;
+    }
+    .reject__btn {
+      margin: 0% 1em;
+      flex-grow: 1;
+      background-color: #3f3d56;
+      border-radius: 1em;
+      border: none;
+      color: white;
+      font-size: 1em;
+      display: block;
+      padding: 0.2em 0.2em;
+      text-align: center;
+    }
+    .approve__btn {
+      margin: 0% 1em;
+      flex-grow: 1;
+      background-color: green;
+      border-radius: 1em;
+      border: none;
+      color: white;
+      font-size: 1em;
+      display: block;
+      padding: 0.2em 0.2em;
+      text-align: center;
+    }
+  }
+}

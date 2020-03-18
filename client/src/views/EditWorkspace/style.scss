@@ -1,0 +1,67 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+.navPlusMenu {
+  display: flex;
+  background-color: #544bd8f3;
+  img {
+    width: 2em;
+    float: left;
+    position: relative;
+    margin: 2em 2em;
+  }
+  h2 {
+    color: white;
+    align-self: center;
+    margin: 0% auto;
+  }
+}
+
+.workspaceSettings {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 0%;
+  background-color: lightgray;
+  color: #544bd8f3;
+  h3 {
+    margin-bottom: 1.5em;
+  }
+  .editWorkSpaceName {
+    background-color: white;
+    padding: 1.5em 0%;
+    label {
+      width: 90%;
+      text-align: left;
+      margin: 2.5% 0% 0% 5%;
+    }
+    input {
+      margin: 0% auto;
+      width: 90%;
+      padding: 0.5em 1.5em;
+      border-radius: 0.4em;
+    }
+    .submit__btn {
+      background-color: $purple;
+      border-radius: 1em;
+      border: none;
+      color: white;
+      font-size: 1em;
+      display: block;
+      margin: 1em auto 0 auto;
+      padding: 0.2em 1em;
+      text-align: center;
+    }
+  }
+  .delete__btn {
+    background-color: $darkColor;
+    border-radius: 1em;
+    border: none;
+    color: white;
+    font-size: 1em;
+    display: block;
+    margin: 1em auto 0 auto;
+    padding: 0.2em 1em;
+    text-align: center;
+  }
+}
