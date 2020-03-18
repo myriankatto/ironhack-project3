@@ -16,8 +16,7 @@ class AddTask extends Component {
       personal:false,
       frequency: '',
       description: '',
-      workspace:''
-      
+      workspace:'',
       
     };
 
@@ -59,13 +58,13 @@ class AddTask extends Component {
     const category = this.state.category;
     const frequency = Number(this.state.frequency);
     const description = this.state.description;
-    
+    const approved =  this.props.user === this.props.workspaceOperator;
   
     const id = this.props.idWorkspace;
    
     //if (!name || !level || !urgency || !category || !personal) return;
     
-    create({id,name, level, urgency, personal, category, frequency, description })
+    create({id,name, level, urgency, personal, category, frequency, description, approved})
       .then()
       .catch(error => {
         console.log(error);

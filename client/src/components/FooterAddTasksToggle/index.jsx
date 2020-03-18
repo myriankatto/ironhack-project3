@@ -23,7 +23,11 @@ class FooterAddTasksToggle extends Component {
         <div id="flyoutMenu_AddTask" className={visibility}>
        
           <h2>Add Tasks Form</h2>
-          <AddTask idWorkspace={this.props.idWorkspace}/>
+          <AddTask 
+          idWorkspace={this.props.idWorkspace}
+          user={this.props.user}
+          workspaceOperator={this.props.workspaceOperator}
+          />
 
             <a onMouseUp={this.props.handleMouseUp}>
               {' '}

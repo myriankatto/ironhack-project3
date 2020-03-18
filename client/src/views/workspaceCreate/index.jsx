@@ -8,6 +8,8 @@ import { single as singleWorkspace } from '../../services/workspace';
 import FooterWorkspace from '../../components/FooterWorkspace';
 import Tasks from '../../components/Task';
 
+import ApproveTasks from '../../components/ApproveTasks';
+
 export default class WorkspaceCreate extends Component {
   //Solucao para erro: Can't perform a React state update on an unmounted component:
   _isMounted = false;
@@ -56,8 +58,18 @@ export default class WorkspaceCreate extends Component {
         />
 
         <div className="dashboard__content mt-2">
-          <Tasks idWorkspace={WorkspaceId} user={this.props.user} workspaceOperator={workspace.operator}/>
-          <FooterWorkspace idWorkspace={WorkspaceId} workspaceName={workspace.name} />
+          <Tasks idWorkspace={WorkspaceId} 
+          user={this.props.user} 
+          workspaceOperator={workspace.operator}/>
+
+          <h1>TASKS PARA APROVAR:</h1>
+          <ApproveTasks idWorkspace={WorkspaceId} />
+
+          <FooterWorkspace 
+          idWorkspace={WorkspaceId} 
+          workspaceName={workspace.name}
+          user={this.props.user}
+          workspaceOperator={workspace.operator} />
         </div>
       </div>
     );

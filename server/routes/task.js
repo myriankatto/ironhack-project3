@@ -7,11 +7,25 @@ const routeGuard = require('./../middleware/route-guard');
 const Task = require('./../models/task');
 
 
-//rota para tasks geral
+//rota para tasks APROVADAS geral
 router.get('/list/:workspaceId', (req, res, next) => {
   const id = req.params.workspaceId;
   
-  Task.find({"workspace": id})
+  Task.find({ "$and": [{"workspace": id}, {"approved": "true"}]})
+    .populate('owner', 'creator')
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
+//rota para tasks em estágio de APROVAÇÃO geral
+router.get('/list/pending/:workspaceId', (req, res, next) => {
+  const id = req.params.workspaceId;
+  
+  Task.find({ "$and": [{"workspace": id}, {"approved": "false"}]})
     .populate('owner', 'creator')
     .then(tasks => {
       res.json(tasks);
@@ -47,7 +61,8 @@ router.post('/create/:id', (req, res, next) => {
     urgency:req.body.urgency,
     user:req.user._id,
     workspace:req.params.id,
-    description: req.body.description
+    description: req.body.description,
+    approved:req.body.approved
   })
     .then(task => {
       

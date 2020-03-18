@@ -75,6 +75,7 @@ class FooterWorkspace extends Component {
           menuVisibility={this.state.visibleViewScores}
           idWorkspace={this.props.idWorkspace}
           workspaceName={this.props.workspaceName}
+         
         />
 
         <h5>
@@ -84,6 +85,8 @@ class FooterWorkspace extends Component {
           handleMouseUp={this.handleMouseUpAddTasks}
           menuVisibility={this.state.visibleAddTasks}
           idWorkspace={this.props.idWorkspace}
+          user={this.props.user}
+          workspaceOperator={this.props.workspaceOperator}
         />
         <FooterAddTaskButton
           handleMouseUp={this.handleMouseUpAddTasks}
