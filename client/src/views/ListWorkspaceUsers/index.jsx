@@ -25,7 +25,6 @@ class ListWorkspaceUsers extends Component {
     return this.props.history.push('./dashboard');
   }
   render() {
-    
     return (
       <Swipeable onSwipedRight={this.handleSwipeLeft}>
         <nav className="navPlusMenu">
@@ -40,13 +39,11 @@ class ListWorkspaceUsers extends Component {
             alt="team"
           />
         </div>
-        {this.state.workspaces.map(workspace => (
+        {this.state.userWorkspacesApproved.map(workspaceApproved => (
           <ApprovedUsersForWorkspace
-            key={workspace._id}
-            workspaceId={workspace._id}
-            workspaceName={workspace.name}
-            workspaceOperator={workspace.operator}
+            key={workspaceApproved._id}
             workingUser={this.props.user._id}
+            workspaceApproved={workspaceApproved}
           />
         ))}
       </Swipeable>
@@ -54,3 +51,15 @@ class ListWorkspaceUsers extends Component {
   }
 }
 export default ListWorkspaceUsers;
+
+{
+  /* {this.state.workspaces.map(workspace => (
+  <ApprovedUsersForWorkspace
+    key={workspace._id}
+    workspaceId={workspace._id}
+    workspaceName={workspace.name}
+    workspaceOperator={workspace.operator}
+    workingUser={this.props.user._id}
+  />
+))} */
+}
