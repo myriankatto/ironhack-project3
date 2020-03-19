@@ -1,6 +1,6 @@
 import React, { Component, Redirect } from 'react';
 import ApprovedUsersForWorkspace from './../../components/ApprovedUsersForWorkspace';
-import { editWorkspace } from './../../services/workspaceUser';
+import { editWorkspace, userWorkspacesApproved } from './../../services/workspaceUser';
 import { useSwipeable, Swipeable } from 'react-swipeable';
 import './style.scss';
 
@@ -9,18 +9,23 @@ class ListWorkspaceUsers extends Component {
     super(props);
     this.state = {
       workspaces: [],
-      approvedUsers: []
+      approvedUsers: [],
+      userWorkspacesApproved: []
     };
     this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
   }
 
   componentDidMount() {
+    userWorkspacesApproved(this.props.user._id).then(userWorkspacesApproved =>
+      this.setState({ userWorkspacesApproved })
+    );
     editWorkspace(this.props.user._id).then(workspaces => this.setState({ workspaces }));
   }
   handleSwipeLeft() {
     return this.props.history.push('./dashboard');
   }
   render() {
+    
     return (
       <Swipeable onSwipedRight={this.handleSwipeLeft}>
         <nav className="navPlusMenu">
@@ -28,11 +33,20 @@ class ListWorkspaceUsers extends Component {
             <img src="./../images/left-white.svg" alt="go back icon" />
           </a>
         </nav>
+        <div className="div__team__img__list">
+          <img
+            className="team__img__list"
+            src="./../images/undraw_team_spirit_hrr4.svg"
+            alt="team"
+          />
+        </div>
         {this.state.workspaces.map(workspace => (
           <ApprovedUsersForWorkspace
             key={workspace._id}
             workspaceId={workspace._id}
             workspaceName={workspace.name}
+            workspaceOperator={workspace.operator}
+            workingUser={this.props.user._id}
           />
         ))}
       </Swipeable>

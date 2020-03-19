@@ -16,6 +16,18 @@ router.put('/edit/:userid', (req, res, next) => {
     });
 });
 
+//this service will search the workspaces from a user ==> we are using this to form the list of users
+router.get('/userWorkspacesApproved/:userid', (req, res, next) => {
+  User.find({ _id: req.params.userid }, { new: true })
+    .populate('workspaceApproved')
+    .then(user => {
+      res.json(user);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
 //route to retrieve the workspace wich the user is the same as the operaor
 router.get('/editWorkspace/:userId', (req, res, next) => {
   Workspace.find({ operator: req.params.userId })

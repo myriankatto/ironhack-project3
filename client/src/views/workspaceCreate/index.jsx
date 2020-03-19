@@ -58,18 +58,21 @@ export default class WorkspaceCreate extends Component {
         />
 
         <div className="dashboard__content mt-2">
-          <Tasks idWorkspace={WorkspaceId} 
-          user={this.props.user} 
-          workspaceOperator={workspace.operator}/>
+          <Tasks
+            idWorkspace={WorkspaceId}
+            user={this.props.user}
+            workspaceOperator={workspace.operator}
+          />
 
           <h1>TASKS PARA APROVAR:</h1>
           <ApproveTasks idWorkspace={WorkspaceId} />
 
-          <FooterWorkspace 
-          idWorkspace={WorkspaceId} 
-          workspace={workspace}
-          user={this.props.user}
-          workspaceOperator={workspace.operator} />
+          <FooterWorkspace
+            idWorkspace={WorkspaceId}
+            workspace={workspace}
+            user={this.props.user}
+            workspaceOperator={workspace.operator}
+          />
         </div>
       </div>
     );

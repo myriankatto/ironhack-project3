@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { create } from './../../services/workspace';
+import { usersApproved } from './../../services/workspaceUser';
 
 import './style.scss';
 
@@ -29,7 +30,7 @@ class CreateWorkspace extends Component {
       name
     };
     create(name)
-      .then()
+      .then(newWorkspace => usersApproved(newWorkspace.operator, newWorkspace._id))
       .catch(error => {
         console.log(error);
       });
