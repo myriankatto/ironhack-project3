@@ -10,9 +10,12 @@ import PaymentMethodCreateView from './views/paymentMethodCreate';
 import CheckoutView from './views/CheckoutView';
 import WorkspaceCreate from './views/workspaceCreate';
 import EditWorkspace from './views/EditWorkspace';
+import ShareWorkspace from './views/ShareWorkspace';
 import { loadUserInformation } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import RouteShareWorkspace from './components/RouteShareWorkspace/index';
+
 import EditProfileView from './views/editProfile';
 import ListWorkspaceUsers from './views/ListWorkspaceUsers';
 import EditTaskOperator from './views/EditTaskOperator';
@@ -71,6 +74,7 @@ class App extends Component {
                 />
               )}
             />
+            {/* routes from the NavBarToggleWorkspace */}
             <ProtectedRoute
               path="/editWorkspace"
               authorized={this.state.user}
@@ -84,6 +88,22 @@ class App extends Component {
               redirect={'/'}
               exact
               render={props => <ListWorkspaceUsers user={this.state.user} {...props} />}
+            />
+            <ProtectedRoute
+              path="/shareWorkspace"
+              authorized={this.state.user}
+              redirect={'/'}
+              exact
+              render={props => <ShareWorkspace user={this.state.user} {...props} />}
+            />
+            {/* end of routes from the NavBarToggleWorkspace */}
+            {/* This route will lead the QRCode. the user will go for workspace approval */}
+            <ProtectedRoute
+              path="/forWorkspaceApproval/:workspaceId"
+              authorized={this.state.user}
+              redirect={`/forWorkspaceApproval/:workspaceId`}
+              exact
+              render={props => <RouteShareWorkspace user={this.state.user} {...props} />}
             />
 
             {/* ROTA PARA EDITAR PERFIL */}
@@ -138,7 +158,6 @@ class App extends Component {
               render={props => <WorkspaceCreate user={this.state.user} {...props} />}
             />
             {/* FINAL ROTA PARA WORKSPACE EM SINGLE */}
-            
 
             {/* ROTA PARA EDITAR TASK */}
             <ProtectedRoute

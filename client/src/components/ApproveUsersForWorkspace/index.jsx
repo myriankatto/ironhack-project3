@@ -21,6 +21,7 @@ class ApproveUsersForWorkspace extends Component {
       usersFromWorkspace(this.props.workspaceId).then(users => this.setState({ users }))
     );
   }
+  
   reject(userId) {
     usersReject(userId, this.props.workspaceId).then(() =>
       usersFromWorkspace(this.props.workspaceId).then(users => this.setState({ users }))

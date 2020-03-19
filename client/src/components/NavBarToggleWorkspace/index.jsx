@@ -87,7 +87,7 @@ class NavBarToggleWorkspace extends Component {
               )}
             </div>
             <div className="menu-item">
-              <Link style={{ color: 'white' }} to={'/'}>
+              <Link style={{ color: 'white' }} to={'/shareWorkspace'}>
                 <img className="menu-icon" src="./../images/share-white.svg" alt="share" />
                 <span>Share Workspace</span>
               </Link>

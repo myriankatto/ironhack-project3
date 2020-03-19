@@ -53,7 +53,7 @@ export default class ApproveTasks extends Component {
               taskId={task._id}
               user={this.props.user}
               workspaceOperator={this.props.workspaceOperator}
-              approved={true}
+              approved={task.approved}
             />
           ))
         }
