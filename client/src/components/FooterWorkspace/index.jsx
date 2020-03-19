@@ -78,7 +78,8 @@ class FooterWorkspace extends Component {
         />
 
         <h5>
-          <small>SCORE:</small> {this.props.user.score}
+          <small>Your Score:</small> {this.props.user.score} <br/>
+          <small>Workspace Score:</small> {this.props.workspace.score}
         </h5>
         <FooterAddTasksToggle
           handleMouseUp={this.handleMouseUpAddTasks}

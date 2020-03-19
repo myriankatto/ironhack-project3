@@ -19,7 +19,7 @@ class NavBarToggleWorkspace extends Component {
   showOperatorWorkSpace() {}
 
   render() {
-    console.log(this.props.user.workspaceApproved);
+    // console.log(this.props.user.workspaceApproved);
 
     var visibility = 'hide';
 

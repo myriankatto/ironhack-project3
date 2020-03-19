@@ -26,9 +26,7 @@ class CreateWorkspace extends Component {
     event.preventDefault();
     const name = this.state.workspaceName;
     if (!name) return;
-    const workspace = {
-      name
-    };
+  
     create(name)
       .then(newWorkspace => usersApproved(newWorkspace.operator, newWorkspace._id))
       .catch(error => {

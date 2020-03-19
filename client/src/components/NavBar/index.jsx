@@ -5,9 +5,10 @@ import NavBarToggleWorkspace from './../NavBarToggleWorkspace';
 import NavBarProfile from './../NavBarProfile';
 import NavBarProfileButton from './../NavBarProfileButton';
 import MenuButton from '../NavBarMenuButton';
+import WorkspacesDropdownMenu from '../WorkspacesDropdownMenu';
+
 import './style.scss';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
-import { loadUserInformation } from './../../services/authentication';
+// import { loadUserInformation } from './../../services/authentication';
 
 // import { Swipeable } from 'react-swipeable';
 
@@ -73,16 +74,10 @@ class Navbar extends Component {
               user={this.props.user}
               workspaceOperator={this.props.workspaceOperator}
             />
-
-            {/* DROPDOWN MENU DE WORKSPACES */}
-            <DropdownButton  title="Dropdown" id="dropdown-menu-align-left">
-            {/* AQUI FAZERUM MAP DAS WORKSAPCES */}
-              <Dropdown.Item href="#" eventKey="1">Workspace</Dropdown.Item>
-              <Dropdown.Item href="#" eventKey="2">Workspace</Dropdown.Item>
-              <Dropdown.Item href="#" eventKey="3">Workspace</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item href="/dashboard" eventKey="4">Add Workspace</Dropdown.Item>
-            </DropdownButton>
+            <WorkspacesDropdownMenu
+              user={this.props.user}
+              workspace={this.props.workspace}
+            />
           </Fragment>
         ) : (
           ''

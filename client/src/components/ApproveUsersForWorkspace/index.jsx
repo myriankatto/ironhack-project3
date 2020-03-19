@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { usersFromWorkspace, usersApproved, usersReject } from './../../services/workspaceUser';
 import './style.scss';
 
@@ -30,9 +30,10 @@ class ApproveUsersForWorkspace extends Component {
   render() {
     return (
       <div className="usersForApprovalDiv">
-        <h3>Pending Users</h3>
+        <h2>Pending Users</h2>
         {this.state.users.map(user => (
           <div className="usersForApproval" key={user._id}>
+            <img className="picture__approval" src={user.picture} alt={user.name} />
             <h3>{user.name}</h3>
             <button className="approve__btn" onClick={() => this.approve(user._id)}>
               Approve
