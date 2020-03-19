@@ -63,7 +63,6 @@ router.get('/approvedUser/:workspaceId', (req, res, next) => {
 
 ////route to approve the users
 router.put('/accept/:userid/:userWorkspace', (req, res, next) => {
-  console.log('hi');
   User.findByIdAndUpdate(
     req.params.userid,
     {
