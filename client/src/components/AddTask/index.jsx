@@ -58,7 +58,7 @@ class AddTask extends Component {
     const category = this.state.category;
     const frequency = Number(this.state.frequency);
     const description = this.state.description;
-    const approved =  this.props.user === this.props.workspaceOperator;
+    const approved =  this.props.user._id === this.props.workspaceOperator;
   
     const id = this.props.idWorkspace;
    
