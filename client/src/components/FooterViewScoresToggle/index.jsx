@@ -32,6 +32,10 @@ class FooterViewScoresToggle extends Component {
     return (
       <Swipeable onSwipedDown={this.props.handleMouseUp}>
         <div id="flyoutMenu_ViewScores" className={visibility}>
+        <a onMouseUp={this.props.handleMouseUp}>
+            {' '}
+            <img className="down-icon" src="./../images/down-white.svg" alt="go down icon" />
+          </a>
           <h3>{this.props.workspaceName}'s Scores</h3>
           <img
             style={{ maxWidth: '70%', margin: '1em auto' }}
@@ -59,10 +63,7 @@ class FooterViewScoresToggle extends Component {
             ))}
           </ol>
 
-          <a onMouseUp={this.props.handleMouseUp}>
-            {' '}
-            <img className="down-icon" src="./../images/down-white.svg" alt="go down icon" />
-          </a>
+   
         </div>
       </Swipeable>
     );

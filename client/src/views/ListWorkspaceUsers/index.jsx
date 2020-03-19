@@ -1,6 +1,6 @@
 import React, { Component, Redirect } from 'react';
 import ApprovedUsersForWorkspace from './../../components/ApprovedUsersForWorkspace';
-import { editWorkspace } from './../../services/workspaceUser';
+import { editWorkspace, userWorkspacesApproved } from './../../services/workspaceUser';
 import { useSwipeable, Swipeable } from 'react-swipeable';
 import './style.scss';
 
@@ -9,12 +9,16 @@ class ListWorkspaceUsers extends Component {
     super(props);
     this.state = {
       workspaces: [],
-      approvedUsers: []
+      approvedUsers: [],
+      userWorkspacesApproved: []
     };
     this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
   }
 
   componentDidMount() {
+    userWorkspacesApproved(this.props.user._id).then(userWorkspacesApproved =>
+      this.setState({ userWorkspacesApproved })
+    );
     editWorkspace(this.props.user._id).then(workspaces => this.setState({ workspaces }));
   }
   handleSwipeLeft() {
@@ -28,11 +32,18 @@ class ListWorkspaceUsers extends Component {
             <img src="./../images/left-white.svg" alt="go back icon" />
           </a>
         </nav>
-        {this.state.workspaces.map(workspace => (
+        <div className="div__team__img__list">
+          <img
+            className="team__img__list"
+            src="./../images/undraw_team_spirit_hrr4.svg"
+            alt="team"
+          />
+        </div>
+        {this.state.userWorkspacesApproved.map(workspaceApproved => (
           <ApprovedUsersForWorkspace
-            key={workspace._id}
-            workspaceId={workspace._id}
-            workspaceName={workspace.name}
+            key={workspaceApproved._id}
+            workingUser={this.props.user._id}
+            workspaceApproved={workspaceApproved}
           />
         ))}
       </Swipeable>
@@ -40,3 +51,15 @@ class ListWorkspaceUsers extends Component {
   }
 }
 export default ListWorkspaceUsers;
+
+{
+  /* {this.state.workspaces.map(workspace => (
+  <ApprovedUsersForWorkspace
+    key={workspace._id}
+    workspaceId={workspace._id}
+    workspaceName={workspace.name}
+    workspaceOperator={workspace.operator}
+    workingUser={this.props.user._id}
+  />
+))} */
+}
