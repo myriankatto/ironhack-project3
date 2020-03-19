@@ -12,6 +12,12 @@ const askPermissionWorkspace = async (userId, workspace) => {
   return result.data;
 };
 
+//this service will search the workspaces from a user ==> we are using this to form the list of users
+const userWorkspacesApproved = async userId => {
+  const result = await instance.get(`/userWorkspacesApproved/${userId}`);
+  return result.data;
+};
+
 //this service will retrieve all the workspaces that the user is the operator
 const editWorkspace = async userId => {
   const result = await instance.get(`/editWorkspace/${userId}`);
@@ -31,7 +37,6 @@ const approvedUser = async workspaceId => {
 
 //route to approve the users
 const usersApproved = async (userId, userWorkspaceId) => {
-  console.log(userId.userWorkspaceId);
   const result = await instance.put(`/accept/${userId}/${userWorkspaceId}`);
   return result.data;
 };
@@ -54,5 +59,6 @@ export {
   approvedUser,
   usersApproved,
   usersReject,
-  approvedUsersReject
+  approvedUsersReject,
+  userWorkspacesApproved
 };
