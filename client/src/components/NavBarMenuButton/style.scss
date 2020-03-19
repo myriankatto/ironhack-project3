@@ -1,4 +1,4 @@
-#roundButton {
+/* #roundButton {
   background-color: #96d9ff;
   margin: 5px;
   width: 40px;
@@ -19,4 +19,14 @@
 #roundButton:active {
   border-color: #003557;
   background-color: #fff;
+} */
+
+.menu-btn {
+  img {
+    width: 2em;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1, 1.1);
+    }
+  }
 }

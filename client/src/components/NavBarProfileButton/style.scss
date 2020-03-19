@@ -1,3 +1,7 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
 #buttonImg {
   margin: 0.5em;
   width: 40px;
@@ -5,11 +9,8 @@
   border-radius: 50%;
   transition: all 0.2s cubic-bezier(0, 1.26, 0.8, 1.28);
   object-fit: cover;
-
-}
-
-#buttonImg:hover {
-  cursor: pointer;
-  border-color: #003557;
-  transform: scale(1.2, 1.2);
+  &:hover {
+    cursor: pointer;
+  transform: scale(1.1, 1.1);
+  }
 }
