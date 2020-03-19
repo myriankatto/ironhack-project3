@@ -19,7 +19,7 @@ class NavBarToggleWorkspace extends Component {
   showOperatorWorkSpace() {}
 
   render() {
-    console.log(this.props.user.workspaceApproved);
+    // console.log(this.props.user.workspaceApproved);
 
     var visibility = 'hide';
 
@@ -87,7 +87,7 @@ class NavBarToggleWorkspace extends Component {
               )}
             </div>
             <div className="menu-item">
-              <Link style={{ color: 'white' }} to={'/'}>
+              <Link style={{ color: 'white' }} to={'/shareWorkspace'}>
                 <img className="menu-icon" src="./../images/share-white.svg" alt="share" />
                 <span>Share Workspace</span>
               </Link>

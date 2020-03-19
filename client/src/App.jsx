@@ -10,6 +10,7 @@ import PaymentMethodCreateView from './views/paymentMethodCreate';
 import CheckoutView from './views/CheckoutView';
 import WorkspaceCreate from './views/workspaceCreate';
 import EditWorkspace from './views/EditWorkspace';
+import ShareWorkspace from './views/ShareWorkspace';
 import { loadUserInformation } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
@@ -71,6 +72,7 @@ class App extends Component {
                 />
               )}
             />
+            {/* routes from the NavBarToggleWorkspace */}
             <ProtectedRoute
               path="/editWorkspace"
               authorized={this.state.user}
@@ -84,6 +86,13 @@ class App extends Component {
               redirect={'/'}
               exact
               render={props => <ListWorkspaceUsers user={this.state.user} {...props} />}
+            />
+            <ProtectedRoute
+              path="/shareWorkspace"
+              authorized={this.state.user}
+              redirect={'/'}
+              exact
+              render={props => <ShareWorkspace user={this.state.user} {...props} />}
             />
 
             {/* ROTA PARA EDITAR PERFIL */}
@@ -138,7 +147,6 @@ class App extends Component {
               render={props => <WorkspaceCreate user={this.state.user} {...props} />}
             />
             {/* FINAL ROTA PARA WORKSPACE EM SINGLE */}
-            
 
             {/* ROTA PARA EDITAR TASK */}
             <ProtectedRoute
