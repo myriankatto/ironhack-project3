@@ -80,14 +80,17 @@ export default class ItemTask extends Component {
     const operator = this.props.user._id === this.props.workspaceOperator;
 
     /*Verificar se a tarefa já tem owner*/
-    const ownerIsTruth = this.props.owner !== null;
+    const ownerIsTruth = this.props.owner !== null && this.props.owner !== undefined ;
+    console.log('ownerIsTruth',ownerIsTruth);
+    console.log('this.props.owner',this.props.owner);
     /*Verificar se o usuário logado é o owner da tarefa*/
     let  userIsOwner;
-    if(this.props.owner !== null){
-      userIsOwner = this.props.owner._id === this.props.user._id;
-    }else{
+    console.log('this.props.owner',this.props.owner)
+    if(this.props.owner === null || this.props.owner === undefined ){
       userIsOwner = false;
-    }
+    }else{
+      userIsOwner = this.props.owner._id === this.props.user._id;
+    };
     
    
     return (
@@ -189,11 +192,11 @@ export default class ItemTask extends Component {
 
                 <div className="col">
                   {
-                    userIsOwner &&
+                    userIsOwner ?
                     <button onClick={this.handleOwnerTask}>
                       Give up the task
-                    </button>
-                  } 
+                    </button> : ''
+                  }  
                 </div>
               </div>
 

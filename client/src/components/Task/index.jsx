@@ -60,11 +60,12 @@ class Tasks extends Component {
   
 
   render() {
-   
+    //const widthTasks = this.state.tasks.length !== 0;
     return (
       <div>
+      
         <Accordion className="dashboard__task__list" defaultActiveKey="0">
-          {
+          {  
             this.state.tasks.map(task => (
               <ItemTask  
               key={task._id} 
@@ -79,9 +80,9 @@ class Tasks extends Component {
               workspaceOperator={this.props.workspaceOperator}
               approved={false}
               />
-            ))
+            )) 
           }
-        </Accordion>
+        </Accordion> 
       </div>
       
     );
