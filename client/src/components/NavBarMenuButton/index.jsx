@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import './style.css';
+import './style.scss';
 
 class MenuButton extends Component {
   render() {
-    return <button id="roundButton" onMouseDown={this.props.handleMouseDown}></button>;
+    return (
+      <div className="menu-btn">
+        <button onMouseDown={this.props.handleMouseDown}>
+          <img src="./../images/menu-white.svg" alt="menu" />
+        </button>
+      </div>
+    );
   }
 }
 

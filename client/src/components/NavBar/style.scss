@@ -33,9 +33,11 @@
 
 .nav-style {
   display: flex;
+  align-items: center;
   background-color: #544bd8;
   justify-content: space-between;
   width: 100;
+  padding: 0 1em;
   .profile_name {
     color: white;
   }

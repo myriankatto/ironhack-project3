@@ -4,10 +4,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { useSwipeable, Swipeable } from 'react-swipeable';
 import { editWorkspace } from './../../services/workspaceUser';
-import {Accordion, Card, Button } from 'react-bootstrap';
+import { Accordion, Card, Button } from 'react-bootstrap';
 
 //import ApproveTasks from '../ApproveTasks';
-
 
 class NavBarToggleWorkspace extends Component {
   constructor(props) {
@@ -42,14 +41,17 @@ class NavBarToggleWorkspace extends Component {
                 alt="go back icon"
               />
             </a>
-
-            <h2>
-              <img src="./../images/workspaceConfig.svg" alt="go back icon" />
+            <div className="menu-item">
               <Link style={{ color: 'white' }} to={'/editWorkspace'}>
-                Edit Workspace
+                <img
+                  className="menu-icon"
+                  src="./../images/config.svg"
+                  alt="configuration"
+                />
+                <span>Workspace Configuration</span>
               </Link>
-            </h2>
-
+            </div>
+            {/* ESSA PARTE ENTRA COM O WORKSPACE CONFIG */}
             {/* PARTE PARA APROVAR TASKS: */}
             {/* <h2>
               <img src="./../images/workspaceConfig.svg" alt="go back icon" />
@@ -73,26 +75,30 @@ class NavBarToggleWorkspace extends Component {
                 </Accordion>
             </h2>    */}
             {/*FINAL PARTE PARA APROVAR TASKS */}
-
-
-            <h2>
-              <img src="./../images/list.svg" alt="go back icon" />
+            <div className="menu-item">
               <Link style={{ color: 'white' }} to={'/listWorkspaceUsers'}>
-                List of Users
+                <img className="menu-icon" src="./../images/list-white.svg" alt="list" />
+                <span>List of Users</span>
               </Link>
-            </h2>
-            <h2>
-              <img src="./../images/share-svgrepo-com.svg" alt="go back icon" />
+            </div>
+            <div className="menu-item">
               <Link style={{ color: 'white' }} to={'/'}>
-                Share Workspace
+                <img className="menu-icon" src="./../images/share-white.svg" alt="share" />
+                <span>Share Workspace</span>
               </Link>
-            </h2>
-            <h2>
-              <img src="./../images/premium-svgrepo-com.svg" alt="go back icon" />
+            </div>
+
+            <div className="menu-item">
               <Link style={{ color: 'white' }} to={'/'}>
-                Upgrade
+                <img
+                  className="menu-icon"
+                  style={{width:"2.2em"}}
+                  src="./../images/reward.svg"
+                  alt="upgrade"
+                />
+                <span>Upgrade</span>
               </Link>
-            </h2>
+            </div>
           </nav>
         </div>
       </Swipeable>
