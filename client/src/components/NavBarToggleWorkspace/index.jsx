@@ -19,6 +19,8 @@ class NavBarToggleWorkspace extends Component {
   showOperatorWorkSpace() {}
 
   render() {
+    console.log(this.props.user.workspaceApproved);
+
     var visibility = 'hide';
 
     if (this.props.menuVisibility) {
@@ -43,11 +45,7 @@ class NavBarToggleWorkspace extends Component {
             </a>
             <div className="menu-item">
               <Link style={{ color: 'white' }} to={'/editWorkspace'}>
-                <img
-                  className="menu-icon"
-                  src="./../images/config.svg"
-                  alt="configuration"
-                />
+                <img className="menu-icon" src="./../images/config.svg" alt="configuration" />
                 <span>Workspace Configuration</span>
               </Link>
             </div>
@@ -76,10 +74,17 @@ class NavBarToggleWorkspace extends Component {
             </h2>    */}
             {/*FINAL PARTE PARA APROVAR TASKS */}
             <div className="menu-item">
-              <Link style={{ color: 'white' }} to={'/listWorkspaceUsers'}>
-                <img className="menu-icon" src="./../images/list-white.svg" alt="list" />
-                <span>List of Users</span>
-              </Link>
+              {this.props.user.workspaceApproved.length > 0 ? (
+                <Link style={{ color: 'white' }} to={'/listWorkspaceUsers'}>
+                  <img className="menu-icon" src="./../images/list-white.svg" alt="list" />
+                  <span>List of Users</span>
+                </Link>
+              ) : (
+                <Link style={{ color: 'white' }} to={'/'}>
+                  <img className="menu-icon" src="./../images/list-white.svg" alt="list" />
+                  <span>Add workspace</span>
+                </Link>
+              )}
             </div>
             <div className="menu-item">
               <Link style={{ color: 'white' }} to={'/'}>
@@ -92,7 +97,7 @@ class NavBarToggleWorkspace extends Component {
               <Link style={{ color: 'white' }} to={'/'}>
                 <img
                   className="menu-icon"
-                  style={{width:"2.2em"}}
+                  style={{ width: '2.2em' }}
                   src="./../images/reward.svg"
                   alt="upgrade"
                 />
