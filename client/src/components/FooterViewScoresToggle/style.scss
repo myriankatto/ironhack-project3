@@ -8,7 +8,7 @@ small {
 
 #flyoutMenu_ViewScores {
   width: 100%;
-  height: calc(100% -3.5em);
+  height: calc(100% - 3.5em);
   background-color: #3f3d56fa;
   position: fixed;
   bottom: 0;
@@ -61,7 +61,7 @@ small {
           float: left;
           width: 2em;
           border-radius: 50%;
-          margin: 0 0.5em;
+          margin: 0 0.8em;
         }
       }
 
@@ -77,9 +77,9 @@ small {
 
   .down-icon {
     width: 2em;
-    position: fixed;
     bottom: 2em;
     left: 45%;
+    margin-bottom: 2em;
   }
 
   h3 {
