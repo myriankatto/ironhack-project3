@@ -69,6 +69,7 @@ export default class ItemTask extends Component {
 
   handleApproveTask(){
     const id = this.props.taskId;
+   
     handleApproveTask({id});
   }
 
@@ -78,14 +79,13 @@ export default class ItemTask extends Component {
     const taskId = this.props.taskId;
     /*VERIFICAÇÃO SE O USER É O OPERADOR*/
     const operator = this.props.user._id === this.props.workspaceOperator;
+    
 
     /*Verificar se a tarefa já tem owner*/
     const ownerIsTruth = this.props.owner !== null && this.props.owner !== undefined ;
-    console.log('ownerIsTruth',ownerIsTruth);
-    console.log('this.props.owner',this.props.owner);
+    
     /*Verificar se o usuário logado é o owner da tarefa*/
     let  userIsOwner;
-    console.log('this.props.owner',this.props.owner)
     if(this.props.owner === null || this.props.owner === undefined ){
       userIsOwner = false;
     }else{
@@ -163,7 +163,7 @@ export default class ItemTask extends Component {
               </div>
 
               <div className="col">
-                { this.props.approved && operator &&
+                { !this.props.approved && operator &&
                   <button onClick={this.handleApproveTask}>
                     <FaRegCheckSquare />
                   </button>
@@ -172,23 +172,26 @@ export default class ItemTask extends Component {
             </div>
             
             <div className="row">
+            
+              {this.props.approved &&
                 <div className="col">
-                {
-                  ownerIsTruth ? 
-                  //FOTO DO OWNER DA TASK
-                  <figure>
-                    <img className="Task-owner" src={this.props.user.picture} alt={this.props.user.name} />
-                  </figure>
+                
+                  {
+                    ownerIsTruth ? 
+                    //FOTO DO OWNER DA TASK
+                    <figure>
+                      <img className="Task-owner" src={this.props.user.picture} alt={this.props.user.name} />
+                    </figure>
 
-                  :
+                    :
 
-                  //Botão  DO OWNER DA TASK
-                  <button onClick={this.handleOwnerTask}>
-                    Do the task
-                  </button>
-                }
-                  
+                    //Botão  DO OWNER DA TASK
+                    <button onClick={this.handleOwnerTask}>
+                      Do the task
+                    </button>
+                  }
                 </div>
+              } 
 
                 <div className="col">
                   {

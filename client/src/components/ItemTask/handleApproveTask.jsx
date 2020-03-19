@@ -2,11 +2,18 @@ import React from 'react';
 import { single } from '../../services/task';
 import { edit } from '../../services/task';
 
+import { single as CreatorTask } from '../../services/authentication';
+import {editUSerWithoutLog as EditUSer } from '../../services/authentication';
+
+
 
 
 export const handleApproveTask = async (props) => {
   /*TASK ID*/
   const id = props.id;
+
+  
+
   let name;
   let level;
   let urgency;
@@ -29,9 +36,19 @@ export const handleApproveTask = async (props) => {
   description= beforeTask.description;
   workspace=beforeTask.workspace;
   approved=true;
+  /*USER CREATOR ID*/
+  const creatorId = beforeTask.creator;
   
   
   await edit({id,name, level, urgency, personal, category, frequency, description, approved });
+
+  
+  const userWhoWillEarnPoints = await CreatorTask(creatorId);
+  const oldPoints = userWhoWillEarnPoints.score;
+  const scorePoint = oldPoints + 5;
+
+  await EditUSer({creatorId, scorePoint});
+
 
   return (
     <div>
