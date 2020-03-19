@@ -4,10 +4,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { useSwipeable, Swipeable } from 'react-swipeable';
 import { editWorkspace } from './../../services/workspaceUser';
-import {Accordion, Card, Button } from 'react-bootstrap';
+import { Accordion, Card, Button } from 'react-bootstrap';
 
 //import ApproveTasks from '../ApproveTasks';
-
 
 class NavBarToggleWorkspace extends Component {
   constructor(props) {
@@ -20,6 +19,8 @@ class NavBarToggleWorkspace extends Component {
   showOperatorWorkSpace() {}
 
   render() {
+    console.log(this.props.user.workspaceApproved);
+
     var visibility = 'hide';
 
     if (this.props.menuVisibility) {
@@ -44,8 +45,8 @@ class NavBarToggleWorkspace extends Component {
             </a>
 
             <h2>
-              <img src="./../images/workspaceConfig.svg" alt="go back icon" />
               <Link style={{ color: 'white' }} to={'/editWorkspace'}>
+                <img src="./../images/workspaceConfig.svg" alt="go back icon" />
                 Edit Workspace
               </Link>
             </h2>
@@ -74,22 +75,28 @@ class NavBarToggleWorkspace extends Component {
             </h2>    */}
             {/*FINAL PARTE PARA APROVAR TASKS */}
 
-
             <h2>
-              <img src="./../images/list.svg" alt="go back icon" />
-              <Link style={{ color: 'white' }} to={'/listWorkspaceUsers'}>
-                List of Users
-              </Link>
+              {this.props.user.workspaceApproved.length > 0 ? (
+                <Link style={{ color: 'white' }} to={'/listWorkspaceUsers'}>
+                  <img src="./../images/list.svg" alt="go back icon" />
+                  List of Users
+                </Link>
+              ) : (
+                <Link style={{ color: 'white' }} to={'/'}>
+                  <img src="./../images/list.svg" alt="go back icon" />
+                  Add Workspace
+                </Link>
+              )}
             </h2>
             <h2>
-              <img src="./../images/share-svgrepo-com.svg" alt="go back icon" />
               <Link style={{ color: 'white' }} to={'/'}>
+                <img src="./../images/share-svgrepo-com.svg" alt="go back icon" />
                 Share Workspace
               </Link>
             </h2>
             <h2>
-              <img src="./../images/premium-svgrepo-com.svg" alt="go back icon" />
               <Link style={{ color: 'white' }} to={'/'}>
+                <img src="./../images/premium-svgrepo-com.svg" alt="go back icon" />
                 Upgrade
               </Link>
             </h2>
