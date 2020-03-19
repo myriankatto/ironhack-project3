@@ -7,8 +7,11 @@ import { FaTrashAlt, FaRegCheckSquare } from 'react-icons/fa';
 
 /*Service para deletar*/
 import { remove as DeleteTask } from '../../services/task';
-import { edit } from '../../services/task';
-import { single } from '../../services/task';
+
+
+/*IMPORTAR FUNÇOES*/
+import {handleDoTheTask} from './handleDoTheTask';
+import {handleApproveTask} from './handleApproveTask';
 
 import './style.scss';
 
@@ -24,12 +27,15 @@ export default class ItemTask extends Component {
       personal:'',
       frequency: '',
       description: '',
-      workspace:''
+      workspace:'',
+      approved:'',
+      handleToDoTask: false,
     };
 
     this.toogleWorkspace = this.toogleWorkspace.bind(this);
     this.handleDeleteTask = this.handleDeleteTask.bind(this);
     this.handleApproveTask = this.handleApproveTask.bind(this);
+    this.handleOwnerTask=this.handleOwnerTask.bind(this);
   };
 
   toogleWorkspace() {
@@ -37,6 +43,19 @@ export default class ItemTask extends Component {
       active: !previousState.active
     }));
   };
+
+  handleOwnerTask(){
+    const id = this.props.taskId;
+    const user = this.props.user;
+
+    this.setState( previousState => ({ 
+      handleToDoTask: !previousState.handleToDoTask
+    }));
+    
+    const handleToDoTask = this.state.handleToDoTask;
+
+    handleDoTheTask({id, user, handleToDoTask});
+  }
 
   handleDeleteTask(){
     const id = this.props.taskId;
@@ -48,48 +67,27 @@ export default class ItemTask extends Component {
       });
   };
 
-  async handleApproveTask(){
+  handleApproveTask(){
     const id = this.props.taskId;
-    console.log(id);
-
-    const beforeTask = await single(id);
-    console.log('BEFORE TASK',beforeTask);
-
-    this.setState({ 
-       name: beforeTask.name,
-       level: beforeTask.level,
-       urgency: beforeTask.urgency,
-       category: beforeTask.category,
-       personal: beforeTask.personal,
-       frequency: beforeTask.frequency,
-       description: beforeTask.description,
-       workspace:beforeTask.workspace
-    });
-
-    const name = this.state.name;
-    const level = this.state.level;
-    const urgency = this.state.urgency;
-    const personal = this.state.personal;
-    const category = this.state.category;
-    const frequency = Number(this.state.frequency);
-    const description = this.state.description;
-    const approved = true;
-
-
-    await edit({id,name, level, urgency, personal, category, frequency, description, approved });
-   
-
+    handleApproveTask({id});
   }
 
-
-  // className={ this.state.active ? 
-  //   "p-2 cardTask border border-secondary rounded-lg shadow" :
-  //   "p-2 cardTask border border-secondary rounded-pill shadow"}
+ 
   render() {
 
     const taskId = this.props.taskId;
     /*VERIFICAÇÃO SE O USER É O OPERADOR*/
     const operator = this.props.user._id === this.props.workspaceOperator;
+
+    /*Verificar se a tarefa já tem owner*/
+    const ownerIsTruth = this.props.owner !== null;
+    /*Verificar se o usuário logado é o owner da tarefa*/
+    let  userIsOwner;
+    if(this.props.owner !== null){
+      userIsOwner = this.props.owner._id === this.props.user._id;
+    }else{
+      userIsOwner = false;
+    }
     
    
     return (
@@ -144,7 +142,9 @@ export default class ItemTask extends Component {
                 </div>
               </div>
             </div>
+
             <div className="row">
+            
               <div className="col">
                 { operator &&
                 <Link  to={`/edit/task/${taskId}`} >Edit Task</Link>
@@ -168,9 +168,34 @@ export default class ItemTask extends Component {
               </div>
             </div>
             
+            <div className="row">
+                <div className="col">
+                {
+                  ownerIsTruth ? 
+                  //FOTO DO OWNER DA TASK
+                  <figure>
+                    <img className="Task-owner" src={this.props.user.picture} alt={this.props.user.name} />
+                  </figure>
 
-            
-            
+                  :
+
+                  //Botão  DO OWNER DA TASK
+                  <button onClick={this.handleOwnerTask}>
+                    Do the task
+                  </button>
+                }
+                  
+                </div>
+
+                <div className="col">
+                  {
+                    userIsOwner &&
+                    <button onClick={this.handleOwnerTask}>
+                      Give up the task
+                    </button>
+                  } 
+                </div>
+              </div>
 
           </Card.Body>
         </Accordion.Collapse>

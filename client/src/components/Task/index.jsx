@@ -75,6 +75,7 @@ class Tasks extends Component {
               frequency={task.frequency}
               taskId={task._id}
               user={this.props.user}
+              owner={task.owner}
               workspaceOperator={this.props.workspaceOperator}
               approved={false}
               />
