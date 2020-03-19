@@ -1,11 +1,12 @@
 // components/navbar/Navbar.js
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import NavBarToggleWorkspace from './../NavBarToggleWorkspace';
 import NavBarProfile from './../NavBarProfile';
 import NavBarProfileButton from './../NavBarProfileButton';
 import MenuButton from '../NavBarMenuButton';
 import './style.scss';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { loadUserInformation } from './../../services/authentication';
 
 // import { Swipeable } from 'react-swipeable';
@@ -19,6 +20,7 @@ class Navbar extends Component {
       visibleProfile: false,
       sidebarProfile: false
     };
+
     this.handleMouseDownWorkspace = this.handleMouseDownWorkspace.bind(this);
     this.toggleMenuWorkspace = this.toggleMenuWorkspace.bind(this);
     this.toggleSwipeWorkspace = this.toggleSwipeWorkspace.bind(this);
@@ -61,14 +63,31 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="nav-style">
-        <MenuButton handleMouseDown={this.handleMouseDownWorkspace} />
-        <NavBarToggleWorkspace
-          handleMouseDown={this.handleMouseDownWorkspace}
-          menuVisibility={this.state.visibleWorkspace}
-          idWorkspace={this.props.idWorkspace}
-          user={this.props.user}
-          workspaceOperator={this.props.workspaceOperator}
-        />
+        {this.props.match.path !== '/dashboard' ? (
+          <Fragment>
+            <MenuButton handleMouseDown={this.handleMouseDownWorkspace} />
+            <NavBarToggleWorkspace
+              handleMouseDown={this.handleMouseDownWorkspace}
+              menuVisibility={this.state.visibleWorkspace}
+              idWorkspace={this.props.idWorkspace}
+              user={this.props.user}
+              workspaceOperator={this.props.workspaceOperator}
+            />
+
+            {/* DROPDOWN MENU DE WORKSPACES */}
+            <DropdownButton  title="Dropdown" id="dropdown-menu-align-left">
+            {/* AQUI FAZERUM MAP DAS WORKSAPCES */}
+              <Dropdown.Item href="#" eventKey="1">Workspace</Dropdown.Item>
+              <Dropdown.Item href="#" eventKey="2">Workspace</Dropdown.Item>
+              <Dropdown.Item href="#" eventKey="3">Workspace</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item href="/dashboard" eventKey="4">Add Workspace</Dropdown.Item>
+            </DropdownButton>
+          </Fragment>
+        ) : (
+          ''
+        )}
+
         <NavBarProfile
           user={this.props.user}
           handleMouseDownProfile={this.handleMouseDownProfile}
