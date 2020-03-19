@@ -57,6 +57,29 @@ router.get('/user-information', (req, res, next) => {
   res.json({ user: req.user || null });
 });
 
+//rota para single user diferente do usuário logado
+router.get('/:userId', (req, res, next) => {
+  User.findById(req.params.userId)
+    .then(user => {
+      res.json(user);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
+//rota para editar User - que não esta logado - para scores
+router.put('/edit/:userId', (req, res, next) => {
+  
+  User.findByIdAndUpdate(req.params.userId, req.body, { new: true })
+    .then(user => {
+      res.json(user);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
 const uploader = require('./../multer-configure.js');
 
 router.patch('/user-information', uploader.single('picture'), async (req, res, next) => {
@@ -84,16 +107,7 @@ router.post('/sign-out', (req, res, next) => {
   res.json({});
 });
 
-//rota para editar user
-router.put('/edit/:userid', (req, res, next) => {
-  User.findByIdAndUpdate(req.params.userid, req.body, { new: true })
-    .then(user => {
-      res.json(user);
-    })
-    .catch(error => {
-      res.json(error);
-    });
-});
+
 
 router.post('/sign-out', (req, res, next) => {
   req.session.destroy();

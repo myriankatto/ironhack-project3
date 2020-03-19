@@ -22,7 +22,8 @@ const schema = new mongoose.Schema(
     //usuário que vai realizar a tarefa
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      default:null
      
     },
     workspace: {

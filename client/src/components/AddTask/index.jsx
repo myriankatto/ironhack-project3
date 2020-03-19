@@ -17,6 +17,7 @@ class AddTask extends Component {
       frequency: '',
       description: '',
       workspace:'',
+      frequencyTrue: false
       
     };
 
@@ -25,6 +26,7 @@ class AddTask extends Component {
     this.changePersonal = this.changePersonal.bind(this);
     this.changeUrgency = this.changeUrgency.bind(this);
     this.resetTotal = this.resetTotal.bind(this);
+    this.changeFrequency=this.changeFrequency.bind(this);
   }
 
   handleInputChange(event) {
@@ -45,6 +47,12 @@ class AddTask extends Component {
   changeUrgency(){
     this.setState( previousState => ({
       urgency: !previousState.urgency
+    }));
+  }
+
+  changeFrequency(){
+    this.setState( previousState => ({
+      frequencyTrue: !previousState.frequencyTrue
     }));
   }
 
@@ -78,6 +86,8 @@ class AddTask extends Component {
         personal:false,
         frequency: '',
         description: '',
+        workspace:'',
+        frequencyTrue: false
       });
 
   };
@@ -85,12 +95,14 @@ class AddTask extends Component {
   resetTotal(){
     this.setState({
       name: '',
-      level: 'easy', 
-      urgency:false,
-      category:'Kitchen',
-      personal:false,
-      frequency: '',
-      description: ''
+        level: 'easy', 
+        urgency:false,
+        category:'Kitchen',
+        personal:false,
+        frequency: '',
+        description: '',
+        workspace:'',
+        frequencyTrue: false
     });
 
   
@@ -111,16 +123,32 @@ class AddTask extends Component {
         ></input>
 
         {/* Frequency */}
-        <input 
-          type="number"
-          name="frequency"
-          min="1"
-          max="20"
-          value={this.state.frequency}
-          onChange={this.handleInputChange}
-          placeholder="Set frequency"
-          autoComplete="off"
-        ></input>
+        <p>Frequency - Terá</p>
+        <input
+          className="react-switch-checkbox"
+          id={`react-switch-03`}
+          type="checkbox"
+          onChange={this.changeFrequency}
+        />
+        <label
+          style={{ background: this.state.frequencyTrue && '#06D6A0' }}
+          className="react-switch-label"
+          htmlFor={`react-switch-03`}
+        >
+          <span className={`react-switch-button`} />
+        </label>
+        {this.state.frequencyTrue && 
+          <input 
+            type="number"
+            name="frequency"
+            min="1"
+            max="20"
+            value={this.state.frequency}
+            onChange={this.handleInputChange}
+            placeholder="Set frequency"
+            autoComplete="off"
+          ></input>
+        }
 
         {/* Level */}
         <select 
