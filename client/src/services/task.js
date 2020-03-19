@@ -61,10 +61,18 @@ const edit = async data => {
   const personal = data.personal;
   const category = data.category;
   const frequency = data.frequency;
-  const description = data.description
+  const description = data.description;
+  let approved;
+  if(data.approved === true){
+     approved = data.approved;
+  }else{
+     approved = false;
+  }
+  
+  console.log('Service',data)
 
   
-  const result = await instance.put(`/edit/${data.id}`, {name, frequency, level, personal, urgency, description, category });
+  const result = await instance.put(`/edit/${data.id}`, {name, frequency, level, personal, urgency, description, category, approved });
   const task = result.data;
   return task;
 };

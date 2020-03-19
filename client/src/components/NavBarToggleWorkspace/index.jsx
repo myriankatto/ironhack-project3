@@ -4,6 +4,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { useSwipeable, Swipeable } from 'react-swipeable';
 import { editWorkspace } from './../../services/workspaceUser';
+import {Accordion, Card, Button } from 'react-bootstrap';
+
+//import ApproveTasks from '../ApproveTasks';
+
 
 class NavBarToggleWorkspace extends Component {
   constructor(props) {
@@ -45,6 +49,32 @@ class NavBarToggleWorkspace extends Component {
                 Edit Workspace
               </Link>
             </h2>
+
+            {/* PARTE PARA APROVAR TASKS: */}
+            {/* <h2>
+              <img src="./../images/workspaceConfig.svg" alt="go back icon" />
+                <Accordion defaultActiveKey="0">
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                        Pending Tasks
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey="0">
+                      <Card.Body>
+                        <ApproveTasks 
+                          idWorkspace={this.props.idWorkspace}
+                          user={this.props.user}
+                          workspaceOperator={this.props.workspaceOperator}
+                        />
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion>
+            </h2>    */}
+            {/*FINAL PARTE PARA APROVAR TASKS */}
+
+
             <h2>
               <img src="./../images/list.svg" alt="go back icon" />
               <Link style={{ color: 'white' }} to={'/listWorkspaceUsers'}>

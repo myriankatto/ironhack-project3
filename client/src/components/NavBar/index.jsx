@@ -65,6 +65,9 @@ class Navbar extends Component {
         <NavBarToggleWorkspace
           handleMouseDown={this.handleMouseDownWorkspace}
           menuVisibility={this.state.visibleWorkspace}
+          idWorkspace={this.props.idWorkspace}
+          user={this.props.user}
+          workspaceOperator={this.props.workspaceOperator}
         />
         <NavBarProfile
           user={this.props.user}
