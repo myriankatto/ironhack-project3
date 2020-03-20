@@ -32,10 +32,7 @@ class App extends Component {
 
   componentDidMount() {
     loadUserInformation()
-      .then(user => {
-        console.log(user);
-        return this.updateUserInformation(user);
-      })
+      .then(user => this.updateUserInformation(user))
       .catch(error => {
         console.log(error);
       });
@@ -49,7 +46,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.user);
     return (
       <div className="App">
         {this.state.loaded && (
