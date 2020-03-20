@@ -24,7 +24,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: null
+      user: null,
+      loaded: false
     };
     this.updateUserInformation = this.updateUserInformation.bind(this);
   }
@@ -41,134 +42,144 @@ class App extends Component {
   }
 
   updateUserInformation(user) {
-    console.log(user);
     this.setState({
+      loaded: true,
       user
     });
   }
 
   render() {
+    console.log(this.state.user);
     return (
       <div className="App">
-        <BrowserRouter>
-          <Switch>
-            <ProtectedRoute
-              path="/"
-              exact
-              authorized={!this.state.user}
-              redirect={'/dashboard'}
-              render={props => (
-                <Home {...props} updateUserInformation={this.updateUserInformation} />
-              )}
-            />
-            <ProtectedRoute
-              path="/dashboard"
-              authorized={this.state.user}
-              redirect={'/'}
-              exact
-              render={props => (
-                <WorkspaceDashboard
-                  user={this.state.user}
-                  {...props}
-                  updateUserInformation={this.updateUserInformation}
-                />
-              )}
-            />
-            {/* routes from the NavBarToggleWorkspace */}
-            <ProtectedRoute
-              path="/editWorkspace"
-              authorized={this.state.user}
-              redirect={'/'}
-              exact
-              render={props => <EditWorkspace user={this.state.user} {...props} />}
-            />
-            <ProtectedRoute
-              path="/listWorkspaceUsers"
-              authorized={this.state.user}
-              redirect={'/'}
-              exact
-              render={props => <ListWorkspaceUsers user={this.state.user} {...props} />}
-            />
-            <ProtectedRoute
-              path="/shareWorkspace"
-              authorized={this.state.user}
-              redirect={'/'}
-              exact
-              render={props => <ShareWorkspace user={this.state.user} {...props} />}
-            />
-            {/* end of routes from the NavBarToggleWorkspace */}
-            {/* This route will lead the QRCode. the user will go for workspace approval */}
-            <ProtectedRoute
+        {this.state.loaded && (
+          <BrowserRouter>
+            <Switch>
+              <ProtectedRoute
+                path="/"
+                exact
+                authorized={!this.state.user}
+                redirect={'/dashboard'}
+                render={props => (
+                  <Home {...props} updateUserInformation={this.updateUserInformation} />
+                )}
+              />
+              <ProtectedRoute
+                path="/dashboard"
+                authorized={this.state.user}
+                redirect={'/'}
+                exact
+                render={props => (
+                  <WorkspaceDashboard
+                    user={this.state.user}
+                    {...props}
+                    updateUserInformation={this.updateUserInformation}
+                  />
+                )}
+              />
+              {/* routes from the NavBarToggleWorkspace */}
+              <ProtectedRoute
+                path="/editWorkspace"
+                authorized={this.state.user}
+                redirect={'/'}
+                exact
+                render={props => <EditWorkspace user={this.state.user} {...props} />}
+              />
+              <ProtectedRoute
+                path="/listWorkspaceUsers"
+                authorized={this.state.user}
+                redirect={'/'}
+                exact
+                render={props => <ListWorkspaceUsers user={this.state.user} {...props} />}
+              />
+              <ProtectedRoute
+                path="/shareWorkspace"
+                authorized={this.state.user}
+                redirect={'/'}
+                exact
+                render={props => <ShareWorkspace user={this.state.user} {...props} />}
+              />
+              {/* end of routes from the NavBarToggleWorkspace */}
+
+              {/* This route will lead the QRCode. the user will go for workspace approval */}
+              <ProtectedRoute
+                path="/forWorkspaceApproval/:workspaceId"
+                authorized={this.state.user}
+                redirect={`/forWorkspaceApproval/:workspaceId`}
+                exact
+                render={props => <RouteShareWorkspace user={this.state.user} {...props} />}
+              />
+              {/* <Route
               path="/forWorkspaceApproval/:workspaceId"
-              authorized={this.state.user}
-              redirect={`/forWorkspaceApproval/:workspaceId`}
               exact
-              render={props => <RouteShareWorkspace user={this.state.user} {...props} />}
-            />
+              component={RouteShareWorkspace}
+              user={this.state.user}
+            /> */}
 
-            {/* ROTA PARA EDITAR PERFIL */}
+              {/* ROTA PARA EDITAR PERFIL */}
 
-            <ProtectedRoute
-              path="/edit"
-              exact
-              authorized={this.state.user}
-              redirect={'/dashboard'}
-              render={props => (
-                <EditProfileView
-                  {...props}
-                  user={this.state.user}
-                  updateUserInformation={this.updateUserInformation}
-                />
-              )}
-            />
+              <ProtectedRoute
+                path="/edit"
+                exact
+                authorized={this.state.user}
+                redirect={'/dashboard'}
+                render={props => (
+                  <EditProfileView
+                    {...props}
+                    user={this.state.user}
+                    updateUserInformation={this.updateUserInformation}
+                  />
+                )}
+              />
 
-            {/* ROTAS PARA PAGAMENTO E COMPRA */}
-            <ProtectedRoute
-              exact
-              authorized={this.state.user}
-              redirect={'/'}
-              path="/payment-method/list"
-              render={props => (
-                <PaymentMethodView user={this.state.user} cart={this.state.cart} {...props} />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              authorized={this.state.user}
-              redirect={'/'}
-              path="/payment-method/create"
-              render={props => <PaymentMethodCreateView user={this.state.user} {...props} />}
-            />
+              {/* ROTAS PARA PAGAMENTO E COMPRA */}
+              <ProtectedRoute
+                exact
+                authorized={this.state.user}
+                redirect={'/'}
+                path="/payment-method/list"
+                render={props => (
+                  <PaymentMethodView user={this.state.user} cart={this.state.cart} {...props} />
+                )}
+              />
+              <ProtectedRoute
+                exact
+                authorized={this.state.user}
+                redirect={'/'}
+                path="/payment-method/create"
+                render={props => <PaymentMethodCreateView user={this.state.user} {...props} />}
+              />
 
-            <ProtectedRoute
-              exact
-              authorized={this.state.user}
-              redirect={'/'}
-              path="/checkout"
-              render={props => <CheckoutView user={this.state.user} {...props} />}
-            />
-            {/* FINAL ROTAS PARA PAGAMENTO E COMPRA */}
+              <ProtectedRoute
+                exact
+                authorized={this.state.user}
+                redirect={'/'}
+                path="/checkout"
+                render={props => <CheckoutView user={this.state.user} {...props} />}
+              />
+              {/* FINAL ROTAS PARA PAGAMENTO E COMPRA */}
 
-            {/* ROTA PARA WORKSPACE EM SINGLE */}
-            <ProtectedRoute
-              exact
-              authorized={this.state.user}
-              redirect={'/'}
-              path="/dashboard/:id"
-              render={props => <WorkspaceCreate user={this.state.user} {...props} />}
-            />
-            {/* FINAL ROTA PARA WORKSPACE EM SINGLE */}
+              {/* ROTA PARA WORKSPACE EM SINGLE */}
+              <ProtectedRoute
+                exact
+                authorized={this.state.user}
+                redirect={'/'}
+                path="/dashboard/:id"
+                render={props => <WorkspaceCreate user={this.state.user} {...props} />}
+              />
+              {/* FINAL ROTA PARA WORKSPACE EM SINGLE */}
 
-            {/* ROTA PARA EDITAR TASK */}
-            <ProtectedRoute
-              exact
-              authorized={this.state.user}
-              redirect={'/'}
-              path="/edit/task/:idTask"
-              render={props => <EditTaskOperator user={this.state.user} {...props} />}
-            />
-          </Switch>
-        </BrowserRouter>
+              {/* ROTA PARA EDITAR TASK */}
+              <ProtectedRoute
+                exact
+                authorized={this.state.user}
+                redirect={'/'}
+                path="/edit/task/:idTask"
+                render={props => <EditTaskOperator user={this.state.user} {...props} />}
+              />
+            </Switch>
+          </BrowserRouter>
+        )}
       </div>
     );
   }
