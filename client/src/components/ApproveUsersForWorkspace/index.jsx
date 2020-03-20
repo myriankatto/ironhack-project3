@@ -40,10 +40,10 @@ class ApproveUsersForWorkspace extends Component {
             </div>
             <div className="btn">
               <button className="approve__btn" onClick={() => this.approve(user._id)}>
-                Approve
+                <img src="./../images/approve.svg" alt="approve" />
               </button>
               <button className="reject__btn" onClick={() => this.reject(user._id)}>
-                Reject
+              <img src="./../images/reject.svg" alt="reject" />
               </button>
             </div>
           </div>

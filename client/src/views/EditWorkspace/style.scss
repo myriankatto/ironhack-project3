@@ -56,10 +56,10 @@ $lightGrey: #e2e2e2;
     padding: 1em;
 
     input {
-      width: 60%;
+      width: 70%;
       // border-radius: 2em;
       // border: solid 0.5px $darkColor;
-      padding: 0.5em 1em;
+      padding: 0.5em;
       background-color: white;
       margin: 0.5em;
       color: $purple;
@@ -75,10 +75,17 @@ $lightGrey: #e2e2e2;
       color: white;
       font-size: 1em;
       margin: 0.5em 0;
-      padding: 0.5em 1em;
+      padding: 0.2em 1em;
       text-align: center;
+        &:hover,
+        :active,
+        :focus {
+          cursor: pointer;
+          transform: scale(1.1, 1.1);
+        }
+      }
     }
-  }
+  
   .delete__container {
     padding: 1em;
     .delete__btn {
