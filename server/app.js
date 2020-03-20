@@ -56,6 +56,10 @@ app.use('/api/purchase', purchaseRouter);
 app.use('/api/workspaceUser', workspaceUserRouter);
 app.use('/api/score', scoreRouter);
 
+app.get('*', (req, res, next) => {
+  res.sendFile(join(__dirname, './../client/build/index.html'));
+});
+
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
