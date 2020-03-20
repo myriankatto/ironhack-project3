@@ -20,8 +20,8 @@ const purchaseRouter = require('./routes/purchase');
 const workspaceUserRouter = require('./routes/workspaceUser');
 const scoreRouter = require('./routes/score');
 
-
 const app = express();
+app.use(express.static(join(__dirname, './../client/build')));
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
