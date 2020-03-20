@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import { Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { userWorkspacesApproved } from './../../services/workspaceUser';
 
@@ -29,7 +29,7 @@ class WorkspacesDropdownMenu extends Component {
     // if (this.state.userWorkspacesApproved[0] !== undefined) {
     //   console.log(this.state.userWorkspacesApproved[0].workspaceApproved);
     // }
-
+    // console.log('PROPS DRODOWN', this.props.idWorkspace)
     return (
       <div>
         <Dropdown>
@@ -53,13 +53,14 @@ class WorkspacesDropdownMenu extends Component {
             {this.state.userWorkspacesApproved.map(workspaceApproved => (
               <span key={workspaceApproved._id}>
                 {workspaceApproved.workspaceApproved.map(workspace => (
-                  <Fragment>
+                  <Fragment key={workspace._id}> 
                     <Dropdown.Item
                       style={{ color: 'white' }}
-                      key={workspace._id}
-                      // href={`#`}
+                      
+                      className="dropdown-item"
+                      href={`/dashboard/${workspace._id}`}
                     >
-                      <Link to={`/dashboard/${workspace._id}`}>{workspace.name}</Link>
+                      <span>{workspace.name}</span>
                     </Dropdown.Item>
                   </Fragment>
                 ))}

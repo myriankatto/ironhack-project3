@@ -95,5 +95,4 @@ export default class WorkspaceCreate extends Component {
       </div>
     );
   }
-
 }
