@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import NavBar from '../../components/NavBar';
 
 import { single as singleWorkspace } from '../../services/workspace';
+import { single as CreatorTask } from '../../services/score';
+
 
 /*COMPONENTES*/
 import FooterWorkspace from '../../components/FooterWorkspace';
@@ -18,7 +20,8 @@ export default class WorkspaceCreate extends Component {
     super(props);
     this.state = {
       workspace: [],
-      workspaceId: this.props.match.params.id
+      workspaceId: this.props.match.params.id,
+      scoreUser:0
     };
   }
 
@@ -28,7 +31,7 @@ export default class WorkspaceCreate extends Component {
   }
 
   componentDidUpdate() {
-    this.fetchData();
+    //this.fetchData();
   }
 
   fetchData() {
@@ -42,6 +45,25 @@ export default class WorkspaceCreate extends Component {
       .catch(error => {
         console.log(error);
       });
+
+      CreatorTask(this.props.user._id)
+        .then( user => {
+          
+
+          const scoreObjUser = user.scoreUser.find(element => element.workspace === this.state.workspaceId);
+         
+          if(scoreObjUser !== undefined){
+            const scoreUser = scoreObjUser.score;
+            this.setState({scoreUser});
+           
+          }
+          
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+
   }
 
   // Warning: Can't perform a React state update on an unmounted component.
@@ -89,6 +111,7 @@ export default class WorkspaceCreate extends Component {
             idWorkspace={WorkspaceId}
             workspace={workspace}
             user={this.props.user}
+            score={this.state.scoreUser}
             workspaceOperator={workspace.operator}
           />
         </div>
