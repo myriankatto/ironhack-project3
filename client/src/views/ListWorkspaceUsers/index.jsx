@@ -1,7 +1,7 @@
-import React, { Component, Redirect } from 'react';
+import React, { Component } from 'react';
 import ApprovedUsersForWorkspace from './../../components/ApprovedUsersForWorkspace';
 import { editWorkspace, userWorkspacesApproved } from './../../services/workspaceUser';
-import { useSwipeable, Swipeable } from 'react-swipeable';
+import {  Swipeable } from 'react-swipeable';
 import './style.scss';
 
 class ListWorkspaceUsers extends Component {

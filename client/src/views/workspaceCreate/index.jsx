@@ -17,7 +17,8 @@ export default class WorkspaceCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      workspace: []
+      workspace: [],
+      workspaceId: this.props.match.params.id
     };
   }
 
@@ -26,11 +27,15 @@ export default class WorkspaceCreate extends Component {
     this.fetchData();
   }
 
+  componentDidUpdate() {
+    this.fetchData();
+  }
+
   fetchData() {
-    const id = this.props.match.params.id;
-
-
-    singleWorkspace(id)
+    if (this.state.workspaceId !== this.props.match.params.id) {
+      this.setState({ workspaceId: this.props.match.params.id });
+    }
+    singleWorkspace(this.state.workspaceId)
       .then(workspace => {
         this.setState(workspace);
       })
@@ -48,11 +53,11 @@ export default class WorkspaceCreate extends Component {
 
   render() {
     let workspace;
-    if(this.state.workspace !== []){
+    if (this.state.workspace !== []) {
       workspace = this.state.workspace;
     }
-    
-    const WorkspaceId = this.props.match.params.id;
+
+    const WorkspaceId = this.state.workspaceId;
 
     return (
       <div className="dashboard">
@@ -63,6 +68,7 @@ export default class WorkspaceCreate extends Component {
           idWorkspace={WorkspaceId}
           user={this.props.user}
           workspaceOperator={workspace.operator}
+          workspace={this.state.workspace}
         />
 
         <div className="dashboard__content mt-2">
@@ -73,10 +79,11 @@ export default class WorkspaceCreate extends Component {
           />
 
           <h1>TASKS PARA APROVAR:</h1>
-          <ApproveTasks 
-          idWorkspace={WorkspaceId}
-          user={this.props.user}
-          workspaceOperator={workspace.operator} />
+          <ApproveTasks
+            idWorkspace={WorkspaceId}
+            user={this.props.user}
+            workspaceOperator={workspace.operator}
+          />
 
           <FooterWorkspace
             idWorkspace={WorkspaceId}
@@ -88,4 +95,5 @@ export default class WorkspaceCreate extends Component {
       </div>
     );
   }
+
 }

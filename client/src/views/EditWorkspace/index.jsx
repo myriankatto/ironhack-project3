@@ -13,11 +13,19 @@ class EditWorkspace extends Component {
     super(props);
     this.state = {
       workspaces: [],
-      workspaceName: ''
+      workspaceName: '',
+      active: false
     };
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
+    this.toogleEdit = this.toogleEdit.bind(this);
+  }
+
+  toogleEdit() {
+    this.setState(previousState => ({
+      active: !previousState.active
+    }));
   }
 
   handleInputChange(event) {
@@ -56,24 +64,27 @@ class EditWorkspace extends Component {
     return (
       <Swipeable onSwipedRight={this.handleSwipeLeft}>
         <nav className="navPlusMenu">
+          <h2>Workspaces Configurations</h2>
           <a href="#" onMouseDown={this.handleSwipeLeft}>
-            <img src="./../images/left-white.svg" alt="go back icon" />
+            <img src="./../images/close-white.svg" alt="close" />
           </a>
-          <h2>Settings</h2>
         </nav>
-
         {this.state.workspaces.map(workspace => (
           <div className="workspaceSettings" key={workspace._id}>
-            <h3>{workspace.name}</h3>
+            <button onClick={this.toogleEdit}>
+              <h3>{workspace.name}</h3>
+              <img className="arrow-icon" src="./../images/down.svg" alt="down icon" />
+            </button>
+            {this.state.active && 
+              <Fragment>
             <div className="editWorkSpaceName">
-              <label htmlFor="workspacename">Edit Name</label>
               <input
                 className="workspace__input__form"
                 type="text"
                 name="workspaceName"
                 value={this.state.workspaceName}
                 onChange={this.handleInputChange}
-                placeholder="Your workspace name"
+                placeholder="Edit workspace name"
                 autoComplete="off"
               />
               <button
@@ -83,12 +94,18 @@ class EditWorkspace extends Component {
                 Submit
               </button>
             </div>
+       
             <ApproveUsersForWorkspace workspaceId={workspace._id} />
+            <div className="delete__container">
             <button className="delete__btn" onClick={() => this.removeWorkspace(workspace._id)}>
               delete workspace
             </button>
+            </div>
+           </Fragment>
+          }
           </div>
         ))}
+     
       </Swipeable>
     );
   }

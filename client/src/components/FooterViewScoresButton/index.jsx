@@ -7,7 +7,7 @@ class FooterViewScoresButton extends Component {
     return (
       <div className="scores-task">
         <button onMouseUp={this.props.handleMouseUp}>
-          <img className="scores-btn" src="./../../../images/score.svg" />
+          <img className="scores-btn" src="./../../../images/score.svg" alt="score" />
         </button>
         <small>Scores</small>
       </div>

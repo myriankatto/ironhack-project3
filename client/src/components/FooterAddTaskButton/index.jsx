@@ -7,7 +7,7 @@ class FooterAddTaskButton extends Component {
     return (
       <div className="add-task">
         <button onMouseUp={this.props.handleMouseUp}>
-          <img className="add-btn" src="./../../../images/add.svg" />
+          <img className="add-btn" src="./../../../images/add.svg" alt="add" />
         </button>
         <small>Add Task</small>
     </div>
