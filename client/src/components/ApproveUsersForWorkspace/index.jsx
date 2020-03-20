@@ -21,7 +21,7 @@ class ApproveUsersForWorkspace extends Component {
       usersFromWorkspace(this.props.workspaceId).then(users => this.setState({ users }))
     );
   }
-  
+
   reject(userId) {
     usersReject(userId, this.props.workspaceId).then(() =>
       usersFromWorkspace(this.props.workspaceId).then(users => this.setState({ users }))
@@ -34,14 +34,18 @@ class ApproveUsersForWorkspace extends Component {
         <h2>Pending Users</h2>
         {this.state.users.map(user => (
           <div className="usersForApproval" key={user._id}>
-            <img className="picture__approval" src={user.picture} alt={user.name} />
-            <h3>{user.name}</h3>
-            <button className="approve__btn" onClick={() => this.approve(user._id)}>
-              Approve
-            </button>
-            <button className="reject__btn" onClick={() => this.reject(user._id)}>
-              Reject
-            </button>
+            <div className="approval_container">
+              <img className="picture__approval" src={user.picture} alt={user.name} />
+              <h3>{user.name}</h3>
+            </div>
+            <div className="btn">
+              <button className="approve__btn" onClick={() => this.approve(user._id)}>
+                <img src="./../images/approve.svg" alt="approve" />
+              </button>
+              <button className="reject__btn" onClick={() => this.reject(user._id)}>
+              <img src="./../images/reject.svg" alt="reject" />
+              </button>
+            </div>
           </div>
         ))}
       </div>

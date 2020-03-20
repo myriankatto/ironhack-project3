@@ -49,8 +49,8 @@ const editUSerPull = async data => {
 const editWorkspace = async data => {
   const score = data.newPointsWorspace;
   const workspace = data.workspace;
-  console.log('editWOrkspace', data);
   
+
   const result = await instance.put(`/editWorspace/${workspace}`, { score });
   const workspaceUpdate = result.data;
   return workspaceUpdate;

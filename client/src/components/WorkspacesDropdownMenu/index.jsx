@@ -57,7 +57,7 @@ class WorkspacesDropdownMenu extends Component {
                     <Dropdown.Item
                       style={{ color: 'white' }}
                       key={workspace._id}
-                      href={`#`}
+                      // href={`#`}
                     >
                       <Link to={`/dashboard/${workspace._id}`}>{workspace.name}</Link>
                     </Dropdown.Item>

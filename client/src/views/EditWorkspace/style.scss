@@ -25,41 +25,48 @@ $lightGrey: #e2e2e2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 2em 0 0 0;
-  border-bottom: 1px solid $purple;
+  padding: 0.5em;
+  border-radius: 2em;
+  border: solid 0.5px $darkColor;
   color: #544bd8f3;
+  margin: 1.5em 1em;
   *:focus {
     outline: none;
   }
-  .arrow-icon {
-    width: 1.2em;
-    margin: 0 2em;
-    float: right;
-  }
-  h3 {
-    display: inline;
-    font-size: 1.5em;
-    font-weight: 300;
-    color: $purple;
-    text-align: left;
-    padding-bottom: 1em;
+  button {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    .arrow-icon {
+      width: 1.5em;
+      margin: 0 1em;
+    }
+    h3 {
+      display: inline;
+      font-size: 1.3em;
+      font-weight: 400;
+      color: $purple;
+      margin: 0.5em 1em;
+    }
   }
   .editWorkSpaceName {
-    background-color: #3f3d560c;
     display: flex;
     justify-content: center;
     margin-top: 1em;
     padding: 1em;
 
     input {
-      width: 60%;
-      border-radius: 2em;
-      border: solid 0.5px $darkColor;
-      padding: 0.5em 1em;
+      width: 70%;
+      // border-radius: 2em;
+      // border: solid 0.5px $darkColor;
+      padding: 0.5em;
       background-color: white;
       margin: 0.5em;
       color: $purple;
       display: inline;
+      outline: 0;
+      border-width: 0 0 1px;
+      border-color: black;
     }
     .submit__btn {
       background-color: $purple;
@@ -68,12 +75,18 @@ $lightGrey: #e2e2e2;
       color: white;
       font-size: 1em;
       margin: 0.5em 0;
-      padding: 0.5em 1em;
+      padding: 0.2em 1em;
       text-align: center;
+        &:hover,
+        :active,
+        :focus {
+          cursor: pointer;
+          transform: scale(1.1, 1.1);
+        }
+      }
     }
-  }
+  
   .delete__container {
-    background-color: #3f3d560c;
     padding: 1em;
     .delete__btn {
       background-color: $darkColor;
