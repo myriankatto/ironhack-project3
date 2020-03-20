@@ -106,8 +106,8 @@ export default class ItemTask extends Component {
             <h1>{this.props.name}</h1>
             
             {this.state.active ? 
-              <img className="arrow-icon" src="./../images/down.svg" alt="down icon" /> :
-              <img className="arrow-icon" src="./../images/up.svg" alt="down icon" /> }
+              <img className="arrow-icon" src="./../images/up.svg" alt="up" /> :
+              <img className="arrow-icon" src="./../images/down.svg" alt="down" /> }
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.toggle}>
           <Card.Body style={{"color":"#3f3d56"}}>
