@@ -15,7 +15,7 @@ $lightGrey: #e2e2e2;
     }
     .arrow-icon {
       width: 1.2em;
-      margin: 0 0 0 0;
+      margin: 0 0 0 1em;
     }
 
     .team-image {
@@ -53,6 +53,7 @@ $lightGrey: #e2e2e2;
       :focus {
         outline: none;
       }
+  
     }
   }
 }
