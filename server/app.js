@@ -18,6 +18,8 @@ const workspaceRouter = require('./routes/workspace');
 const paymentMethodRouter = require('./routes/payment-method');
 const purchaseRouter = require('./routes/purchase');
 const workspaceUserRouter = require('./routes/workspaceUser');
+const scoreRouter = require('./routes/score');
+
 
 const app = express();
 
@@ -52,6 +54,7 @@ app.use('/api/payment-method', paymentMethodRouter);
 app.use('/api/workspace', workspaceRouter);
 app.use('/api/purchase', purchaseRouter);
 app.use('/api/workspaceUser', workspaceUserRouter);
+app.use('/api/score', scoreRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
