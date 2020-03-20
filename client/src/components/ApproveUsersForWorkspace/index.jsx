@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { usersFromWorkspace, usersApproved, usersReject } from './../../services/workspaceUser';
+import { editUSerPush as EditUser } from './../../services/score';
+
+
+
 import './style.scss';
 
 class ApproveUsersForWorkspace extends Component {
@@ -16,10 +20,17 @@ class ApproveUsersForWorkspace extends Component {
     usersFromWorkspace(this.props.workspaceId).then(users => this.setState({ users }));
   }
 
-  approve(userId) {
+  async approve(userId) {
     usersApproved(userId, this.props.workspaceId).then(() =>
       usersFromWorkspace(this.props.workspaceId).then(users => this.setState({ users }))
     );
+
+    //Operador recebe score igual à 0 quando é criado o Workspace:
+    const workspace = this.props.workspaceId;
+    const score = 0;
+    const creatorId = userId;
+    
+    await EditUser({creatorId, workspace, score});
   }
 
   reject(userId) {

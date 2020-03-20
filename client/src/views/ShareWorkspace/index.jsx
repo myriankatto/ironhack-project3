@@ -38,7 +38,7 @@ class ShareWorkspace extends Component {
             <h3>{workspace.name}</h3>
             <QRCode value={`http://192.168.1.64:3000/forWorkspaceApproval/${workspace._id}`} />
             <a
-              href={`https://api.whatsapp.com/send?text=Please follow the link: http://www.localhost/forWorkspaceApproval/${workspace._id} to join the ${workspace.names} workspace`}
+              href={`https://api.whatsapp.com/send?text=Please follow the link: http://www.localhost:3000/forWorkspaceApproval/${workspace._id} to join the ${workspace.names} workspace`}
               target="_blank"
             >
               <img

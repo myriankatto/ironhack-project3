@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { create } from './../../services/workspace';
 import { usersApproved } from './../../services/workspaceUser';
+import { editUSerPush as EditUser } from './../../services/score';
 
 import './style.scss';
 
@@ -22,19 +23,30 @@ class CreateWorkspace extends Component {
     });
   }
 
-  handleFormSubmission(event) {
+  async handleFormSubmission(event) {
     event.preventDefault();
     const name = this.state.workspaceName;
+    const creatorId = this.props.user._id;
+    const score = 0;
+    
+
     if (!name) return;
-  
-    create(name)
-      .then(newWorkspace => usersApproved(newWorkspace.operator, newWorkspace._id))
-      .catch(error => {
-        console.log(error);
-      });
+    
+    const newWorkspace = await create(name);
+    await usersApproved(newWorkspace.operator, newWorkspace._id);
+    
+    //Operador recebe score igual à 0 quando é criado o Workspace:
+    const workspace = newWorkspace._id;
+    await EditUser({creatorId, workspace, score});
+    
     this.setState({
       workspaceName: ''
     });
+
+    
+     
+
+
   }
   render() {
     return (

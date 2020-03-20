@@ -75,10 +75,11 @@ class FooterWorkspace extends Component {
           menuVisibility={this.state.visibleViewScores}
           idWorkspace={this.props.idWorkspace}
           workspaceName={this.props.workspace.name}
+          score={this.props.score}
         />
 
         <h5>
-          <small>Your Score:</small> {this.props.user.score} <br/>
+          <small>Your Score:</small> {this.props.score} <br/>
           <small>Workspace Score:</small> {this.props.workspace.score}
         </h5>
         <FooterAddTasksToggle

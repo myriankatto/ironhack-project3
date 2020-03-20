@@ -8,13 +8,49 @@ class FooterViewScoresToggle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      approvedUsers: []
+      approvedUsers: [],
+      approvedUsersOrganized:[]
     };
+
+    this.OrganizedByScores = this.OrganizedByScores.bind(this);
   }
 
   componentDidMount() {
-    approvedUser(this.props.idWorkspace).then(users => this.setState({ approvedUsers: users }));
+    approvedUser(this.props.idWorkspace).then(users => 
+      this.setState({ approvedUsers: users }));
+
+    // this.setState({
+    //   approvedUsersOrganized.sort(this.OrganizedByScores(a,b))
+    // })
+
+    this.OrganizedByScores();
   }
+
+  //FUNÇÃO QUE IRÁ ORGANIZAR OS SCORES DE ORDEM DECRESCENTE
+  OrganizedByScores(){
+    const OrganizedByScores = this.state.approvedUsers;
+    //console.log('OrganizedByScores',this.state.approvedUsers);
+
+    OrganizedByScores.sort( function(a,b){
+      if(a.scoreUser.find(element => element.workspace == this.props.idWorkspace).score >
+      b.scoreUser.find(element => element.workspace == this.props.idWorkspace).score){
+        return 1;
+      }
+      if(a.scoreUser.find(element => element.workspace == this.props.idWorkspace).score <
+        b.scoreUser.find(element => element.workspace == this.props.idWorkspace).score){
+          return -1;
+      }
+
+      return 0;
+    });
+
+    this.setState({
+      approvedUsersOrganized: OrganizedByScores
+    });
+  }
+  
+    
+    
 
   componentDidUpdate() {
     approvedUser(this.props.idWorkspace).then(users => this.setState({ approvedUsers: users }));
@@ -23,11 +59,14 @@ class FooterViewScoresToggle extends Component {
   showOperatorViewScores() {}
 
   render() {
+   
     //console.log('PROP NO FOOTER ADD', this.props.idWorkspace)
     var visibility = 'hide';
     if (this.props.menuVisibility) {
       visibility = 'show';
     }
+
+    //console.log('approvedUsersOrganized',this.state.approvedUsersOrganized)
 
     return (
       <Swipeable onSwipedDown={this.props.handleMouseUp}>
@@ -45,7 +84,10 @@ class FooterViewScoresToggle extends Component {
 
           <ol className="users__scores__list">
             {this.state.approvedUsers.map(approvedUser => (
+              
+
               <Fragment key={approvedUser._id}>
+              
                 <li className="userScore_Single">
                   <div className="scores_picture">
                     {' '}
@@ -56,7 +98,11 @@ class FooterViewScoresToggle extends Component {
                     />
                   </div>
                   <div className="scores_name">
-                    <h5>{approvedUser.name}</h5> <small>{approvedUser.score}</small>
+                    <h5>{approvedUser.name}</h5> 
+                    <small>
+                      { approvedUser.scoreUser.find(element => element.workspace == this.props.idWorkspace) !== undefined ?
+                        approvedUser.scoreUser.find(element => element.workspace == this.props.idWorkspace).score : 0}
+                    </small>
                   </div>
                 </li>
               </Fragment>
