@@ -56,7 +56,6 @@ class WorkspacesDropdownMenu extends Component {
                   <Fragment key={workspace._id}> 
                     <Dropdown.Item
                       style={{ color: 'white' }}
-                      
                       className="dropdown-item"
                       href={`/dashboard/${workspace._id}`}
                     >

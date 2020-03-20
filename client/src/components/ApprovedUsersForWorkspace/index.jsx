@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { approvedUser, approvedUsersReject } from './../../services/workspaceUser';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 class ApprovedUsersForWorkspace extends Component {
   constructor(props) {
@@ -29,15 +30,24 @@ class ApprovedUsersForWorkspace extends Component {
     // console.log(this.props.workspaceApproved.workspaceApproved[0]);
     return (
       <div className="approvedUser">
-        <h3>{this.props.workspaceApproved.workspaceApproved[0].name}'s Team</h3>
+        <Link to="/dashboard">
+          <img className="icon-img" src="./../images/close-white.svg" alt="close" />
+        </Link>
+        <h2>{this.props.workspaceApproved.workspaceApproved[0].name}'s Team</h2>
+
+        <img className="team__img__list" src="./../images/undraw_team_spirit_hrr4.svg" alt="team" />
+
         {this.state.approvedUsers.map(approvedUsers => (
           <div className="singleUserFlex" key={approvedUsers._id}>
             <div className="singleUser">
-              <h3>{approvedUsers.name}</h3>
+              <div className="container">
+                <img className="img_user" src={approvedUsers.picture} alt={approvedUsers.name} />
+                <h3>{approvedUsers.name}</h3>
+              </div>
               {this.props.workspaceApproved.workspaceApproved[0].operator ===
               this.props.workingUser ? (
                 <button onClick={() => this.removeUserFromWorkspace(approvedUsers._id)}>
-                  <img className="remove__img__list" src="./../images/close-white.svg" alt="team" />
+                  <img className="remove__img__list" src="./../images/bin.svg" alt="remove" />
                 </button>
               ) : (
                 ''

@@ -66,14 +66,17 @@ class SearchWorkspace extends Component {
 
         <ul className="workspaces__list">
           {this.filteredWorkspaces.map(workspace => (
+    
             <li key={workspace._id} className="workspace__item">
               <Link to={`/dashboard/${workspace._id}`}>{workspace.name}</Link>
+          
               <button
                 className="workspace__btn"
                 onClick={() => this.addWorkspaceToUser(workspace._id)}
               >
                 +
               </button>
+         
             </li>
           ))}
         </ul>
