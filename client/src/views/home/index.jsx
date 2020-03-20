@@ -5,40 +5,17 @@ import SignIn from './../../components/SignIn';
 
 import { loadUserInformation } from './../../services/authentication';
 
-import './style.scss'
+import './style.scss';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // loaded: false,
-      // user: null,
       signIn: true
     };
-
-    // this.updateUserInformation = this.updateUserInformation.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.changeHistory = this.changeHistory.bind(this);
   }
-
-  // componentDidMount() {
-  //   loadUserInformation()
-  //     .then(user => {
-  //       this.props.updateUserInformation(user); //here we need to pass the user that comes from the promise to the app.js
-  //       this.setState({
-  //         loaded: true
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
-
-  // updateUserInformation(user) {
-  //   this.setState({
-  //     user
-  //   });
-  // }
 
   handleAuthentication() {
     this.setState({
@@ -64,8 +41,18 @@ class Home extends Component {
             changeHistory={this.changeHistory}
           />
         )}
-        <span onClick={this.handleAuthentication}> 
-          {this.state.signIn ? <React.Fragment><span className="span-home">Don’t have an account?</span><button className="home-btn">Create an Account</button></React.Fragment> : <React.Fragment><span className="span-home">Already have an account?</span> <button className="home-btn">Sign In</button></React.Fragment>}
+        <span onClick={this.handleAuthentication}>
+          {this.state.signIn ? (
+            <React.Fragment>
+              <span className="span-home">Don’t have an account?</span>
+              <button className="home-btn">Create an Account</button>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <span className="span-home">Already have an account?</span>{' '}
+              <button className="home-btn">Sign In</button>
+            </React.Fragment>
+          )}
         </span>
       </div>
     );
