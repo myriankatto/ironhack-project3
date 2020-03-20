@@ -31,7 +31,7 @@ class Tasks extends Component {
   }
 
   componentDidUpdate(){
-    this.fetchData();
+   this.fetchData();
   }
 
   // Warning: Can't perform a React state update on an unmounted component. 

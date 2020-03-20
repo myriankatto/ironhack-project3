@@ -3,6 +3,7 @@
 const { Router } = require('express');
 
 const User = require('./../models/user');
+const Workspace = require('./../models/workspace');
 
 const router = new Router();
 
@@ -55,6 +56,28 @@ router.put('/edit/pull/:userId', (req, res, next) => {
       $pull: { 
         scoreUser : {workspace, score}
        }
+    }, 
+  { new: true })
+    .then(user => {
+      res.json(user);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+
+});
+
+
+//rota para editar Workspace
+router.put('/editWorspace/:workspaceId', (req, res, next) => {
+  
+  
+  const score = req.body.score;
+  
+  Workspace.findByIdAndUpdate(
+    req.params.workspaceId, 
+    {
+      score
     }, 
   { new: true })
     .then(user => {

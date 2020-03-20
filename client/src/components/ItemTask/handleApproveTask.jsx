@@ -5,7 +5,8 @@ import { edit } from '../../services/task';
 import { single as CreatorTask } from '../../services/score';
 import {editUSerPull} from '../../services/score';
 import {editUSerPush} from '../../services/score';
-
+import { editWorkspace } from '../../services/score';
+import {single as SingleWorkspace } from '../../services/workspace';
 
 
 
@@ -43,14 +44,21 @@ export const handleApproveTask = async (props) => {
   await edit({id,name, level, urgency, personal, category, frequency, description, approved });
 
   
-
   const userWhoWillEarnPoints = await CreatorTask(creatorId);
+  const workspaceSingle = await SingleWorkspace(workspace);
   
-  const oldPoints = userWhoWillEarnPoints.scoreUser.find(element => element.workspace === workspace).score
+
+  const oldPointsWorkspace = workspaceSingle.workspace.score;
+  
+  const newPointsWorspace = oldPointsWorkspace + 5;
+  
+  await editWorkspace({workspace, newPointsWorspace});
+  
+  const oldPointsUser = userWhoWillEarnPoints.scoreUser.find(element => element.workspace === workspace).score
   let score;
 
-  if(oldPoints !== undefined){
-     score = oldPoints;
+  if(oldPointsUser !== undefined){
+     score = oldPointsUser;
      await editUSerPull({creatorId, workspace, score});
   }else {
      score = 0
@@ -60,11 +68,12 @@ export const handleApproveTask = async (props) => {
   score = newPoints;
   await editUSerPush({creatorId, workspace, score});
   
+  
 
 
   return (
     <div>
-      {console.log('approved task')}
+    
     </div>
   )
 }
