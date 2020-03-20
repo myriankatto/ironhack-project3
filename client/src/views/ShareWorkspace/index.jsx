@@ -1,3 +1,4 @@
+import './style.scss';
 import React, { Component } from 'react';
 import { useSwipeable, Swipeable } from 'react-swipeable';
 import QRCode from 'qrcode.react';
@@ -35,8 +36,19 @@ class ShareWorkspace extends Component {
         {this.state.workspaces.map(workspace => (
           <div className="workspaceSettings" key={workspace._id}>
             <h3>{workspace.name}</h3>
-            <h6>{workspace._id}</h6>
             <QRCode value={`http://192.168.1.64:3000/forWorkspaceApproval/${workspace._id}`} />
+            <a
+              href={`https://api.whatsapp.com/send?text=Please follow the link: http://www.localhost/forWorkspaceApproval/${workspace._id} to join the ${workspace.names} workspace`}
+              target="_blank"
+            >
+              <img
+                src="./../images/IcWhatsApp.svg"
+                width="35"
+                height="35"
+                border="0"
+                alt="Recomende este produto pelo WhatsApp"
+              />
+            </a>
           </div>
         ))}
         <h1>{this.state.qrCode}</h1>
