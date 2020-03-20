@@ -25,10 +25,18 @@ const schema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  score: {
-    type: Number,
-    default: 0
-  },
+  scoreUser: [
+         {
+            score: {
+              type: Number,
+              default: 0
+            },
+            workspace: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: 'Workspace' 
+            }
+          }
+  ],
   workspace: [
     {
       type: mongoose.Schema.Types.ObjectId,

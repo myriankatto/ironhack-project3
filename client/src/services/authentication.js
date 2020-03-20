@@ -57,30 +57,7 @@ const editUserInformation = async data => {
   return user;
 };
 
-//service single para qualquer User sem ser aquele logado
-const single = async id => {
- 
-  try{
-    const result = await instance.get(`/${id}`);
-    const user = result.data;
-    return user;
-  }catch (error) {
-    throw error;
-  }
-}
 
 
-//service para editar um User sem estar logado
-const editUSerWithoutLog = async data => {
-  console.log('SERVICE EDIT', data);
-  const id = data.creatorId;
-  const score = data.scorePoint;
-  
-  
-  const result = await instance.put(`/edit/${id}`, {score});
-  const user = result.data;
-  return user;
-};
 
-
-export { signIn, signUp, signOut, loadUserInformation, editUserInformation, single, editUSerWithoutLog};
+export { signIn, signUp, signOut, loadUserInformation, editUserInformation};

@@ -2,8 +2,9 @@ import React from 'react';
 import { single } from '../../services/task';
 import { edit } from '../../services/task';
 
-import { single as CreatorTask } from '../../services/authentication';
-import {editUSerWithoutLog as EditUSer } from '../../services/authentication';
+import { single as CreatorTask } from '../../services/score';
+import {editUSerPull} from '../../services/score';
+import {editUSerPush} from '../../services/score';
 
 
 
@@ -13,7 +14,6 @@ export const handleApproveTask = async (props) => {
   const id = props.id;
 
   
-
   let name;
   let level;
   let urgency;
@@ -36,18 +36,30 @@ export const handleApproveTask = async (props) => {
   description= beforeTask.description;
   workspace=beforeTask.workspace;
   approved=true;
+
   /*USER CREATOR ID*/
   const creatorId = beforeTask.creator;
-  
   
   await edit({id,name, level, urgency, personal, category, frequency, description, approved });
 
   
-  const userWhoWillEarnPoints = await CreatorTask(creatorId);
-  const oldPoints = userWhoWillEarnPoints.score;
-  const scorePoint = oldPoints + 5;
 
-  await EditUSer({creatorId, scorePoint});
+  const userWhoWillEarnPoints = await CreatorTask(creatorId);
+  
+  const oldPoints = userWhoWillEarnPoints.scoreUser.find(element => element.workspace === workspace).score
+  let score;
+
+  if(oldPoints !== undefined){
+     score = oldPoints;
+     await editUSerPull({creatorId, workspace, score});
+  }else {
+     score = 0
+  }
+ 
+  const newPoints = score + 5;
+  score = newPoints;
+  await editUSerPush({creatorId, workspace, score});
+  
 
 
   return (
