@@ -17,8 +17,10 @@ const list = async () => {
 
 //service para mostrar um workspace
 const single = async id => {
+  
   const result = await instance.get(`/${id}`);
   const workspace = result.data;
+  
   return workspace;
 };
 

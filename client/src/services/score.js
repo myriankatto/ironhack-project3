@@ -20,7 +20,7 @@ const single = async id => {
 
 //service para editar um User sem estar logado - PUSH
 const editUSerPush = async data => {
-  console.log('SERVICE EDIT', data);
+  
   const id = data.creatorId;
   const workspace = data.workspace;
   const score = data.score;
@@ -33,7 +33,7 @@ const editUSerPush = async data => {
 
 //service para editar um User sem estar logado - PULL
 const editUSerPull = async data => {
-  console.log('SERVICE EDIT PULL', data);
+  
   const id = data.creatorId;
   const workspace = data.workspace;
   const score = data.score;
@@ -44,4 +44,16 @@ const editUSerPull = async data => {
   return user;
 };
 
-export {single, editUSerPull, editUSerPush}; 
+
+//service para editar um workspace para score
+const editWorkspace = async data => {
+  const score = data.newPointsWorspace;
+  const workspace = data.workspace;
+  console.log('editWOrkspace', data);
+  
+  const result = await instance.put(`/editWorspace/${workspace}`, { score });
+  const workspaceUpdate = result.data;
+  return workspaceUpdate;
+};
+
+export {single, editUSerPull, editUSerPush, editWorkspace}; 
