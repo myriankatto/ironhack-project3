@@ -62,6 +62,7 @@ class Navbar extends Component {
   }
 
   render() {
+    // console.log('PROPS NAVBAR', this.props.idWorkspace);
     return (
       <nav className="nav-style">
         {this.props.match.path !== '/dashboard' ? (
@@ -77,6 +78,7 @@ class Navbar extends Component {
             <WorkspacesDropdownMenu
               user={this.props.user}
               workspace={this.props.workspace}
+              idWorkspace={this.props.idWorkspace}
             />
           </Fragment>
         ) : (

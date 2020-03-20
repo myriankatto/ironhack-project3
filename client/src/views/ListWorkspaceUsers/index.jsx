@@ -27,18 +27,6 @@ class ListWorkspaceUsers extends Component {
   render() {
     return (
       <Swipeable onSwipedRight={this.handleSwipeLeft}>
-        <nav className="navPlusMenu">
-          <a href="#" onMouseDown={this.handleSwipeLeft}>
-            <img src="./../images/left-white.svg" alt="go back icon" />
-          </a>
-        </nav>
-        <div className="div__team__img__list">
-          <img
-            className="team__img__list"
-            src="./../images/undraw_team_spirit_hrr4.svg"
-            alt="team"
-          />
-        </div>
         {this.state.userWorkspacesApproved.map(workspaceApproved => (
           <ApprovedUsersForWorkspace
             key={workspaceApproved._id}
