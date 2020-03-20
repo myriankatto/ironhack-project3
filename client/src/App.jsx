@@ -105,19 +105,12 @@ class App extends Component {
               <ProtectedRoute
                 path="/forWorkspaceApproval/:workspaceId"
                 authorized={this.state.user}
-                redirect={`/forWorkspaceApproval/:workspaceId`}
+                redirect={`/`}
                 exact
                 render={props => <RouteShareWorkspace user={this.state.user} {...props} />}
               />
-              {/* <Route
-              path="/forWorkspaceApproval/:workspaceId"
-              exact
-              component={RouteShareWorkspace}
-              user={this.state.user}
-            /> */}
 
               {/* ROTA PARA EDITAR PERFIL */}
-
               <ProtectedRoute
                 path="/edit"
                 exact
