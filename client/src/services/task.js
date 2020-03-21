@@ -17,10 +17,12 @@ const create = async data => {
   const frequency = data.frequency;
   const description = data.description
   const approved = data.approved;
+  const howlong= data.howlong;
+  const repetition= data.repetition;
   
   try {
     const result = await instance.post(`/create/${data.id}`, 
-    { name, frequency, level, personal, urgency, description, category , approved});
+    { name, frequency, level, personal, urgency, description, category , approved, repetition, howlong});
     // const newTask = result.data;
     // return newTask;
   } catch (error) {
@@ -63,6 +65,9 @@ const edit = async data => {
   const frequency = data.frequency;
   const description = data.description;
   const owner = data.owner;
+  const howlong= data.howlong;
+  const repetition= data.repetition;
+
   let approved;
   if(data.approved === true){
      approved = data.approved;
@@ -70,10 +75,8 @@ const edit = async data => {
      approved = false;
   }
   
-  console.log('Service',data)
-
-  
-  const result = await instance.put(`/edit/${data.id}`, {name, frequency, level, personal, urgency, description, category, approved, owner });
+  const result = await instance.put(`/edit/${data.id}`, 
+  {name, frequency, level, personal, urgency, description, category, approved, owner, howlong, repetition});
   const task = result.data;
   return task;
 };

@@ -9,9 +9,17 @@ const schema = new mongoose.Schema(
       required: true,
       trim: true
     },
+    repetition:{
+      type:Boolean,
+      default:false
+    },
+    howlong:{
+      type:Number,
+      default:0
+    },
     frequency: {
       type: Number,
-      default: 1
+      default: 0
     },
     level: {
       type: String,

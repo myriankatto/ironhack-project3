@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, { Component , Fragment } from 'react';
+import { Form, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 import { create, single }  from './../../services/task';
 import './style.scss';
@@ -17,16 +17,21 @@ class AddTask extends Component {
       frequency: '',
       description: '',
       workspace:'',
-      frequencyTrue: false
+      howlong: '',
+      repetition: false,
+      forever:false
       
     };
+
+    console.log('STATE ',this.state.forever);
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
     this.changePersonal = this.changePersonal.bind(this);
     this.changeUrgency = this.changeUrgency.bind(this);
     this.resetTotal = this.resetTotal.bind(this);
-    this.changeFrequency=this.changeFrequency.bind(this);
+    this.changeRepetition=this.changeRepetition.bind(this);
+    this.handleRepeatChange=this.handleRepeatChange.bind(this);
   }
 
   handleInputChange(event) {
@@ -42,7 +47,23 @@ class AddTask extends Component {
     this.setState( previousState => ({
       personal: !previousState.personal
     }));
+  };
+
+  handleRepeatChange(){
+    this.setState( previousState => ({
+      forever: !previousState.forever,
+      howlong: 10000
+    }));
+
+    console.log('HANDLE',this.state.forever);
   }
+
+  changeRepetition(){
+    this.setState( previousState => ({
+      repetition: !previousState.repetition
+    }));
+  }
+
 
   changeUrgency(){
     this.setState( previousState => ({
@@ -50,12 +71,7 @@ class AddTask extends Component {
     }));
   }
 
-  changeFrequency(){
-    this.setState( previousState => ({
-      frequencyTrue: !previousState.frequencyTrue
-    }));
-  }
-
+  
   handleFormSubmission(event) {
     event.preventDefault();
 
@@ -66,13 +82,15 @@ class AddTask extends Component {
     const category = this.state.category;
     const frequency = Number(this.state.frequency);
     const description = this.state.description;
+    const howlong = this.state.howlong;
+    const repetition = this.state.repetition;
     const approved =  this.props.user._id === this.props.workspaceOperator;
   
     const id = this.props.idWorkspace;
    
     //if (!name || !level || !urgency || !category || !personal) return;
     
-    create({id,name, level, urgency, personal, category, frequency, description, approved})
+    create({id,name, level, urgency, personal, category, frequency, description, approved, howlong, repetition })
       .then()
       .catch(error => {
         console.log(error);
@@ -87,7 +105,9 @@ class AddTask extends Component {
         frequency: '',
         description: '',
         workspace:'',
-        frequencyTrue: false
+        howlong: '',
+        repetition: '',
+        forever:false
       });
 
   };
@@ -102,7 +122,9 @@ class AddTask extends Component {
         frequency: '',
         description: '',
         workspace:'',
-        frequencyTrue: false
+        howlong: '',
+        repetition: '',
+        forever:false
     });
 
   
@@ -120,42 +142,70 @@ class AddTask extends Component {
           onChange={this.handleInputChange}
           placeholder="Your task name"
           autoComplete="off"
+          required
         ></input>
 
         {/* Frequency */}
         <p>Frequency - Terá</p>
+         
         <input
           className="react-switch-checkbox"
-          id={`react-switch-03`}
+          id={`react-switch-02`}
           type="checkbox"
-          onChange={this.changeFrequency}
+          onChange={this.changeRepetition}
+          required
         />
         <label
-          style={{ background: this.state.frequencyTrue && '#06D6A0' }}
+          style={{ background: this.state.repetition && '#06D6A0' }}
           className="react-switch-label"
-          htmlFor={`react-switch-03`}
+          htmlFor={`react-switch-02`}
         >
           <span className={`react-switch-button`} />
         </label>
-        {this.state.frequencyTrue && 
-          <input 
-            type="number"
-            name="frequency"
-            min="1"
-            max="20"
-            value={this.state.frequency}
-            onChange={this.handleInputChange}
-            placeholder="Set frequency"
-            autoComplete="off"
-          ></input>
+
+        { this.state.repetition && 
+
+          <Fragment>
+            <input 
+                type="number"
+                name="frequency"
+                min="1"
+                max="20"
+                value={this.state.frequency}
+                onChange={this.handleInputChange}
+                placeholder="Set frequency"
+                autoComplete="off"
+              ></input>
+            
+            { /* until when */ }
+            
+            { !this.state.forever ?
+              <input 
+                type="number"
+                name="howlong"
+                min="1"
+                value={this.state.howlong}
+                onChange={this.handleInputChange}
+                placeholder="Until when will it repeat"
+                autoComplete="off"
+              ></input> : ''
+            }
+
+            <Form.Group controlId="formBasicCheckbox" onClick={this.handleRepeatChange}>
+              <Form.Check type="checkbox" label="Para sempre" onClick={this.handleRepeatChange} />
+            </Form.Group>
+
+          </Fragment>
         }
+
 
         {/* Level */}
         <select 
           as="select"
           name="level"
           value={this.state.level}
-          onChange={this.handleInputChange}>
+          onChange={this.handleInputChange}
+          required>
             <option>easy</option>
             <option>medium</option>
             <option>hard</option>

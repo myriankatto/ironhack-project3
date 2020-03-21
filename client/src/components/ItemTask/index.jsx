@@ -201,6 +201,15 @@ export default class ItemTask extends Component {
                     </button> : ''
                   }  
                 </div>
+
+                <div className="col">
+                  { 
+                    userIsOwner ?
+                    <button>
+                      Task Done
+                    </button> : ''
+                  } 
+                </div>
               </div>
 
           </Card.Body>

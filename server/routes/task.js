@@ -62,7 +62,9 @@ router.post('/create/:id', (req, res, next) => {
     creator:req.user._id,
     workspace:req.params.id,
     description: req.body.description,
-    approved:req.body.approved
+    approved:req.body.approved,
+    repetition: req.body.repetition,
+    howlong: req.body.howlong
   })
     .then(task => {
       
