@@ -31,11 +31,23 @@ const create = async data => {
 };
 
 
-//Service para listar as tasks aprovadas
+//Service para listar as tasks aprovadas e não feitas
 const list = async id => {
  
   try{
     const result = await instance.get(`/list/${id}`);
+    const tasks = result.data;
+    return tasks;
+  }catch (error) {
+    throw error;
+  }
+}
+
+//Service para listar as tasks aprovadas e não feitas
+const listDone = async id => {
+ 
+  try{
+    const result = await instance.get(`/listdone/${id}`);
     const tasks = result.data;
     return tasks;
   }catch (error) {
@@ -67,6 +79,12 @@ const edit = async data => {
   const owner = data.owner;
   const howlong= data.howlong;
   const repetition= data.repetition;
+  let done;
+  if(data.done !== undefined){
+    done=data.done;
+  }else{
+    done= false;
+  }
 
   let approved;
   if(data.approved === true){
@@ -76,7 +94,7 @@ const edit = async data => {
   }
   
   const result = await instance.put(`/edit/${data.id}`, 
-  {name, frequency, level, personal, urgency, description, category, approved, owner, howlong, repetition});
+  {name, frequency, level, personal, urgency, description, category, approved, owner, howlong, repetition, done});
   const task = result.data;
   return task;
 };
@@ -107,4 +125,4 @@ const remove = async id => {
 
 
 
-export { create, list, edit, single, remove, pending };
+export { create, list, edit, single, remove, pending, listDone };

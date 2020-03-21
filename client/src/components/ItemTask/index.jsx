@@ -15,6 +15,7 @@ import { single as SingleUser } from '../../services/score';
 /*IMPORTAR FUNÇOES*/
 import {handleDoTheTask} from './handleDoTheTask';
 import {handleApproveTask} from './handleApproveTask';
+import {handleTaskComplete} from './handleTaskComplete';
 
 import './style.scss';
 
@@ -42,21 +43,29 @@ export default class ItemTask extends Component {
     this.handleDeleteTask = this.handleDeleteTask.bind(this);
     this.handleApproveTask = this.handleApproveTask.bind(this);
     this.handleOwnerTask=this.handleOwnerTask.bind(this);
+    this.handleTaskComplete= this.handleTaskComplete.bind(this);
   };
 
   async componentDidMount(){
     const id = this.props.taskId;
     const singleTask = await SingleTask(id);
-    console.log('singleTask DID MOUNT',singleTask);
+    
 
-    if(singleTask.owner._id !== null){
+    if(singleTask.owner !== null){
       const singleUser = await SingleUser(singleTask.owner._id);
-      console.log('singleUser DID MOUNT',singleUser);
+      
       this.setState({
         ownerTaskPic: singleUser.picture
       });
-    }
+    } 
   
+  }
+
+ handleTaskComplete(){
+    const id = this.props.taskId;
+    const user = this.props.user;
+
+    handleTaskComplete({id, user});
   }
 
   toogleWorkspace() {
@@ -192,7 +201,7 @@ export default class ItemTask extends Component {
 
               <div className="col">
                 { operator && 
-                  <button onClick={this.handleDeleteTask}>
+                  <button  onClick={this.handleDeleteTask}>
                     <FaTrashAlt />
                   </button>
                 }
@@ -200,7 +209,7 @@ export default class ItemTask extends Component {
 
               <div className="col">
                 { !this.props.approved && operator &&
-                  <button onClick={this.handleApproveTask}>
+                  <button  onClick={this.handleApproveTask}>
                     <FaRegCheckSquare />
                   </button>
                 }
@@ -220,7 +229,7 @@ export default class ItemTask extends Component {
                       src={this.state.ownerTaskPic}  alt={this.state.ownerTaskPic}/>
                     </figure> :
 
-                    <button onClick={this.handleOwnerTask}>
+                    <button  onClick={this.handleOwnerTask}>
                       I am responsible for this task
                     </button>
                   }
@@ -230,26 +239,18 @@ export default class ItemTask extends Component {
                 <div className="col">
                   {
                     userIsOwner ?
-                    <button onClick={this.handleOwnerTask}>
+                    <button  onClick={this.handleOwnerTask}>
                       Give up the task
                     </button> : ''
                   }  
                 </div>
 
-                <div className="col">
-                  { 
-                    userIsOwner ?
-                    <button>
-                      Task Done
-                    </button> : ''
-                  } 
-                </div>
             </div>
 
             <div className="row">
                 <div className="col">
                 {(this.props.owner === null || userIsOwner) &&
-                  <button>Do the task</button>
+                  <button type="button" onClick={this.handleTaskComplete}>Task Done</button>
                 }
                 </div>
             </div>

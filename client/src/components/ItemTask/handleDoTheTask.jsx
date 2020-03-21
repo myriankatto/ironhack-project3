@@ -20,7 +20,6 @@ export const handleDoTheTask = async (props) => {
   
 
   name = beforeTask.name;
-  console.log('name', name);
   level = beforeTask.level;
   urgency = beforeTask.urgency;
   category = beforeTask.category;
