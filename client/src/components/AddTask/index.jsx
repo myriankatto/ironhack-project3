@@ -150,7 +150,7 @@ class AddTask extends Component {
          
         <input
           className="react-switch-checkbox"
-          id={`react-switch-02`}
+          id={`react-switch-03`}
           type="checkbox"
           onChange={this.changeRepetition}
           required
@@ -158,7 +158,7 @@ class AddTask extends Component {
         <label
           style={{ background: this.state.repetition && '#06D6A0' }}
           className="react-switch-label"
-          htmlFor={`react-switch-02`}
+          htmlFor={`react-switch-03`}
         >
           <span className={`react-switch-button`} />
         </label>

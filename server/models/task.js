@@ -26,6 +26,10 @@ const schema = new mongoose.Schema(
       enum: ['easy', 'medium', 'hard'],
       default:'easy'
     },
+    done:{
+      type: Boolean,
+      default: false
+    },
 
     //usuário que vai realizar a tarefa
     owner: {
