@@ -20,8 +20,8 @@ const purchaseRouter = require('./routes/purchase');
 const workspaceUserRouter = require('./routes/workspaceUser');
 const scoreRouter = require('./routes/score');
 
-
 const app = express();
+app.use(express.static(join(__dirname, './../client/build')));
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
@@ -55,6 +55,10 @@ app.use('/api/workspace', workspaceRouter);
 app.use('/api/purchase', purchaseRouter);
 app.use('/api/workspaceUser', workspaceUserRouter);
 app.use('/api/score', scoreRouter);
+
+app.get('*', (req, res, next) => {
+  res.sendFile(join(__dirname, './../client/build/index.html'));
+});
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
