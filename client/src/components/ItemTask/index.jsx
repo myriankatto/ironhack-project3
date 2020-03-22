@@ -190,6 +190,9 @@ export default class ItemTask extends Component {
                 </div>
               </div>
             </div>
+          
+
+          {/* BOTÕES DE CONTROLE DO OPERADOR */}
 
             <div className="row">
             
@@ -216,11 +219,15 @@ export default class ItemTask extends Component {
               </div>
             </div>
             
-            <div className="row">
+            {/* BOTÕES DE CONTROLE De QUALQUER USUÁRIO */}
+          { this.props.done && /*CASO A TASK JÁ FOI FEITO NÃO VAI APARECER OS CONTROLES*/
+          <div>
+
+            <div className="row"> {/*ROW 2*/}
             
               {this.props.approved &&
+
                 <div className="col">
-                
                   {
                     ownerIsTruth ?
                     //FOTO DO OWNER DA TASK
@@ -245,15 +252,21 @@ export default class ItemTask extends Component {
                   }  
                 </div>
 
-            </div>
+            </div>{/* FINAL DA ROW 2*/}
 
-            <div className="row">
-                <div className="col">
+            
+            <div className="row">{/*  ROW 3 */}
+              <div className="col">
                 {(this.props.owner === null || userIsOwner) &&
                   <button type="button" onClick={this.handleTaskComplete}>Task Done</button>
                 }
-                </div>
-            </div>
+              </div>
+            </div>{/* FINAL DA ROW 3*/}
+
+          </div>
+          }
+            
+           
 
           </Card.Body>
         </Accordion.Collapse>
