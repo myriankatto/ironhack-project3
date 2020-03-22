@@ -23,7 +23,6 @@ class AddTask extends Component {
       
     };
 
-    console.log('STATE ',this.state.forever);
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
@@ -55,7 +54,6 @@ class AddTask extends Component {
       howlong: 10000
     }));
 
-    console.log('HANDLE',this.state.forever);
   }
 
   changeRepetition(){

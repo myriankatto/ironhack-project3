@@ -79,6 +79,7 @@ class Tasks extends Component {
               owner={task.owner}
               workspaceOperator={this.props.workspaceOperator}
               approved={task.approved}
+              done={this.props.done}
               />
             )) 
           }

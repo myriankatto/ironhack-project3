@@ -79,19 +79,23 @@ const edit = async data => {
   const owner = data.owner;
   const howlong= data.howlong;
   const repetition= data.repetition;
-  let done;
-  if(data.done !== undefined){
-    done=data.done;
-  }else{
-    done= false;
-  }
+  const done = data.done;
 
+  // let done;
+  // if(data.done !== undefined){
+  //   done=data.done;
+  // }else{
+  //   done= false;
+  // }
+
+  const approved =data.approved;
+  /*
   let approved;
   if(data.approved === true){
      approved = data.approved;
   }else{
      approved = false;
-  }
+  }*/
   
   const result = await instance.put(`/edit/${data.id}`, 
   {name, frequency, level, personal, urgency, description, category, approved, owner, howlong, repetition, done});

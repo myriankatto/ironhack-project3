@@ -35,7 +35,6 @@ export default class HandleChangePoints extends Component {
       userScore
     });
 
-    console.log(this.state)
 
 
   };

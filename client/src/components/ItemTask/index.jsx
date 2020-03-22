@@ -16,6 +16,7 @@ import { single as SingleUser } from '../../services/score';
 import {handleDoTheTask} from './handleDoTheTask';
 import {handleApproveTask} from './handleApproveTask';
 import {handleTaskComplete} from './handleTaskComplete';
+import {handleRepetition} from './handleRepetition';
 
 import './style.scss';
 
@@ -48,7 +49,10 @@ export default class ItemTask extends Component {
 
   async componentDidMount(){
     const id = this.props.taskId;
+    
     const singleTask = await SingleTask(id);
+    await handleRepetition({singleTask});
+
     
 
     if(singleTask.owner !== null){
@@ -88,11 +92,10 @@ export default class ItemTask extends Component {
     await handleDoTheTask({id, user, handleToDoTask});
 
     const singleTask = await SingleTask(id);
-    console.log('singleTask',singleTask);
+
     const singleUser = await SingleUser(singleTask.owner._id);
 
-    console.log('singleUser',singleUser);
-
+    
     this.setState({
       ownerTaskPic: singleUser.picture
     });
@@ -137,7 +140,7 @@ export default class ItemTask extends Component {
       userIsOwner = this.props.owner._id === this.props.user._id;
     };
     
-   
+    
     return (
       <Card
       className="p-2 cardTask border border-secondary rounded-lg shadow" 
@@ -220,7 +223,8 @@ export default class ItemTask extends Component {
             </div>
             
             {/* BOTÕES DE CONTROLE De QUALQUER USUÁRIO */}
-          { this.props.done && /*CASO A TASK JÁ FOI FEITO NÃO VAI APARECER OS CONTROLES*/
+          { !this.props.done && /*CASO A TASK JÁ FOI FEITO NÃO VAI APARECER OS CONTROLES*/
+            
           <div>
 
             <div className="row"> {/*ROW 2*/}
