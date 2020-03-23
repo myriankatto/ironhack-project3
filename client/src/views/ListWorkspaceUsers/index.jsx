@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ApprovedUsersForWorkspace from './../../components/ApprovedUsersForWorkspace';
 import { editWorkspace, userWorkspacesApproved } from './../../services/workspaceUser';
-import {  Swipeable } from 'react-swipeable';
+import { Swipeable } from 'react-swipeable';
 import './style.scss';
 
 class ListWorkspaceUsers extends Component {
@@ -9,7 +9,6 @@ class ListWorkspaceUsers extends Component {
     super(props);
     this.state = {
       workspaces: [],
-      approvedUsers: [],
       userWorkspacesApproved: []
     };
     this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
@@ -19,7 +18,9 @@ class ListWorkspaceUsers extends Component {
     userWorkspacesApproved(this.props.user._id).then(userWorkspacesApproved =>
       this.setState({ userWorkspacesApproved })
     );
-    editWorkspace(this.props.user._id).then(workspaces => this.setState({ workspaces }));
+    editWorkspace(this.props.user._id, this.props.workspaceId).then(workspaces =>
+      this.setState({ workspaces })
+    );
   }
   handleSwipeLeft() {
     return this.props.history.push('./dashboard');
@@ -32,6 +33,8 @@ class ListWorkspaceUsers extends Component {
             key={workspaceApproved._id}
             workingUser={this.props.user._id}
             workspaceApproved={workspaceApproved}
+            workspaceId={this.props.workspaceId}
+            workspaces={this.state.workspaces}
           />
         ))}
       </Swipeable>
@@ -39,15 +42,3 @@ class ListWorkspaceUsers extends Component {
   }
 }
 export default ListWorkspaceUsers;
-
-{
-  /* {this.state.workspaces.map(workspace => (
-  <ApprovedUsersForWorkspace
-    key={workspace._id}
-    workspaceId={workspace._id}
-    workspaceName={workspace.name}
-    workspaceOperator={workspace.operator}
-    workingUser={this.props.user._id}
-  />
-))} */
-}
