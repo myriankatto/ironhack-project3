@@ -40,11 +40,12 @@ class SignIn extends Component {
   render() {
     return (
       <div className="signin__container">
-        <h3>Welcome to APP</h3>
+        <h3>Welcome to</h3>
+        <img style={{ width: '25%' }} src="./../../images/tasksy.svg" alt="tasksy" />
         <p>Description phrase</p>
 
         <form onSubmit={this.handleFormSubmission} className="signin__form">
-        <h2>Log in to your account to continue</h2>
+          <h2>Log in to your account to continue</h2>
 
           <input
             className="signin__input"
@@ -54,20 +55,18 @@ class SignIn extends Component {
             name="email"
             placeholder="Enter email"
           />
-    
+
           <input
-          className="signin__input"
+            className="signin__input"
             onChange={this.handleInputChange}
             value={this.state.password}
             type="password"
             name="password"
             placeholder="Password"
           />
-        <button className="signin__btn">
-          Sign In
-        </button>
-      </form>
-      <img
+          <button className="signin__btn">Sign In</button>
+        </form>
+        <img
           className="home__img-signin"
           src="./../../../images/home.svg"
           alt="working space ilustration"

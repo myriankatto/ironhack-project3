@@ -31,7 +31,7 @@ class NavBarProfile extends Component {
     return (
       <Swipeable onSwipedRight={this.props.handleMouseDownProfile}>
         <div id="flyoutSidebarProfile" className={visibility}>
-          <a href="#" onMouseDown={this.props.handleMouseDownProfile}>
+          <Link to="/" onMouseDown={this.props.handleMouseDownProfile}>
             <img
               style={{
                 width: '2em',
@@ -42,7 +42,7 @@ class NavBarProfile extends Component {
               src="./../images/right-white.svg"
               alt="go back icon"
             />
-          </a>
+          </Link>
           <img
             style={{
               width: '10em',

@@ -1,20 +1,105 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
 #flyoutMenu_AddTask {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: white;
   position: fixed;
   top: 0;
   left: 0;
+  padding: 1em 2em;
   transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
-  overflow: scroll;
+  overflow: hidden auto;
   z-index: 1000;
-  color: #3f3d56;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  .addTask__form {
+    display: flex;
+    width: 100%;
+    form {
+      width: 100%;
+    }
+    .addTask_form__item {
+      margin: 1em auto;
+      display: flex;
+      span {
+        font-size: 1em !important;
+      }
+    }
+  }
+  h2 {
+    color: $purple;
+    font-size: 1.5em;
+    font-weight: 200;
+    margin-top: 1em;
+  }
   img {
     width: 2em;
     float: right;
     margin: 2em 1em;
+  }
+  .input {
+    border: $purple 1px solid;
+    border-radius: 2em;
+    color: $darkColor;
+    font-size: 0.9em;
+    font-weight: 400;
+    padding: 0.3em 1em;
+    flex-grow: 1;
+    display: block;
+  }
+  .input_frequency {
+    border: $purple 1px solid;
+    border-radius: 2em;
+    color: $darkColor;
+    font-size: 0.9em;
+    padding: 0.3em 1em;
+    width: 5em;
+  }
+  select {
+    border: $purple 1px solid;
+    border-radius: 2em;
+    color: $darkColor;
+    font-size: 0.9em;
+    padding: 0.3em 1em;
+    background-color: white;
+    flex-grow: 1;
+
+  }
+  .input-btn,
+  button {
+    background-color: $purple;
+    border-radius: 1em;
+    color: white;
+    font-size: 1em;
+    text-align: center;
+    margin: 0 auto;
+    margin-left: 1em;
+    padding: 0.3em 1em;
+    border: none;
+  }
+
+  .arrow-icon {
+    width: 1em;
+    position: relative;
+    margin: 0;
+  }
+  textarea {
+    border-radius: 1em;
+    border: 1px solid $purple;
+    color: $darkColor;
+    display: block;
+    margin: 1em auto;
+    padding: 0.3em 1em;
+    width: 100%;
+  }
+  label {
+    color: $darkColor;
+    font-size: 1em;
+    margin-right: 1em;
   }
 }
 

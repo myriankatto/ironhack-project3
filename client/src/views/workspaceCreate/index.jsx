@@ -5,7 +5,6 @@ import NavBar from '../../components/NavBar';
 import { single as singleWorkspace } from '../../services/workspace';
 import { single as CreatorTask } from '../../services/score';
 
-
 /*COMPONENTES*/
 import FooterWorkspace from '../../components/FooterWorkspace';
 import Tasks from '../../components/Task';
@@ -21,8 +20,9 @@ export default class WorkspaceCreate extends Component {
     this.state = {
       workspace: [],
       workspaceId: this.props.match.params.id,
-      scoreUser:0
+      scoreUser: 0
     };
+    this.toggleSelected = this.toggleSelected(this);
   }
 
   componentDidMount() {
@@ -30,9 +30,7 @@ export default class WorkspaceCreate extends Component {
     this.fetchData();
   }
 
-  componentDidUpdate() {
-    //this.fetchData();
-  }
+  componentDidUpdate() {}
 
   fetchData() {
     if (this.state.workspaceId !== this.props.match.params.id) {
@@ -46,24 +44,31 @@ export default class WorkspaceCreate extends Component {
         console.log(error);
       });
 
-      CreatorTask(this.props.user._id)
-        .then( user => {
-          
+    CreatorTask(this.props.user._id)
+      .then(user => {
+        const scoreObjUser = user.scoreUser.find(
+          element => element.workspace === this.state.workspaceId
+        );
 
-          const scoreObjUser = user.scoreUser.find(element => element.workspace === this.state.workspaceId);
-         
-          if(scoreObjUser !== undefined){
-            const scoreUser = scoreObjUser.score;
-            this.setState({scoreUser});
-           
-          }
-          
-        })
-        .catch(error => {
-          console.log(error);
-        });
+        if (scoreObjUser !== undefined) {
+          const scoreUser = scoreObjUser.score;
+          this.setState({ scoreUser });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
-
+  //FUNÇÃO PARA SET STATE DO WORKSPACE SINGLE
+  toggleSelected(workspaceId) {
+    singleWorkspace(workspaceId)
+      .then(workspace => {
+        this.setState(workspace);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   // Warning: Can't perform a React state update on an unmounted component.
@@ -91,6 +96,7 @@ export default class WorkspaceCreate extends Component {
           user={this.props.user}
           workspaceOperator={workspace.operator}
           workspace={this.state.workspace}
+          toggleSelected={this.toggleSelected}
         />
 
         <div className="dashboard__content mt-2">

@@ -8,6 +8,7 @@ import MenuButton from '../NavBarMenuButton';
 import WorkspacesDropdownMenu from '../WorkspacesDropdownMenu';
 
 import './style.scss';
+import { FaRegSnowflake } from 'react-icons/fa';
 // import { loadUserInformation } from './../../services/authentication';
 
 // import { Swipeable } from 'react-swipeable';
@@ -19,7 +20,8 @@ class Navbar extends Component {
       visibleWorkspace: false,
       sidebarWorkspace: false,
       visibleProfile: false,
-      sidebarProfile: false
+      sidebarProfile: false,
+      workspace: this.props.workspace
     };
 
     this.handleMouseDownWorkspace = this.handleMouseDownWorkspace.bind(this);
@@ -61,8 +63,10 @@ class Navbar extends Component {
     });
   }
 
+
+
   render() {
-    // console.log('PROPS NAVBAR', this.props.idWorkspace);
+    // console.log('PROPS NAVBAR', this.props.workspace);
     return (
       <nav className="nav-style">
         {this.props.match.path !== '/dashboard' ? (
@@ -79,6 +83,7 @@ class Navbar extends Component {
               user={this.props.user}
               workspace={this.props.workspace}
               idWorkspace={this.props.idWorkspace}
+              toggleSelected={this.props.toggleSelected} //TOOGGLE PARA LIFT STATE DO WORKSPACECREATE
             />
           </Fragment>
         ) : (

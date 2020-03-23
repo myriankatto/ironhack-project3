@@ -1,7 +1,8 @@
 import './style.scss';
 import React, { Component } from 'react';
-import { useSwipeable, Swipeable } from 'react-swipeable';
+import {  Swipeable } from 'react-swipeable';
 import QRCode from 'qrcode.react';
+import {Link} from 'react-router-dom'
 
 import { editWorkspace } from './../../services/workspaceUser';
 
@@ -27,9 +28,9 @@ class ShareWorkspace extends Component {
     return (
       <Swipeable onSwipedRight={this.handleSwipeLeft}>
         <nav className="navPlusMenu">
-          <a href="#" onMouseDown={this.handleSwipeLeft}>
+          <Link to="#" onMouseDown={this.handleSwipeLeft}>
             <img src="./../images/left-white.svg" alt="go back icon" />
-          </a>
+          </Link>
           <h2>Share Workspace</h2>
         </nav>
 

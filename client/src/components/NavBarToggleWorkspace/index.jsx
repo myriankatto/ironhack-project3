@@ -31,7 +31,7 @@ class NavBarToggleWorkspace extends Component {
       <Swipeable onSwipedLeft={this.props.handleMouseDown}>
         <div id="flyoutMenu" className={visibility}>
           <nav className="buttonPlusMenu">
-            <a href="#" onMouseDown={this.props.handleMouseDown}>
+            <Link to="#" onMouseDown={this.props.handleMouseDown}>
               <img
                 style={{
                   width: '2em',
@@ -42,7 +42,7 @@ class NavBarToggleWorkspace extends Component {
                 src="./../images/left-white.svg"
                 alt="go back icon"
               />
-            </a>
+            </Link>
             <div className="menu-item">
               <Link style={{ color: 'white' }} to={'/editWorkspace'}>
                 <img className="menu-icon" src="./../images/config.svg" alt="configuration" />

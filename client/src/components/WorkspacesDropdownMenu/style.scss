@@ -1,0 +1,58 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+.dd-wrapper {
+  user-select: none;
+  position: relative;
+  color: white;
+  .dd-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 38px;
+    border: none;
+    cursor: default;
+    position: relative;
+    background-color: #544bd8;
+    margin: 0 0.5em;
+  }
+  span {
+    margin-right: 20px;
+  }
+  .dd-header-title {
+    font-size: 1em;
+    font-weight: 300;
+    margin-right: 1em;
+  }
+  .dd-list {
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    background-color: #544bd8;
+    padding: 1em;
+    font-weight: 100;
+    font-size: 1em;
+  }
+  .dd-list-item {
+    text-align: left;
+    color: white;
+    width: 100%;
+    font-size: 1em;
+    cursor: default;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      color: $darkColor;
+    }
+  }
+
+  img {
+    width: 1.5em;
+  }
+}

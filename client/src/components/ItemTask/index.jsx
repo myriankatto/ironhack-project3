@@ -95,7 +95,7 @@ export default class ItemTask extends Component {
    
     return (
       <Card
-      className="p-2 cardTask border border-secondary rounded-lg shadow" 
+      className="p-2 cardTask border border-secondary rounded-lg " 
       onClick={this.toogleWorkspace}>
         <Accordion.Toggle 
           as={Button} 

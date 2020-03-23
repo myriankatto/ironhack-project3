@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
-
+import './style.scss';
 import { Dropdown } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import onClickOutside from 'react-onclickoutside';
 
 import { userWorkspacesApproved } from './../../services/workspaceUser';
 
@@ -9,7 +10,9 @@ class WorkspacesDropdownMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userWorkspacesApproved: []
+      userWorkspacesApproved: [],
+      listOpen: false,
+      workspace: this.props.workspace
     };
   }
 
@@ -25,13 +28,49 @@ class WorkspacesDropdownMenu extends Component {
       });
   }
 
+  handleClickOutside() {
+    this.setState({
+      listOpen: false
+    });
+  }
+  toggleList() {
+    this.setState(prevState => ({
+      listOpen: !prevState.listOpen
+    }));
+  }
+
   render() {
     // if (this.state.userWorkspacesApproved[0] !== undefined) {
     //   console.log(this.state.userWorkspacesApproved[0].workspaceApproved);
     // }
-    // console.log('PROPS DRODOWN', this.props.idWorkspace)
     return (
       <div>
+       <div className="dd-wrapper">
+          <div className="dd-header" onClick={() => this.toggleList()}>
+            <div className="dd-header-title">{this.props.workspace.name}</div>
+            {this.state.listOpen ? (
+              <img className="arrow-icon" src="./../images/up-white.svg" alt="up" />
+            ) : (
+              <img className="arrow-icon" src="./../images/down-white.svg" alt="down" />
+            )}
+          </div>
+          {this.state.listOpen && (
+            <ul className="dd-list">
+              {this.state.userWorkspacesApproved.map(workspaceApproved => (
+                <span key={workspaceApproved._id}>
+                  {workspaceApproved.workspaceApproved.map(workspace => (
+                    <li className="dd-list-item" key={workspace._id}>
+
+                      {/* onClick para lift state do navbar */}
+                     <button onClick={()=>this.props.toggleSelected(workspace._id)}>{workspace.name}</button>
+                    </li>
+                  ))}
+                </span>
+              ))}
+            </ul>
+          )}
+        </div>  
+{/* 
         <Dropdown>
           <Dropdown.Toggle
             style={{
@@ -79,7 +118,7 @@ class WorkspacesDropdownMenu extends Component {
               Add Workspace
             </Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown>
+        </Dropdown>  */}
       </div>
     );
   }

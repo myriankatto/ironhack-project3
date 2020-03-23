@@ -1,8 +1,8 @@
 import './style.scss';
 
 import React, { Component, Fragment } from 'react';
-import { useSwipeable, Swipeable } from 'react-swipeable';
-
+import { Swipeable } from 'react-swipeable';
+import {Link} from 'react-router-dom'
 import { editWorkspace } from './../../services/workspaceUser';
 import { remove, edit } from './../../services/workspace';
 
@@ -57,9 +57,9 @@ class EditWorkspace extends Component {
       <Swipeable onSwipedRight={this.handleSwipeLeft}>
         <nav className="navPlusMenu">
           <h2>Workspace Settings</h2>
-          <a href="#" onMouseDown={this.handleSwipeLeft}>
+          <Link to="#" onMouseDown={this.handleSwipeLeft}>
             <img src="./../images/close-white.svg" alt="close" />
-          </a>
+          </Link>
         </nav>
         {this.state.workspaces.map(workspace => (
           <div className="workspaceSettings" key={workspace._id}>
