@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { single } from './../../services/workspace';
 import { approvedUser, approvedUsersReject } from './../../services/workspaceUser';
 import './style.scss';
 import { Link } from 'react-router-dom';
@@ -7,57 +8,64 @@ class ApprovedUsersForWorkspace extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      approvedUsers: []
+      approvedUsers: [],
+      userWorkspacesApprovedName: []
     };
     this.removeUserFromWorkspace = this.removeUserFromWorkspace.bind(this);
   }
 
   componentDidMount() {
-    approvedUser(this.props.workspaceId).then(users => this.setState({ approvedUsers: users }));
-    // approvedUser(this.props.workspaceApproved.workspaceApproved[0]._id).then(users =>
-    //   this.setState({ approvedUsers: users })
-    // );
+    approvedUser(this.props.workspaceId)
+      .then(users => this.setState({ approvedUsers: users }))
+      .then(() =>
+        single(this.props.workspaceId).then(userWorkspacesApprovedName =>
+          this.setState({ userWorkspacesApprovedName })
+        )
+      );
   }
 
   removeUserFromWorkspace(userId) {
     approvedUsersReject(userId, this.props.workspaceId).then(() =>
       approvedUser(this.props.workspaceId).then(users => this.setState({ approvedUsers: users }))
     );
-    // approvedUsersReject(userId, this.props.workspaceApproved.workspaceApproved[0]._id).then(() =>
-    //   approvedUser(this.props.workspaceApproved.workspaceApproved[0]._id).then(users =>
-    //     this.setState({ approvedUsers: users })
-    //   )
-    // );
   }
 
   render() {
-    this.props.workspaces.length !== 0 && console.log(this.props.workspaces[0]);
+    // console.log(this.state.userWorkspacesApprovedName.workspace.name);
     return (
       <div className="approvedUser">
         <Link to="/dashboard">
           <img className="icon-img" src="./../images/close-white.svg" alt="close" />
         </Link>
-        {/* <h2>{this.props.workspaces.workspaceApproved[0].name}'s Team</h2> */}
-        {/* <h2>{this.props.workspaceApproved.workspaceApproved[0].name}'s Team</h2> */}
+        {this.state.userWorkspacesApprovedName.workspace && (
+          <h2>{this.state.userWorkspacesApprovedName.workspace.name}'s Team</h2>
+        )}
 
         <img className="team__img__list" src="./../images/undraw_team_spirit_hrr4.svg" alt="team" />
-
         {this.state.approvedUsers.map(approvedUsers => (
           <div className="singleUserFlex" key={approvedUsers._id}>
-            <div className="singleUser">
-              <div className="container">
-                <img className="img_user" src={approvedUsers.picture} alt={approvedUsers.name} />
-                <h3>{approvedUsers.name}</h3>
-              </div>
-              {this.props.workspaceApproved.workspaceApproved[0].operator ===
-              this.props.workingUser ? (
-                <button onClick={() => this.removeUserFromWorkspace(approvedUsers._id)}>
-                  <img className="remove__img__list" src="./../images/bin.svg" alt="remove" />
-                </button>
-              ) : (
-                ''
-              )}
-            </div>
+            {this.props.workspaceApproved.workspaceApproved.map(
+              userWorkspacesApproved =>
+                userWorkspacesApproved._id === this.props.workspaceId && (
+                  <div className="singleUser" key={userWorkspacesApproved._id}>
+                    <div className="container">
+                      <img
+                        className="img_user"
+                        src={approvedUsers.picture}
+                        alt={approvedUsers.name}
+                      />
+                      <h3>{approvedUsers.name}</h3>
+                    </div>
+                    {userWorkspacesApproved.operator === this.props.workingUser ? (
+                      <button onClick={() => this.removeUserFromWorkspace(approvedUsers._id)}>
+                        <img className="remove__img__list" src="./../images/bin.svg" alt="remove" />
+                      </button>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                )
+            )}
           </div>
         ))}
       </div>
