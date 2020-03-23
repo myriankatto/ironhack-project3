@@ -2,51 +2,73 @@ $darkColor: #3f3d56;
 $purple: #6c63ff;
 $lightGrey: #e2e2e2;
 
-.cardTask{
+.cardTask {
   margin-bottom: 2em;
-  
+
   .arrow-icon {
     width: 1.2em;
     margin: 0 0 0 2em;
   }
 
-  .title_Card{
+  .title_Card {
     text-decoration: none;
   }
 
-  .cardTask__paragraph{
-    color:$darkColor;
-    text-decoration: none;
-    text-transform: none;
-  }:hover{
-    color:$purple;
+  :hover {
+    color: $purple;
   }
 
-  .cardTask_title{
+  .cardTask_title {
     border: 1px solid green;
     padding-top: 1em;
-    color:$darkColor;
+    color: $darkColor;
   }
 
-  .cardTask_level{
-    color:$purple;
-    
+  .cardTask_level {
+    color: $purple;
+  }
+  .task_row {
+    display: flex;
+    justify-content: space-between;
+
+    .task_item_1 {
+      display: flex;
+      flex-direction: column;
+      background-color: $purple;
+      border-radius: 0.5em;
+      margin: 0.5em;
+      h6 {
+        color: white;
+        font-size: 0.7em;
+        margin: 0.5em;
+        font-weight: 600;
+      }
+    }
   }
 
-  .cardTask_col{
-   
-    /*display: flex;
+  .task_item {
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;*/
+    background-color: #ebebeb4f;
+    border-radius: 0.5em;
+    margin: 0.5em;
+    padding: 0.5em;
+    p {
+      color: $darkColor;
+      font-size: 0.7em;
+      margin: 0.5em;
+    }
+    h5 {
+      color: $purple;
+      font-size: 0.7em;
+      margin: 0.5em;
+      font-weight: 600;
+    }
   }
-  
 }
 
-.Task-owner{
+.Task-owner {
   width: 2em;
   height: 2em;
   border-radius: 50%;
 }
-
-

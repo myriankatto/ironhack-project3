@@ -24,7 +24,7 @@ class FooterAddTasksToggle extends Component {
           <h2>Create a new task
             <a onMouseUp={this.props.handleMouseUp}>
               {' '}
-              <img  className="arrow-icon" src="./../images/right.svg" alt="go back icon" />
+              <img  className="arrow-icon" src="./../images/close.svg" alt="close" />
             </a></h2>
        
           <AddTask 

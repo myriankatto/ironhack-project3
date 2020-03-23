@@ -76,8 +76,7 @@ $lightGrey: #e2e2e2;
     background-color: white;
     flex-grow: 1;
   }
-  .input-btn,
-  button {
+  .input-btn {
     background-color: $purple;
     border-radius: 1em;
     color: white;
@@ -87,8 +86,19 @@ $lightGrey: #e2e2e2;
     margin-left: 1em;
     padding: 0.3em 1em;
     border: none;
+  } 
+  button {
+    background-color: white;
+    border: 1px solid $darkColor;
+    border-radius: 1em;
+    color: $darkColor;
+    font-size: 1em;
+    text-align: center;
+    margin: 0 auto;
+    margin-left: 1em;
+    padding: 0.3em 1em;
+  
   }
-
   .arrow-icon {
     width: 1em;
     position: relative;

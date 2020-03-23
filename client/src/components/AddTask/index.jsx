@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Form, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 import { create, single } from './../../services/task';
 import './style.scss';
@@ -145,7 +145,6 @@ class AddTask extends Component {
 
   render() {
     return (
-    
       <div className="addTask__form">
         <form onSubmit={this.handleFormSubmission}>
           {/*Task's name */}
@@ -171,7 +170,7 @@ class AddTask extends Component {
               id={`react-switch-03`}
               type="checkbox"
               onChange={this.changeRepetition}
-              required
+         
             />
             <label
               style={{ background: this.state.repetition && '#06D6A0' }}
@@ -230,7 +229,6 @@ class AddTask extends Component {
               name="level"
               value={this.state.level}
               onChange={this.handleInputChange}
-              required
             >
               <option>Easy</option>
               <option>Medium</option>
@@ -300,7 +298,6 @@ class AddTask extends Component {
             ></textarea>
           </div>
           <input className="input-btn" type="submit" value="Submit"></input>
-
           <button type="reset" onClick={this.resetTotal}>
             Reset form
           </button>

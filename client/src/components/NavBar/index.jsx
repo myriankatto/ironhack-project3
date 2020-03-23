@@ -8,7 +8,6 @@ import MenuButton from '../NavBarMenuButton';
 import WorkspacesDropdownMenu from '../WorkspacesDropdownMenu';
 
 import './style.scss';
-import { FaRegSnowflake } from 'react-icons/fa';
 // import { loadUserInformation } from './../../services/authentication';
 
 // import { Swipeable } from 'react-swipeable';

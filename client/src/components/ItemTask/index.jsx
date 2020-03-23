@@ -129,11 +129,12 @@ export default class ItemTask extends Component {
 
     return (
       <Card
-      className="p-2 cardTask border border-secondary rounded-lg " 
-      onClick={this.toogleWorkspace}>
-        <Accordion.Toggle 
-          as={Button} 
-          variant="link" 
+        className="p-2 cardTask border border-secondary rounded-lg "
+        onClick={this.toogleWorkspace}
+      >
+        <Accordion.Toggle
+          as={Button}
+          variant="link"
           className="d-flex justify-content-between"
           eventKey={this.props.toggle}
         >
@@ -155,39 +156,41 @@ export default class ItemTask extends Component {
             </span>
             <hr />
 
+            <div className="task_row">
+              {this.props.urgency && (
+                <div className="col  task_item_1">
+                  <h6>Urgent Task</h6>
+                </div>
+              )}
+
+              {this.props.personal && (
+                <div className="col  task_item_1">
+                  <h6>Personal Task</h6>
+                </div>
+              )}
+            </div>
             <div className="row">
-              <div className="col">
-                <p>Category</p>
+              <div className="col task_item">
+                <h5>Category </h5>
                 <p>{this.props.category}</p>
               </div>
 
-              { this.props.urgency &&
-              <div className="col">
-                <p>Urgency</p> 
-              </div>}
-
-              {this.props.personal &&
-                <div className="col">
-                  <p>Personal</p> 
-                </div>
-              }
-
-              <div className="col">
-                <p>Frequency</p>
+              <div className="col  task_item">
+                <h5>Frequency </h5>
                 <p>{this.props.frequency}</p>
               </div>
 
-              <div className="col cardTask_col d-flex align-items-center justify-content-center">
+              <div className="col task_item">
                 <div>
-                  <p className="cardTask_title">Level</p>
+                  <h5>Level</h5>
                   <p
-                    className="cardTask_level"
-                    style={{
-                      color: '#6c63ff',
-                      fontSize: '25px',
-                      fontWeight: '300',
-                      textTransform: 'uppercase'
-                    }}
+                  // className="cardTask_level"
+                  // style={{
+                  //   color: '#6c63ff',
+                  //   fontSize: '25px',
+                  //   fontWeight: '300',
+                  //   textTransform: 'uppercase'
+                  // }}
                   >
                     {this.props.level}
                   </p>
