@@ -30,8 +30,15 @@ class Tasks extends Component {
     this.fetchData();
   }
 
-  componentDidUpdate(){
-   //this.fetchData();
+  async componentDidUpdate(prevProps, prevState, snapshot){ 
+    const id = this.props.idWorkspace;
+    const tasks = await listTasks(id);
+
+    if(prevState.tasks !== tasks ){
+      this.setState({
+        tasks
+      });
+    }
   }
 
   // Warning: Can't perform a React state update on an unmounted component. 

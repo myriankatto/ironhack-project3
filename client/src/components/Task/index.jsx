@@ -20,33 +20,48 @@ class Tasks extends Component {
       id: this.props.idWorkspace
     };
 
-    
-    
+   
   };
+
+  async listOfTasks(){
+    const id = this.props.idWorkspace;
+    const tasks = await listTasks(id);
+    console.log('tasks 1',tasks);
+
+    return tasks;
+    
+
+    // this.setState({
+    //   tasks
+    // });
+  }
 
   async componentDidMount() {
     //Solucao para erro: Can't perform a React state update on an unmounted component:
     this._isMounted = true;
     const id = this.props.idWorkspace;
+
     const tasks = await listTasks(id);
+
+    this.setState({
+      tasks
+    });
     
-    this.fetchData(tasks);
-    console.log('this.state.tasks 1 ',this.state.tasks);
- 
+   
   };
 
   async componentDidUpdate(prevProps, prevState, snapshot){
-        console.log('PREV STATE',prevState.tasks);
-        const id = this.props.idWorkspace;
-        const tasks = await listTasks(id);
+    
+    const id = this.props.idWorkspace;
+    const tasks = await listTasks(id);
 
-    if(prevState.tasks !== tasks){
-    //    console.log('é diferente');
-    //    this.fetchData(this.tasks);
-    };
-
-     
-   }
+    if(prevState.tasks !== tasks ){
+      this.setState({
+        tasks
+      });
+    }
+    
+  }
 
   
 
@@ -57,16 +72,7 @@ class Tasks extends Component {
     this._isMounted = false;
   }
 
-  fetchData(tasks){
-    
-    this.setState({
-      tasks
-    });
-
-    console.log('this.state.tasks 3 ',this.state.tasks);
-       
-  }
-
+  
  
   
 

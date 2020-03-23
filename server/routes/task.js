@@ -64,8 +64,7 @@ router.get('/:taskid', (req, res, next) => {
 
 //rota para criar task
 router.post('/create/:id', (req, res, next) => {
-  // console.log('ROTA TÁ FUNCIONANDO');
-  // console.log(req.body);
+  
 
   Task.create({
     name: req.body.name,

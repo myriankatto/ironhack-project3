@@ -16,7 +16,7 @@ class AddTask extends Component {
       frequency: '',
       description: '',
       workspace: '',
-      howlong: '',
+      howlong: 0,
       repetition: false,
       forever: false
     };
@@ -35,6 +35,9 @@ class AddTask extends Component {
     this.setState({
       [name]: value
     });
+
+    console.log('THIS STATE 1',this.state)
+    
   }
 
   changePersonal() {
@@ -107,8 +110,8 @@ class AddTask extends Component {
       frequency: '',
       description: '',
       workspace: '',
-      howlong: '',
-      repetition: '',
+      howlong: 0,
+      repetition: false,
       forever: false
     });
   }
@@ -123,8 +126,8 @@ class AddTask extends Component {
       frequency: '',
       description: '',
       workspace: '',
-      howlong: '',
-      repetition: '',
+      howlong: 0,
+      repetition: false,
       forever: false
     });
   }
@@ -139,6 +142,8 @@ class AddTask extends Component {
       frequency: '',
       description: '',
       workspace: '',
+      howlong: 0,
+      repetition: false,
       frequencyTrue: false
     });
   }
@@ -170,7 +175,7 @@ class AddTask extends Component {
               id={`react-switch-03`}
               type="checkbox"
               onChange={this.changeRepetition}
-         
+              
             />
             <label
               style={{ background: this.state.repetition && '#06D6A0' }}
@@ -194,6 +199,7 @@ class AddTask extends Component {
                   onChange={this.handleInputChange}
                   placeholder="Days"
                   autoComplete="off"
+                  
                 ></input>
 
                 {/* until when */}
@@ -229,6 +235,7 @@ class AddTask extends Component {
               name="level"
               value={this.state.level}
               onChange={this.handleInputChange}
+              
             >
               <option>Easy</option>
               <option>Medium</option>
