@@ -27,30 +27,30 @@ export const handleRepetition = async (props) => {
 
   /*CASO A TASK TEM REPETIÇAO VOLTA PARA DONE IGUAL A FALSE*/
   if(repetition && approved && doneTask){
-    do {
-      setInterval(
-        async function(){
-          await EditTask({id, done});
-          counter++;
-        }
-        ,frequencyOnMilliseconds)
-    } while( counter < howlong)
+    // do {
+    //   setInterval(
+    //     async function(){
+    //       await EditTask({id, done});
+    //       counter++;
+    //     }
+    //     ,frequencyOnMilliseconds)
+    // } while( counter < howlong)
   }
 
   /*ANALISE CASO O doneTask é falso e passou o prazo*/
  
     if(repetition && approved && !doneTask){
-      if(differenceOfDays%frequencyOnDays === 0){
+      // if(differenceOfDays%frequencyOnDays === 0){
 
-        /*Tirar score do workspace*/
-        const workspaceSingle = await SingleWorkspace(workspace);
-        const oldPointsWorkspace = workspaceSingle.workspace.score;
-        const newPointsWorspace = oldPointsWorkspace - 5;
-        await editWorkspace({workspace, newPointsWorspace});
+      //   /*Tirar score do workspace*/
+      //   const workspaceSingle = await SingleWorkspace(workspace);
+      //   const oldPointsWorkspace = workspaceSingle.workspace.score;
+      //   const newPointsWorspace = oldPointsWorkspace - 5;
+      //   await editWorkspace({workspace, newPointsWorspace});
 
   
   
-      }
+      // }
     }
   
   
@@ -60,7 +60,7 @@ export const handleRepetition = async (props) => {
   
   return (
     <div>
-      
+      {console.log('handleRepetition chamado')}
     </div>
   )
 }
