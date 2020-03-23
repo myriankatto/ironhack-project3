@@ -8,6 +8,8 @@ const instance = axios.create({
 //service para criar uma task com base no id do workspace
 const create = async data => {
   
+  console.log('CREATE DATA ',data);
+  console.log('WORKSPACE', data.id);
 
   const name = data.name;
   const level = data.level;
@@ -21,7 +23,7 @@ const create = async data => {
   const repetition= data.repetition;
   
   try {
-    const result = await instance.post(`/create/${data.id}`, 
+   await instance.post(`/create/${data.id}`, 
     { name, frequency, level, personal, urgency, description, category , approved, repetition, howlong});
     // const newTask = result.data;
     // return newTask;
