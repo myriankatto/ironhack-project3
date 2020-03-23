@@ -2,26 +2,31 @@ $darkColor: #3f3d56;
 $purple: #6c63ff;
 $lightGrey: #e2e2e2;
 
-.cardTask {
-  margin-bottom: 2em;
-
+.card__task {
+  padding: 0.5em;
+  border: 1px solid $darkColor;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  h1 {
+    font-size: 1.4em !important;
+    color: $purple !important;
+    text-align: center;
+  }
+  a {
+    text-decoration: none;
+  }
+  .cardTask__paragraph {
+    text-align: left !important;
+    font-size: 0.7em;
+    color: $darkColor;
+    font-weight: 200;
+    line-height: 1.5em;
+  }
   .arrow-icon {
     width: 1.2em;
     margin: 0 0 0 2em;
-  }
-
-  .title_Card {
-    text-decoration: none;
-  }
-
-  :hover {
-    color: $purple;
-  }
-
-  .cardTask_title {
-    border: 1px solid green;
-    padding-top: 1em;
-    color: $darkColor;
   }
 
   .cardTask_level {
@@ -29,19 +34,21 @@ $lightGrey: #e2e2e2;
   }
   .task_row {
     display: flex;
-    justify-content: space-between;
 
     .task_item_1 {
       display: flex;
       flex-direction: column;
       background-color: $purple;
+      align-items: center;
+      justify-content: center;
       border-radius: 0.5em;
-      margin: 0.5em;
+      margin: 0.5em 0.2em;
       h6 {
         color: white;
         font-size: 0.7em;
-        margin: 0.5em;
         font-weight: 600;
+        padding: 0.4em 0;
+        margin: 0;
       }
     }
   }

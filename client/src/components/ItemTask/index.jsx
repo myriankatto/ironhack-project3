@@ -128,10 +128,9 @@ export default class ItemTask extends Component {
     }
 
     return (
-      <Card
-        className="p-2 cardTask border border-secondary rounded-lg "
-        onClick={this.toogleWorkspace}
-      >
+      // <Card
+      //   className="p-2 cardTask border border-secondary rounded-lg "
+      <div className="card__task" onClick={this.toogleWorkspace}>
         <Accordion.Toggle
           as={Button}
           variant="link"
@@ -148,12 +147,7 @@ export default class ItemTask extends Component {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.toggle}>
           <Card.Body style={{ color: '#3f3d56' }}>
-            <span
-              className="cardTask__paragraph"
-              style={{ textDecoration: 'none', textTransform: 'none' }}
-            >
-              {this.props.description}
-            </span>
+            <h6 className="cardTask__paragraph">{this.props.description}</h6>
             <hr />
 
             <div className="task_row">
@@ -200,12 +194,12 @@ export default class ItemTask extends Component {
 
             {/* BOTÕES DE CONTROLE DO OPERADOR */}
 
-            <div className="row">
-              <div className="col">
+            <div className="row ">
+              <div className="col control_task">
                 {operator && <Link to={`/edit/task/${taskId}`}>Edit Task</Link>}
               </div>
 
-              <div className="col">
+              <div className="col control_task">
                 {operator && (
                   <button onClick={this.handleDeleteTask}>
                     <FaTrashAlt />
@@ -213,7 +207,7 @@ export default class ItemTask extends Component {
                 )}
               </div>
 
-              <div className="col">
+              <div className="col control_task">
                 {!this.props.approved && operator && (
                   <button onClick={this.handleApproveTask}>
                     <FaRegCheckSquare />
@@ -269,7 +263,7 @@ export default class ItemTask extends Component {
             )}
           </Card.Body>
         </Accordion.Collapse>
-      </Card>
+      </div>
     );
   }
 }
