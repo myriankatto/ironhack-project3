@@ -62,8 +62,8 @@ class WorkspacesDropdownMenu extends Component {
                   {workspaceApproved.workspaceApproved.map(workspace => (
                     <li className="dd-list-item" key={workspace._id}>
 
-                      {/* onClick para lift state do navbar */}
-                     <button onClick={()=>this.props.toggleSelected(workspace._id)}>{workspace.name}</button>
+                  
+                     <button >{workspace.name}</button>
                     </li>
                   ))}
                 </span>

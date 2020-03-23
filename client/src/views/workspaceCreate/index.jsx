@@ -23,7 +23,7 @@ export default class WorkspaceCreate extends Component {
       workspaceId: this.props.match.params.id,
       scoreUser: 0
     };
-    this.toggleSelected = this.toggleSelected(this);
+    // this.toggleSelected = this.toggleSelected(this);
   }
 
   componentDidMount() {
@@ -98,7 +98,7 @@ export default class WorkspaceCreate extends Component {
           user={this.props.user}
           workspaceOperator={workspace.operator}
           workspace={this.state.workspace}
-          toggleSelected={this.toggleSelected}
+          // toggleSelected={this.toggleSelected}
         />
 
         <div className="dashboard__content mt-2">

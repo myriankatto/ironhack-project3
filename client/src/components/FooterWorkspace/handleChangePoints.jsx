@@ -28,12 +28,12 @@ export default class HandleChangePoints extends Component {
     const creatorId = this.props.user._id;
     const idWorkspace =  this.props.idWorkspace;
     const user = await SingleUser(creatorId);
-    const userScore = user.scoreUser.find(element => element.workspace === idWorkspace).score
+    // const userScore = user.scoreUser.find(element => element.workspace === idWorkspace).score
 
-    this.setState({
-      workspaceScore,
-      userScore
-    });
+    // this.setState({
+    //   workspaceScore,
+    //   userScore
+    // });
 
 
 
@@ -42,7 +42,7 @@ export default class HandleChangePoints extends Component {
   render() {
     return (
       <h5>
-        <small>Your Score:</small>{this.state.userScore}<br></br>
+        {/* <small>Your Score:</small>{this.state.userScore}<br></br> */}
         <small>Workspace Score:</small> {this.state.workspaceScore}
       </h5>
     )

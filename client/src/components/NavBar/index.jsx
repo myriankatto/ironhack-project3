@@ -83,7 +83,7 @@ class Navbar extends Component {
               user={this.props.user}
               workspace={this.props.workspace}
               idWorkspace={this.props.idWorkspace}
-              toggleSelected={this.props.toggleSelected} //TOOGGLE PARA LIFT STATE DO WORKSPACECREATE
+              // toggleSelected={this.props.toggleSelected} //TOOGGLE PARA LIFT STATE DO WORKSPACECREATE
             />
           </Fragment>
         ) : (

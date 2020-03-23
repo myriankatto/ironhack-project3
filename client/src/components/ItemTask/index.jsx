@@ -129,20 +129,11 @@ export default class ItemTask extends Component {
 
     return (
       <Card
-<<<<<<< HEAD
       className="p-2 cardTask border border-secondary rounded-lg " 
       onClick={this.toogleWorkspace}>
         <Accordion.Toggle 
           as={Button} 
           variant="link" 
-=======
-        className="p-2 cardTask border border-secondary rounded-lg shadow"
-        onClick={this.toogleWorkspace}
-      >
-        <Accordion.Toggle
-          as={Button}
-          variant="link"
->>>>>>> 474acdbf87e1957fd4b2ce9ee41a2caca3d1159a
           className="d-flex justify-content-between"
           eventKey={this.props.toggle}
         >
