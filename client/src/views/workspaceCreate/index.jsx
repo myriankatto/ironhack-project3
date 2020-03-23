@@ -92,6 +92,7 @@ export default class WorkspaceCreate extends Component {
         />
 
         <div className="dashboard__content mt-2">
+        <h1>TASKS TO DO</h1>
           <Tasks
             idWorkspace={WorkspaceId}
             user={this.props.user}
@@ -99,7 +100,7 @@ export default class WorkspaceCreate extends Component {
             done={false}
           />
 
-          <h1>TASKS FEITAS</h1>
+          <h1>TASKS ALREADY DONE</h1>
           <TaskDone
             idWorkspace={WorkspaceId}
             user={this.props.user}
@@ -107,7 +108,7 @@ export default class WorkspaceCreate extends Component {
             done={true}
           />
 
-          <h1>TASKS PARA APROVAR:</h1>
+          <h1>TASKS TO APROVE</h1>
           <ApproveTasks
             idWorkspace={WorkspaceId}
             user={this.props.user}

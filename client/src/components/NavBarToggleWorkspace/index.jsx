@@ -93,7 +93,7 @@ class NavBarToggleWorkspace extends Component {
               </Link>
             </div>
 
-            <div className="menu-item">
+            {/* <div className="menu-item">
               <Link style={{ color: 'white' }} to={'/'}>
                 <img
                   className="menu-icon"
@@ -103,7 +103,7 @@ class NavBarToggleWorkspace extends Component {
                 />
                 <span>Upgrade</span>
               </Link>
-            </div>
+            </div> */}
           </nav>
         </div>
       </Swipeable>

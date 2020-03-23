@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Accordion, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -128,10 +128,9 @@ export default class ItemTask extends Component {
     }
 
     return (
-      <Card
-        className="p-2 cardTask border border-secondary rounded-lg "
-        onClick={this.toogleWorkspace}
-      >
+      // <Card
+      //   className="p-2 cardTask border border-secondary rounded-lg "
+      <div className="card__task" onClick={this.toogleWorkspace}>
         <Accordion.Toggle
           as={Button}
           variant="link"
@@ -148,13 +147,9 @@ export default class ItemTask extends Component {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.toggle}>
           <Card.Body style={{ color: '#3f3d56' }}>
-            <span
-              className="cardTask__paragraph"
-              style={{ textDecoration: 'none', textTransform: 'none' }}
-            >
-              {this.props.description}
-            </span>
+            <h6 className="cardTask__paragraph">{this.props.description}</h6>
             <hr />
+            <h6>Task Info</h6>
 
             <div className="task_row">
               {this.props.urgency && (
@@ -172,18 +167,18 @@ export default class ItemTask extends Component {
             <div className="row">
               <div className="col task_item">
                 <h5>Category </h5>
-                <p>{this.props.category}</p>
+                <span>{this.props.category}</span>
               </div>
 
               <div className="col  task_item">
                 <h5>Frequency </h5>
-                <p>{this.props.frequency}</p>
+                <span>{this.props.frequency}</span>
               </div>
 
               <div className="col task_item">
                 <div>
                   <h5>Level</h5>
-                  <p
+                  <span
                   // className="cardTask_level"
                   // style={{
                   //   color: '#6c63ff',
@@ -193,38 +188,18 @@ export default class ItemTask extends Component {
                   // }}
                   >
                     {this.props.level}
-                  </p>
+                  </span>
                 </div>
-              </div>
-            </div>
-
-            {/* BOTÕES DE CONTROLE DO OPERADOR */}
-
-            <div className="row">
-              <div className="col">
-                {operator && <Link to={`/edit/task/${taskId}`}>Edit Task</Link>}
-              </div>
-
-              <div className="col">
-                {operator && (
-                  <button onClick={this.handleDeleteTask}>
-                    <FaTrashAlt />
-                  </button>
-                )}
-              </div>
-
-              <div className="col">
-                {!this.props.approved && operator && (
-                  <button onClick={this.handleApproveTask}>
-                    <FaRegCheckSquare />
-                  </button>
-                )}
               </div>
             </div>
 
             {/* BOTÕES DE CONTROLE De QUALQUER USUÁRIO */}
             {!this.props.done /*CASO A TASK JÁ FOI FEITO NÃO VAI APARECER OS CONTROLES*/ && (
-              <div>
+
+              <div className="user_task">
+              <hr />
+              <h6>Manage Task</h6>
+
                 <div className="row">
                   {' '}
                   {/*ROW 2*/}
@@ -240,19 +215,23 @@ export default class ItemTask extends Component {
                           />
                         </figure>
                       ) : (
-                        <button onClick={this.handleOwnerTask}>
+                        <button className="btn-task" onClick={this.handleOwnerTask}>
                           I am responsible for this task
                         </button>
                       )}
                     </div>
                   )}
-                  <div className="col">
-                    {userIsOwner ? (
-                      <button onClick={this.handleOwnerTask}>Give up the task</button>
-                    ) : (
-                      ''
-                    )}
-                  </div>
+                  {userIsOwner ? (
+                    <Fragment>
+                      <div className="col">
+                        <button className="btn-task" onClick={this.handleOwnerTask}>
+                          Give up the task
+                        </button>{' '}
+                      </div>
+                    </Fragment>
+                  ) : (
+                    ''
+                  )}
                 </div>
                 {/* FINAL DA ROW 2*/}
 
@@ -260,16 +239,46 @@ export default class ItemTask extends Component {
                   {/*  ROW 3 */}
                   <div className="col">
                     {(this.props.owner === null || userIsOwner) && (
-                      <button onClick={this.handleTaskComplete}>Task Done</button>
+                      <button className="btn-task" onClick={this.handleTaskComplete}>Task Done</button>
                     )}
                   </div>
                 </div>
                 {/* FINAL DA ROW 3*/}
+                {/* BOTÕES DE CONTROLE DO OPERADOR */}
+                <div className="row manage__task">
+                <hr />
+                  <div className="col">
+                    {operator && (
+                      <Link to={`/edit/task/${taskId}`}>
+                        {' '}
+                        <img src="./../images/edit.svg" alt="edit" />
+                      </Link>
+                    )}
+                  </div>
+
+                  <div className="col">
+                    {operator && (
+                      <button onClick={this.handleDeleteTask}>
+                        <img src="./../images/remove.svg" alt="remove" />
+                      </button>
+                    )}
+                  </div>
+
+                  {!this.props.approved && operator && (
+                    <Fragment>
+                      <div className="col">
+                        <button onClick={this.handleApproveTask}>
+                          <img src="./../images/approve.svg" alt="approve" />
+                        </button>
+                      </div>
+                    </Fragment>
+                  )}
+                </div>
               </div>
             )}
           </Card.Body>
         </Accordion.Collapse>
-      </Card>
+      </div>
     );
   }
 }

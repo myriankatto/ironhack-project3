@@ -28,28 +28,25 @@ class CreateWorkspace extends Component {
     const name = this.state.workspaceName;
     const creatorId = this.props.user._id;
     const score = 0;
-    
 
     if (!name) return;
-    
-    const newWorkspace = await create({name});
 
-    //console.log('newWorkspace Operator', newWorkspace.data.operator);
+    const newWorkspace = await create({ name });
     const userId = newWorkspace.data.operator;
     const userWorkspaceId = newWorkspace.data._id;
 
-    await usersApproved(userId, userWorkspaceId);
+    const workspaceApprovedForOperator = await usersApproved(userId, userWorkspaceId);
     
     //Operador recebe score igual à 0 quando é criado o Workspace:
-    const workspace =  userWorkspaceId;
+    const workspace = userWorkspaceId;
     await EditUser({creatorId, workspace, score});
-    
+
+
     this.setState({
       workspaceName: ''
     });
 
-  };
-  
+  }
   render() {
     return (
       <form className="form" onSubmit={this.handleFormSubmission}>
