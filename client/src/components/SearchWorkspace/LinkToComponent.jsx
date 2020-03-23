@@ -10,14 +10,20 @@ class LinkToComponent extends Component {
   }
 
   render() {
-    return this.state.workspacesApprovedForCurrentUser.find(
-      workspaceid => workspaceid === this.props.workspace._id
-    ) ? (
-      <Link to={`/dashboard/${this.props.workspace._id}`}>{this.props.workspace.name}</Link>
-    ) : (
-      <Link to={`/dashboard`}>{this.props.workspace.name}</Link>
-    );
+    return <Link to={`/dashboard/${this.props.workspace._id}`}>{this.props.workspace.name}</Link>;
   }
 }
 
 export default LinkToComponent;
+//   render() {
+//     return this.state.workspacesApprovedForCurrentUser.find(
+//       workspaceid => workspaceid === this.props.workspace._id
+//     ) ? (
+//       <Link to={`/dashboard/${this.props.workspace._id}`}>{this.props.workspace.name}</Link>
+//     ) : (
+//       <Link to={`/dashboard`}>{this.props.workspace.name}</Link>
+//     );
+//   }
+// }
+
+// export default LinkToComponent;
