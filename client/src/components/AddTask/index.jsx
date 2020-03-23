@@ -299,7 +299,7 @@ class AddTask extends Component {
           id={`react-switch-03`}
           type="checkbox"
           onChange={this.changeRepetition}
-          required
+          
         />
         <label
           style={{ background: this.state.repetition && '#06D6A0' }}
