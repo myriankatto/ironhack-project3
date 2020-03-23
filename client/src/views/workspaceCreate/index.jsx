@@ -8,6 +8,7 @@ import { single as CreatorTask } from '../../services/score';
 /*COMPONENTES*/
 import FooterWorkspace from '../../components/FooterWorkspace';
 import Tasks from '../../components/Task';
+import TaskDone from '../../components/TaskDone';
 
 import ApproveTasks from '../../components/ApproveTasks';
 
@@ -94,8 +95,17 @@ export default class WorkspaceCreate extends Component {
             idWorkspace={WorkspaceId}
             user={this.props.user}
             workspaceOperator={workspace.operator}
+            done={false}
           />
 
+          <h1>TASKS FEITAS</h1>
+          <TaskDone 
+            idWorkspace={WorkspaceId}
+            user={this.props.user}
+            workspaceOperator={workspace.operator}
+            done={true}
+          />
+          
           <h1>TASKS PARA APROVAR:</h1>
           <ApproveTasks
             idWorkspace={WorkspaceId}

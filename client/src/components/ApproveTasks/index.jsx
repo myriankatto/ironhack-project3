@@ -20,7 +20,7 @@ export default class ApproveTasks extends Component {
   };
 
   componentDidUpdate(){
-    this.fetchData();
+   // this.fetchData();
   }
 
   fetchData(){

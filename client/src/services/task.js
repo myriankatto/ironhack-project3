@@ -17,10 +17,12 @@ const create = async data => {
   const frequency = data.frequency;
   const description = data.description
   const approved = data.approved;
+  const howlong= data.howlong;
+  const repetition= data.repetition;
   
   try {
     const result = await instance.post(`/create/${data.id}`, 
-    { name, frequency, level, personal, urgency, description, category , approved});
+    { name, frequency, level, personal, urgency, description, category , approved, repetition, howlong});
     // const newTask = result.data;
     // return newTask;
   } catch (error) {
@@ -29,11 +31,23 @@ const create = async data => {
 };
 
 
-//Service para listar as tasks aprovadas
+//Service para listar as tasks aprovadas e não feitas
 const list = async id => {
  
   try{
     const result = await instance.get(`/list/${id}`);
+    const tasks = result.data;
+    return tasks;
+  }catch (error) {
+    throw error;
+  }
+}
+
+//Service para listar as tasks aprovadas e não feitas
+const listDone = async id => {
+ 
+  try{
+    const result = await instance.get(`/listdone/${id}`);
     const tasks = result.data;
     return tasks;
   }catch (error) {
@@ -63,17 +77,28 @@ const edit = async data => {
   const frequency = data.frequency;
   const description = data.description;
   const owner = data.owner;
+  const howlong= data.howlong;
+  const repetition= data.repetition;
+  const done = data.done;
+
+  // let done;
+  // if(data.done !== undefined){
+  //   done=data.done;
+  // }else{
+  //   done= false;
+  // }
+
+  const approved =data.approved;
+  /*
   let approved;
   if(data.approved === true){
      approved = data.approved;
   }else{
      approved = false;
-  }
+  }*/
   
-  console.log('Service',data)
-
-  
-  const result = await instance.put(`/edit/${data.id}`, {name, frequency, level, personal, urgency, description, category, approved, owner });
+  const result = await instance.put(`/edit/${data.id}`, 
+  {name, frequency, level, personal, urgency, description, category, approved, owner, howlong, repetition, done});
   const task = result.data;
   return task;
 };
@@ -104,4 +129,4 @@ const remove = async id => {
 
 
 
-export { create, list, edit, single, remove, pending };
+export { create, list, edit, single, remove, pending, listDone };

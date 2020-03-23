@@ -7,11 +7,16 @@ import { FaTrashAlt, FaRegCheckSquare } from 'react-icons/fa';
 
 /*Service para deletar*/
 import { remove as DeleteTask } from '../../services/task';
+import { single as SingleTask } from '../../services/task';
+import { single as SingleUser } from '../../services/score';
+
 
 
 /*IMPORTAR FUNÇOES*/
 import {handleDoTheTask} from './handleDoTheTask';
 import {handleApproveTask} from './handleApproveTask';
+import {handleTaskComplete} from './handleTaskComplete';
+import {handleRepetition} from './handleRepetition';
 
 import './style.scss';
 
@@ -30,13 +35,42 @@ export default class ItemTask extends Component {
       workspace:'',
       approved:'',
       handleToDoTask: false,
+      ownerTaskPic:''
+      
     };
 
+    
     this.toogleWorkspace = this.toogleWorkspace.bind(this);
     this.handleDeleteTask = this.handleDeleteTask.bind(this);
     this.handleApproveTask = this.handleApproveTask.bind(this);
     this.handleOwnerTask=this.handleOwnerTask.bind(this);
+    this.handleTaskComplete= this.handleTaskComplete.bind(this);
   };
+
+  async componentDidMount(){
+    const id = this.props.taskId;
+    
+    const singleTask = await SingleTask(id);
+    await handleRepetition({singleTask});
+
+    
+
+    if(singleTask.owner !== null){
+      const singleUser = await SingleUser(singleTask.owner._id);
+      
+      this.setState({
+        ownerTaskPic: singleUser.picture
+      });
+    } 
+  
+  }
+
+ handleTaskComplete(){
+    const id = this.props.taskId;
+    const user = this.props.user;
+
+    handleTaskComplete({id, user});
+  }
 
   toogleWorkspace() {
     this.setState(previousState => ({
@@ -44,17 +78,29 @@ export default class ItemTask extends Component {
     }));
   };
 
-  handleOwnerTask(){
+  async handleOwnerTask(){
     const id = this.props.taskId;
     const user = this.props.user;
 
-    this.setState( previousState => ({ 
+    await this.setState( previousState => ({ 
       handleToDoTask: !previousState.handleToDoTask
     }));
+
     
     const handleToDoTask = this.state.handleToDoTask;
 
-    handleDoTheTask({id, user, handleToDoTask});
+    await handleDoTheTask({id, user, handleToDoTask});
+
+    const singleTask = await SingleTask(id);
+
+    const singleUser = await SingleUser(singleTask.owner._id);
+
+    
+    this.setState({
+      ownerTaskPic: singleUser.picture
+    });
+    
+    
   }
 
   handleDeleteTask(){
@@ -80,6 +126,8 @@ export default class ItemTask extends Component {
     /*VERIFICAÇÃO SE O USER É O OPERADOR*/
     const operator = this.props.user._id === this.props.workspaceOperator;
     
+    /*Verifica se a task não tem owner ou o owner é o usuário logado:*/
+    //const doTheTask = this.props.owner === null || operator
 
     /*Verificar se a tarefa já tem owner*/
     const ownerIsTruth = this.props.owner !== null && this.props.owner !== undefined ;
@@ -92,7 +140,7 @@ export default class ItemTask extends Component {
       userIsOwner = this.props.owner._id === this.props.user._id;
     };
     
-   
+    
     return (
       <Card
       className="p-2 cardTask border border-secondary rounded-lg shadow" 
@@ -145,6 +193,9 @@ export default class ItemTask extends Component {
                 </div>
               </div>
             </div>
+          
+
+          {/* BOTÕES DE CONTROLE DO OPERADOR */}
 
             <div className="row">
             
@@ -156,7 +207,7 @@ export default class ItemTask extends Component {
 
               <div className="col">
                 { operator && 
-                  <button onClick={this.handleDeleteTask}>
+                  <button  onClick={this.handleDeleteTask}>
                     <FaTrashAlt />
                   </button>
                 }
@@ -164,30 +215,33 @@ export default class ItemTask extends Component {
 
               <div className="col">
                 { !this.props.approved && operator &&
-                  <button onClick={this.handleApproveTask}>
+                  <button  onClick={this.handleApproveTask}>
                     <FaRegCheckSquare />
                   </button>
                 }
               </div>
             </div>
             
-            <div className="row">
+            {/* BOTÕES DE CONTROLE De QUALQUER USUÁRIO */}
+          { !this.props.done && /*CASO A TASK JÁ FOI FEITO NÃO VAI APARECER OS CONTROLES*/
+            
+          <div>
+
+            <div className="row"> {/*ROW 2*/}
             
               {this.props.approved &&
+
                 <div className="col">
-                
                   {
-                    ownerIsTruth ? 
+                    ownerIsTruth ?
                     //FOTO DO OWNER DA TASK
                     <figure>
-                      <img className="Task-owner" src={this.props.user.picture} alt={this.props.user.name} />
-                    </figure>
+                      <img className="Task-owner" 
+                      src={this.state.ownerTaskPic}  alt={this.state.ownerTaskPic}/>
+                    </figure> :
 
-                    :
-
-                    //Botão  DO OWNER DA TASK
-                    <button onClick={this.handleOwnerTask}>
-                      Do the task
+                    <button  onClick={this.handleOwnerTask}>
+                      I am responsible for this task
                     </button>
                   }
                 </div>
@@ -196,12 +250,27 @@ export default class ItemTask extends Component {
                 <div className="col">
                   {
                     userIsOwner ?
-                    <button onClick={this.handleOwnerTask}>
+                    <button  onClick={this.handleOwnerTask}>
                       Give up the task
                     </button> : ''
                   }  
                 </div>
+
+            </div>{/* FINAL DA ROW 2*/}
+
+            
+            <div className="row">{/*  ROW 3 */}
+              <div className="col">
+                {(this.props.owner === null || userIsOwner) &&
+                  <button type="button" onClick={this.handleTaskComplete}>Task Done</button>
+                }
               </div>
+            </div>{/* FINAL DA ROW 3*/}
+
+          </div>
+          }
+            
+           
 
           </Card.Body>
         </Accordion.Collapse>

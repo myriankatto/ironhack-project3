@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { edit, single }  from './../../services/task';
+import { Form, Button } from 'react-bootstrap';
+
 import { Link } from 'react-router-dom';
 
 export default class EditTaskOperator extends Component {
@@ -9,13 +11,16 @@ export default class EditTaskOperator extends Component {
     super(props);
     this.state={
       name: '',
-      level: '', 
-      urgency:'',
-      category:'',
-      personal:'',
+      level: 'easy', 
+      urgency:false,
+      category:'Kitchen',
+      personal:false,
       frequency: '',
       description: '',
-      workspace:''
+      workspace:'',
+      howlong: '',
+      repetition: '',
+      forever:false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -23,6 +28,8 @@ export default class EditTaskOperator extends Component {
     this.changePersonal = this.changePersonal.bind(this);
     this.changeUrgency = this.changeUrgency.bind(this);
     this.resetTotal = this.resetTotal.bind(this);
+    this.handleRepeatChange=this.handleRepeatChange.bind(this);
+    this.changeRepetition=this.changeRepetition.bind(this);
   };
 
   componentDidMount() {
@@ -43,7 +50,9 @@ export default class EditTaskOperator extends Component {
           personal: beforeTask.personal,
           frequency: beforeTask.frequency,
           description: beforeTask.description,
-          workspace: beforeTask.workspace
+          workspace: beforeTask.workspace,
+          howlong:beforeTask.beforeTask,
+          repetition:beforeTask.repetition
         });
       })
       .catch(error => {
@@ -59,11 +68,24 @@ export default class EditTaskOperator extends Component {
     });
 
     console.log(this.state);
-  }
+  };
+
+  handleRepeatChange(){
+    this.setState( previousState => ({
+      forever: !previousState.forever,
+      howlong: 10000
+    }));
+  };
 
   changePersonal(){
     this.setState( previousState => ({
       personal: !previousState.personal
+    }));
+  }
+
+  changeRepetition(){
+    this.setState( previousState => ({
+      repetition: !previousState.repetition
     }));
   }
 
@@ -84,8 +106,10 @@ export default class EditTaskOperator extends Component {
     const category = this.state.category;
     const frequency = Number(this.state.frequency);
     const description = this.state.description;
+    const howlong = this.state.howlong;
+    const repetition = this.state.repetition;
      
-    edit({id,name, level, urgency, personal, category, frequency, description })
+    edit({id,name, level, urgency, personal, category, frequency, description, howlong, repetition })
       .then()
       .catch(error => {
         console.log(error);
@@ -101,7 +125,10 @@ export default class EditTaskOperator extends Component {
           personal: beforeTask.personal,
           frequency: beforeTask.frequency,
           description: beforeTask.description,
-          workspace:beforeTask.workspace
+          workspace:beforeTask.workspace,
+          howlong: beforeTask.howlong,
+          repetition:  beforeTask.repetition
+     
         });
       })
       .catch(error => {
@@ -117,7 +144,6 @@ export default class EditTaskOperator extends Component {
 
     single(id)
       .then(beforeTask => {
-        
         this.setState({ 
           name: beforeTask.name,
           level: beforeTask.level,
@@ -126,6 +152,9 @@ export default class EditTaskOperator extends Component {
           personal: beforeTask.personal,
           frequency: beforeTask.frequency,
           description: beforeTask.description,
+          workspace:beforeTask.workspace,
+          howlong: beforeTask.howlong,
+          repetition:  beforeTask.repetition
         });
       })
       .catch(error => {
@@ -139,6 +168,7 @@ export default class EditTaskOperator extends Component {
       <div>
         
         <form onSubmit={this.handleFormSubmission}>
+
         {/*Task's name */}
         <input type="text" 
           id="fname" 
@@ -150,14 +180,58 @@ export default class EditTaskOperator extends Component {
         ></input>
 
         {/* Frequency */}
-        <input 
-          type="number"
-          name="frequency"
-          value={this.state.frequency}
-          onChange={this.handleInputChange}
-          placeholder="Set frequency"
-          autoComplete="off"
-        ></input>
+        <p>Frequency - Terá</p>
+         
+        <input
+          className="react-switch-checkbox"
+          id={`react-switch-02`}
+          type="checkbox"
+          onChange={this.changeRepetition}
+          required
+        />
+        <label
+          style={{ background: this.state.repetition && '#06D6A0' }}
+          className="react-switch-label"
+          htmlFor={`react-switch-02`}
+        >
+          <span className={`react-switch-button`} />
+        </label>
+
+        { this.state.repetition && 
+
+          <Fragment>
+            <input 
+                type="number"
+                name="frequency"
+                min="1"
+                max="20"
+                value={this.state.frequency}
+                onChange={this.handleInputChange}
+                placeholder="Set frequency"
+                autoComplete="off"
+              ></input>
+            
+            { /* until when */ }
+            
+            { !this.state.forever ?
+              <input 
+                type="number"
+                name="howlong"
+                min="1"
+                value={this.state.howlong}
+                onChange={this.handleInputChange}
+                placeholder="Until when will it repeat"
+                autoComplete="off"
+              ></input> : ''
+            }
+
+            <Form.Group controlId="formBasicCheckbox" onClick={this.handleRepeatChange}>
+              <Form.Check type="checkbox" label="Para sempre" onClick={this.handleRepeatChange} />
+            </Form.Group>
+
+          </Fragment>
+        }
+
 
         {/* Level */}
         <select 
