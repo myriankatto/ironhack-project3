@@ -13,27 +13,32 @@ class ApprovedUsersForWorkspace extends Component {
   }
 
   componentDidMount() {
-    approvedUser(this.props.workspaceApproved.workspaceApproved[0]._id).then(users =>
-      this.setState({ approvedUsers: users })
-    );
+    approvedUser(this.props.workspaceId).then(users => this.setState({ approvedUsers: users }));
+    // approvedUser(this.props.workspaceApproved.workspaceApproved[0]._id).then(users =>
+    //   this.setState({ approvedUsers: users })
+    // );
   }
-  componentDidUpdate() {
-    approvedUser(this.props.workspaceApproved.workspaceApproved[0]._id).then(users =>
-      this.setState({ approvedUsers: users })
-    );
-  }
+
   removeUserFromWorkspace(userId) {
-    approvedUsersReject(userId, this.props.workspaceApproved.workspaceApproved[0]._id);
+    approvedUsersReject(userId, this.props.workspaceId).then(() =>
+      approvedUser(this.props.workspaceId).then(users => this.setState({ approvedUsers: users }))
+    );
+    // approvedUsersReject(userId, this.props.workspaceApproved.workspaceApproved[0]._id).then(() =>
+    //   approvedUser(this.props.workspaceApproved.workspaceApproved[0]._id).then(users =>
+    //     this.setState({ approvedUsers: users })
+    //   )
+    // );
   }
 
   render() {
-    // console.log(this.props.workspaceApproved.workspaceApproved[0]);
+    this.props.workspaces.length !== 0 && console.log(this.props.workspaces[0]);
     return (
       <div className="approvedUser">
         <Link to="/dashboard">
           <img className="icon-img" src="./../images/close-white.svg" alt="close" />
         </Link>
-        <h2>{this.props.workspaceApproved.workspaceApproved[0].name}'s Team</h2>
+        {/* <h2>{this.props.workspaces.workspaceApproved[0].name}'s Team</h2> */}
+        {/* <h2>{this.props.workspaceApproved.workspaceApproved[0].name}'s Team</h2> */}
 
         <img className="team__img__list" src="./../images/undraw_team_spirit_hrr4.svg" alt="team" />
 

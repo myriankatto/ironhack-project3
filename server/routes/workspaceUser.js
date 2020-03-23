@@ -29,8 +29,8 @@ router.get('/userWorkspacesApproved/:userid', (req, res, next) => {
 });
 
 //route to retrieve the workspace wich the user is the same as the operaor
-router.get('/editWorkspace/:userId', (req, res, next) => {
-  Workspace.find({ operator: req.params.userId })
+router.get('/editWorkspace/:userId/:workspaceId', (req, res, next) => {
+  Workspace.find({ operator: req.params.userId, _id: req.params.workspaceId })
     .then(workspaces => {
       res.json(workspaces);
     })
