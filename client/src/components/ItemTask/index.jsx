@@ -156,20 +156,28 @@ export default class ItemTask extends Component {
             <hr />
 
             <div className="row">
-              <div className="col-3">
+              <div className="col">
                 <p>Category</p>
+                <p>{this.props.category}</p>
               </div>
 
-              <div className="col-3">
-                <p>Urgency</p>
-              </div>
+              { this.props.urgency &&
+              <div className="col">
+                <p>Urgency</p> 
+              </div>}
 
-              <div className="col-3">
+              {this.props.personal &&
+                <div className="col">
+                  <p>Personal</p> 
+                </div>
+              }
+
+              <div className="col">
                 <p>Frequency</p>
                 <p>{this.props.frequency}</p>
               </div>
 
-              <div className="col-3 cardTask_col d-flex align-items-center justify-content-center">
+              <div className="col cardTask_col d-flex align-items-center justify-content-center">
                 <div>
                   <p className="cardTask_title">Level</p>
                   <p

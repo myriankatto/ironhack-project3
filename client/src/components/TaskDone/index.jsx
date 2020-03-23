@@ -70,6 +70,9 @@ class Tasks extends Component {
               <ItemTask  
               key={task._id} 
               name={task.name}
+              urgency={task.urgency}
+              personal={task.personal}
+              category={task.category}
               description={task.description} 
               toggle={task._id}
               level={task.level}

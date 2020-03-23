@@ -25,19 +25,24 @@ export default class gePoints extends Component {
     const creatorId = this.props.user._id;
     const idWorkspace = this.props.idWorkspace;
     const user = await SingleUser(creatorId);
-    //const userScore = user.scoreUser.find(element => element.workspace === idWorkspace).score;
-
+    
+    let userScore;
+    if(user.scoreUser.find(element => element.workspace === idWorkspace) !== undefined){
+      userScore = user.scoreUser.find(element => element.workspace === idWorkspace).score;
+    }else{
+      userScore = 0;
+    }
+    
     this.setState({
       workspaceScore,
-      //userScore
+      userScore
     });
   }
 
   render() {
     return (
       <h5>
-        <small>Your Score:</small>
-       
+        <small>Your Score:</small>{this.state.userScore}
         <br></br>
         <small>Workspace Score:</small> {this.state.workspaceScore}
       </h5>

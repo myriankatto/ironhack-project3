@@ -23,16 +23,26 @@ class Tasks extends Component {
     
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     //Solucao para erro: Can't perform a React state update on an unmounted component:
     this._isMounted = true; 
-
     this.fetchData();
-  }
+    console.log('this.state.tasks 1 ',this.state.tasks);
 
-  componentDidUpdate(){
-   //this.fetchData();
-  }
+    
+
+    console.log('this.state.tasks 2 ',this.state.tasks);
+  };
+
+  // componentDidUpdate(prevProps, prevState, snapshot){
+  //   const id = this.state.id;
+
+  //   if(prevState.tasks !== listTasks(id)){
+  //     this.fetchData();
+  //   }
+  // }
+
+  
 
   // Warning: Can't perform a React state update on an unmounted component. 
   // This is a no-op, but it indicates a memory leak in your application. 
@@ -41,19 +51,18 @@ class Tasks extends Component {
     this._isMounted = false;
   }
 
-  fetchData(){
+  async fetchData(){
     const id = this.state.id;
-    listTasks(id)
-      .then( tasks => {
-        if(tasks !== this.state.tasks){
-          this.setState({
-            tasks
-          });
-        }
-      })
-      .catch( error => {
-        console.log(error);
-      });
+    
+    const tasks = await listTasks(id);
+    
+
+    this.setState({
+      tasks
+    });
+
+    console.log('this.state.tasks 3 ',this.state.tasks);
+       
   }
 
  
@@ -70,6 +79,9 @@ class Tasks extends Component {
               <ItemTask  
               key={task._id} 
               name={task.name}
+              urgency={task.urgency}
+              personal={task.personal}
+              category={task.category}
               description={task.description} 
               toggle={task._id}
               level={task.level}

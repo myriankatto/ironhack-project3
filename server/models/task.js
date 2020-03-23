@@ -48,7 +48,8 @@ const schema = new mongoose.Schema(
       default: false
     },
     category: {
-      type: String
+      type: String,
+      default: 'Kitchen'
     },
     personal: {
       type: Boolean,
