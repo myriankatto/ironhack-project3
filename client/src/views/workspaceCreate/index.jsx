@@ -23,7 +23,7 @@ export default class WorkspaceCreate extends Component {
       workspaceId: this.props.match.params.id,
       scoreUser: 0
     };
-    this.toggleSelected = this.toggleSelected(this);
+    // this.toggleSelected = this.toggleSelected(this);
   }
 
   componentDidMount() {
@@ -110,13 +110,13 @@ export default class WorkspaceCreate extends Component {
           />
 
           <h1>TASKS FEITAS</h1>
-          <TaskDone 
+          <TaskDone
             idWorkspace={WorkspaceId}
             user={this.props.user}
             workspaceOperator={workspace.operator}
             done={true}
           />
-          
+
           <h1>TASKS PARA APROVAR:</h1>
           <ApproveTasks
             idWorkspace={WorkspaceId}
