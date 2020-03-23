@@ -145,7 +145,6 @@ class AddTask extends Component {
 
   render() {
     return (
-    
       <div className="addTask__form">
         <form onSubmit={this.handleFormSubmission}>
           {/*Task's name */}
@@ -171,7 +170,6 @@ class AddTask extends Component {
               id={`react-switch-03`}
               type="checkbox"
               onChange={this.changeRepetition}
-              required
             />
             <label
               style={{ background: this.state.repetition && '#06D6A0' }}
@@ -230,7 +228,6 @@ class AddTask extends Component {
               name="level"
               value={this.state.level}
               onChange={this.handleInputChange}
-              required
             >
               <option>Easy</option>
               <option>Medium</option>
