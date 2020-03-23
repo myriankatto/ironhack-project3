@@ -31,8 +31,7 @@ const create = async data => {
 
   try{
     const newWorkspace = await instance.post("/create", { name });
-    // console.log('result ->',result.data);
-    // const newWorkspace = result.data;
+   
     return newWorkspace;
 
   }catch (error) {

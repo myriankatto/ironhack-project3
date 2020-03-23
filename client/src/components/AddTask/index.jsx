@@ -16,7 +16,7 @@ class AddTask extends Component {
       frequency: '',
       description: '',
       workspace: '',
-      howlong: 0,
+      howlong: '',
       repetition: false,
       forever: false
     };
@@ -110,7 +110,7 @@ class AddTask extends Component {
       frequency: '',
       description: '',
       workspace: '',
-      howlong: 0,
+      howlong: '',
       repetition: false,
       forever: false
     });
@@ -126,7 +126,7 @@ class AddTask extends Component {
       frequency: '',
       description: '',
       workspace: '',
-      howlong: 0,
+      howlong: '',
       repetition: false,
       forever: false
     });
@@ -142,7 +142,7 @@ class AddTask extends Component {
       frequency: '',
       description: '',
       workspace: '',
-      howlong: 0,
+      howlong: '',
       repetition: false,
       frequencyTrue: false
     });

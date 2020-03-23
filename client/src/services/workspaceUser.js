@@ -37,8 +37,8 @@ const approvedUser = async workspaceId => {
 
 //route to approve the users
 const usersApproved = async data => {
-  console.log('data userApproved', data);
-  
+ 
+
   const userId = data.userId;
   const userWorkspaceId = data.userWorkspaceId;
   

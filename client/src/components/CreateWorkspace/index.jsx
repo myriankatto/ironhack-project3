@@ -42,17 +42,14 @@ class CreateWorkspace extends Component {
     
     //Operador recebe score igual à 0 quando é criado o Workspace:
     const workspace =  userWorkspaceId;
-    //await EditUser({creatorId, workspace, score});
+    await EditUser({creatorId, workspace, score});
     
-    // this.setState({
-    //   workspaceName: ''
-    // });
+    this.setState({
+      workspaceName: ''
+    });
 
-    
-     
-
-
-  }
+  };
+  
   render() {
     return (
       <form className="form" onSubmit={this.handleFormSubmission}>
