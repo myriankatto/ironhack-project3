@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {  Swipeable } from 'react-swipeable';
+import { Swipeable } from 'react-swipeable';
 import QRCode from 'qrcode.react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import './style.scss';
 
 import ShareByEmail from './../../components/ShareByEmail';
@@ -54,7 +54,7 @@ class ShareWorkspace extends Component {
               />
               <article>
                 <a
-                  href={`https://api.whatsapp.com/send?text=Please follow the link: https://ironhack-project3-teste.herokuapp.com/forWorkspaceApproval/${workspace._id} to join the ${workspace.names} workspace`}
+                  href={`https://api.whatsapp.com/send?text=Please follow the link: https://https://tasksyapp.herokuapp.com/forWorkspaceApproval/${workspace._id} to join the ${workspace.names} workspace`}
                   target="_blank"
                 >
                   <img

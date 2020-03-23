@@ -28,7 +28,7 @@ router.post('/:workspaceId/:workspaceName', (req, res, next) => {
     to: req.body.email,
     subject: `TASKSY - Woorkspace Invitation`,
     text: `Welcome to TASKSY! You were invited to join ${req.paramsworkspaceName}. Please follow the link:
-          https://ironhack-project3-teste.herokuapp.com/forWorkspaceApproval/${req.params.workspaceId}`
+          https://tasksyapp.herokuapp.com/forWorkspaceApproval/${req.params.workspaceId}`
   };
 
   transporter.sendMail(mail, (err, data) => {

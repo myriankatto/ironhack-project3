@@ -2,7 +2,7 @@ import './style.scss';
 
 import React, { Component, Fragment } from 'react';
 import { Swipeable } from 'react-swipeable';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { editWorkspace } from './../../services/workspaceUser';
 import { remove, edit } from './../../services/workspace';
 
@@ -37,11 +37,12 @@ class EditWorkspace extends Component {
     };
     edit(workspaceId, name)
       .catch(error => console.log(error))
-      .then(() =>
-        editWorkspace(this.props.user._id).then(workspaces =>
-          this.setState({ workspaces, workspaceName: '' })
-        )
-      );
+      .then(space => {
+        console.log(space);
+        editWorkspace(this.props.user._id, this.props.workspaceId).then(workspaces =>
+          this.setState({ workspaces })
+        );
+      });
   }
 
   //this search all the workpsaces that the user is the operator
@@ -53,9 +54,9 @@ class EditWorkspace extends Component {
 
   removeWorkspace(workspaceId) {
     remove(workspaceId).then(() =>
-      editWorkspace(this.props.user._id, this.props.workspaceId).then(workspaces =>
-        this.setState({ workspaces })
-      )
+      editWorkspace(this.props.user._id, this.props.workspaceId)
+        .then(() => this.handleSwipeLeft())
+        .catch(error => console.log(error))
     );
   }
 

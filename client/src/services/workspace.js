@@ -25,10 +25,26 @@ const single = async id => {
 };
 
 //service para criar um workspace
-const create = async name => {
-  const result = await instance.post(`/create`, { name });
-  const newWorkspace = result.data;
-  return newWorkspace;
+const create = async data => {
+  console.log('data', data);
+  const name = data.name;
+
+  try{
+    const newWorkspace = await instance.post("/create", { name });
+    // console.log('result ->',result.data);
+    // const newWorkspace = result.data;
+    return newWorkspace;
+
+  }catch (error) {
+    throw error;
+  }
+
+
+
+  // const result = await instance.post(`/create`, { name });
+  // console.log('result ->',result.data);
+  // const newWorkspace = result.data;
+  // return newWorkspace;
 };
 
 //service para editar um workspace

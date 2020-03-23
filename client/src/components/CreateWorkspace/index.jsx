@@ -32,16 +32,21 @@ class CreateWorkspace extends Component {
 
     if (!name) return;
     
-    const newWorkspace = await create(name);
-    await usersApproved(newWorkspace.operator, newWorkspace._id);
+    const newWorkspace = await create({name});
+
+    //console.log('newWorkspace Operator', newWorkspace.data.operator);
+    const userId = newWorkspace.data.operator;
+    const userWorkspaceId = newWorkspace.data._id;
+
+    await usersApproved({userId, userWorkspaceId});
     
     //Operador recebe score igual à 0 quando é criado o Workspace:
-    const workspace = newWorkspace._id;
-    await EditUser({creatorId, workspace, score});
+    const workspace =  userWorkspaceId;
+    //await EditUser({creatorId, workspace, score});
     
-    this.setState({
-      workspaceName: ''
-    });
+    // this.setState({
+    //   workspaceName: ''
+    // });
 
     
      
