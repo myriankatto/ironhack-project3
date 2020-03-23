@@ -9,6 +9,7 @@ $lightGrey: #e2e2e2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 1em 0;
   h1 {
     font-size: 1.2em !important;
     color: $purple !important;
@@ -87,7 +88,6 @@ $lightGrey: #e2e2e2;
   img {
     width: 1.5em;
   }
-  
 }
 .user_task {
   .btn-task {
