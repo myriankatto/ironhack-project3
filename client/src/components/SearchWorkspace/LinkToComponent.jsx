@@ -8,13 +8,7 @@ class LinkToComponent extends Component {
       workspacesApprovedForCurrentUser: this.props.user.workspaceApproved
     };
   }
-  componentDidMount() {
-    console.log(
-      this.state.workspacesApprovedForCurrentUser.find(
-        workspaceid => workspaceid === this.props.workspace._id
-      )
-    );
-  }
+
   render() {
     return this.state.workspacesApprovedForCurrentUser.find(
       workspaceid => workspaceid === this.props.workspace._id
