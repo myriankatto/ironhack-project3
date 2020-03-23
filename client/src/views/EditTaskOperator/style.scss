@@ -1,0 +1,111 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+.edit_task {
+  margin: 1em;
+
+  .editTask__form {
+    display: flex;
+    width: 100%;
+    padding: 1em;
+    form {
+      width: 100%;
+    }
+    .editTask_form__frequency {
+      margin: 1em auto;
+      display: flex;
+      flex-direction: column;
+
+      .input_frequency {
+        border: $purple 1px solid;
+        border-radius: 2em;
+        color: $darkColor;
+        font-size: 0.9em;
+        padding: 0.3em 1em;
+        margin: 0.5em 0;
+      }
+    }
+    .center {
+      margin: 0 auto;
+    }
+    .editTask_form__item {
+      margin: 1em auto;
+      display: flex;
+      span {
+        font-size: 1em !important;
+      }
+    }
+  }
+  h2 {
+    color: $purple;
+    font-weight: 200;
+    font-size: 1.6em;
+    margin: 1.5em 2.5em;
+  }
+  img {
+    width: 2em;
+    float: right;
+  }
+  .input {
+    border: $purple 1px solid;
+    border-radius: 2em;
+    color: $darkColor;
+    font-size: 0.9em;
+    font-weight: 400;
+    padding: 0.3em 1em;
+    flex-grow: 1;
+    display: block;
+  }
+
+  select {
+    border: $purple 1px solid;
+    border-radius: 2em;
+    color: $darkColor;
+    font-size: 0.9em;
+    padding: 0.3em 1em;
+    background-color: white;
+    flex-grow: 1;
+  }
+  .input-btn {
+    background-color: $purple;
+    border-radius: 1em;
+    color: white;
+    font-size: 1em;
+    text-align: center;
+    margin: 0 auto;
+    margin-left: 1em;
+    padding: 0.3em 1em;
+    border: none;
+  }
+  button {
+    background-color: white;
+    border: 1px solid $darkColor;
+    border-radius: 2em;
+    color: $darkColor;
+    font-size: 1em;
+    text-align: center;
+    margin: 0 auto;
+    margin-left: 1em;
+    padding: 0.3em 1em;
+  }
+  .arrow-icon {
+    width: 1em;
+    position: relative;
+    margin: 0;
+  }
+  textarea {
+    border-radius: 1em;
+    border: 1px solid $purple;
+    color: $darkColor;
+    display: block;
+    margin: 1em auto;
+    padding: 0.3em 1em;
+    width: 100%;
+  }
+  label {
+    color: $darkColor;
+    font-size: 1em;
+    margin-right: 1em;
+  }
+}

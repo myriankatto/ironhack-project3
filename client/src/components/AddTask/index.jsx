@@ -304,10 +304,10 @@ class AddTask extends Component {
               autoComplete="off"
             ></textarea>
           </div>
-          <input className="input-btn" type="submit" value="Submit"></input>
           <button type="reset" onClick={this.resetTotal}>
             Reset form
           </button>
+          <input className="input-btn" type="submit" value="Submit"></input>
         </form>
       </div>
     );
