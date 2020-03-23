@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import {  Swipeable } from 'react-swipeable';
 import QRCode from 'qrcode.react';
-<<<<<<< HEAD
 import {Link} from 'react-router-dom'
-=======
 import './style.scss';
 
 import ShareByEmail from './../../components/ShareByEmail';
->>>>>>> 474acdbf87e1957fd4b2ce9ee41a2caca3d1159a
 
 import { editWorkspace } from './../../services/workspaceUser';
 

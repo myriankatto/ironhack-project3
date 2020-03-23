@@ -46,32 +46,6 @@ class WorkspacesDropdownMenu extends Component {
     // }
     return (
       <div>
-       <div className="dd-wrapper">
-          <div className="dd-header" onClick={() => this.toggleList()}>
-            <div className="dd-header-title">{this.props.workspace.name}</div>
-            {this.state.listOpen ? (
-              <img className="arrow-icon" src="./../images/up-white.svg" alt="up" />
-            ) : (
-              <img className="arrow-icon" src="./../images/down-white.svg" alt="down" />
-            )}
-          </div>
-          {this.state.listOpen && (
-            <ul className="dd-list">
-              {this.state.userWorkspacesApproved.map(workspaceApproved => (
-                <span key={workspaceApproved._id}>
-                  {workspaceApproved.workspaceApproved.map(workspace => (
-                    <li className="dd-list-item" key={workspace._id}>
-
-                      {/* onClick para lift state do navbar */}
-                     <button onClick={()=>this.props.toggleSelected(workspace._id)}>{workspace.name}</button>
-                    </li>
-                  ))}
-                </span>
-              ))}
-            </ul>
-          )}
-        </div>  
-{/* 
         <Dropdown>
           <Dropdown.Toggle
             style={{
@@ -119,7 +93,7 @@ class WorkspacesDropdownMenu extends Component {
               Add Workspace
             </Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown>  */}
+        </Dropdown>
       </div>
     );
   }

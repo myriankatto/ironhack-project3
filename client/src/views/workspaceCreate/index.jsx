@@ -23,7 +23,7 @@ export default class WorkspaceCreate extends Component {
       workspaceId: this.props.match.params.id,
       scoreUser: 0
     };
-    this.toggleSelected = this.toggleSelected(this);
+    //this.toggleSelected = this.toggleSelected(this);
   }
 
   componentDidMount() {
