@@ -37,20 +37,19 @@ export default class WorkspaceDashboard extends Component {
           <div className="dashboard__workspace__create">
             <button onClick={this.toogleWorkspace}>
               <h1>Create a new Workspace</h1>{' '}
-              {this.state.active ? 
-              <img className="arrow-icon" src="./../images/up.svg" alt="up" /> :
-              <img className="arrow-icon" src="./../images/down.svg" alt="down" /> }
-
+              {this.state.active ? (
+                <img className="arrow-icon" src="./../images/up.svg" alt="up" />
+              ) : (
+                <img className="arrow-icon" src="./../images/down.svg" alt="down" />
+              )}
             </button>
-            {this.state.active && <CreateWorkspace user={this.props.user}/>}
+            {this.state.active && <CreateWorkspace user={this.props.user} />}
           </div>
           <p>
             <span>or</span>
           </p>
           <SearchWorkspace user={this.props.user} />
         </div>
-
-        
       </div>
     );
   }
