@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import './style.scss';
+import LinkToComponent from './../SearchWorkspace/LinkToComponent';
 
 import { list } from './../../services/workspace';
 import { askPermissionWorkspace } from './../../services/workspaceUser';
@@ -66,17 +66,14 @@ class SearchWorkspace extends Component {
 
         <ul className="workspaces__list">
           {this.filteredWorkspaces.map(workspace => (
-    
             <li key={workspace._id} className="workspace__item">
-              <Link to={`/dashboard/${workspace._id}`}>{workspace.name}</Link>
-          
+              <LinkToComponent workspace={workspace} user={this.props.user}></LinkToComponent>
               <button
                 className="workspace__btn"
                 onClick={() => this.addWorkspaceToUser(workspace._id)}
               >
                 +
               </button>
-         
             </li>
           ))}
         </ul>
