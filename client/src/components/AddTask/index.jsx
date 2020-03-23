@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Form, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 import { create, single } from './../../services/task';
 import './style.scss';
@@ -150,7 +150,6 @@ class AddTask extends Component {
 
   render() {
     return (
-    
       <div className="addTask__form">
         <form onSubmit={this.handleFormSubmission}>
           {/*Task's name */}
@@ -306,7 +305,6 @@ class AddTask extends Component {
             ></textarea>
           </div>
           <input className="input-btn" type="submit" value="Submit"></input>
-
           <button type="reset" onClick={this.resetTotal}>
             Reset form
           </button>

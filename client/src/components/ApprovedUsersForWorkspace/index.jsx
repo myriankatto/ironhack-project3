@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { single } from './../../services/workspace';
 import { approvedUser, approvedUsersReject } from './../../services/workspaceUser';
 import './style.scss';
