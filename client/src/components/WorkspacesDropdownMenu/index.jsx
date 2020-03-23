@@ -40,6 +40,7 @@ class WorkspacesDropdownMenu extends Component {
   }
 
   render() {
+    
     // if (this.state.userWorkspacesApproved[0] !== undefined) {
     //   console.log(this.state.userWorkspacesApproved[0].workspaceApproved);
     // }
@@ -92,7 +93,7 @@ class WorkspacesDropdownMenu extends Component {
             {this.state.userWorkspacesApproved.map(workspaceApproved => (
               <span key={workspaceApproved._id}>
                 {workspaceApproved.workspaceApproved.map(workspace => (
-                  <Fragment key={workspace._id}> 
+                  <Fragment key={workspace._id}>
                     <Dropdown.Item
                       style={{ color: 'white' }}
                       className="dropdown-item"

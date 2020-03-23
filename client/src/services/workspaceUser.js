@@ -18,9 +18,9 @@ const userWorkspacesApproved = async userId => {
   return result.data;
 };
 
-//this service will retrieve all the workspaces that the user is the operator
-const editWorkspace = async userId => {
-  const result = await instance.get(`/editWorkspace/${userId}`);
+//this service will retrieve the workspace that the user is the operator and is defined on the dropdown menu
+const editWorkspace = async (userId, workspaceId) => {
+  const result = await instance.get(`/editWorkspace/${userId}/${workspaceId}`);
   return result.data;
 };
 

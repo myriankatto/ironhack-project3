@@ -1,8 +1,13 @@
-import './style.scss';
 import React, { Component } from 'react';
 import {  Swipeable } from 'react-swipeable';
 import QRCode from 'qrcode.react';
+<<<<<<< HEAD
 import {Link} from 'react-router-dom'
+=======
+import './style.scss';
+
+import ShareByEmail from './../../components/ShareByEmail';
+>>>>>>> 474acdbf87e1957fd4b2ce9ee41a2caca3d1159a
 
 import { editWorkspace } from './../../services/workspaceUser';
 
@@ -11,17 +16,27 @@ class ShareWorkspace extends Component {
     super(props);
     this.state = {
       workspaces: [],
-      qrCode: ''
+      qrCode: '',
+      emailToggle: false
     };
     this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
+    this.handleEmailToggle = this.handleEmailToggle.bind(this);
   }
 
   componentDidMount() {
-    editWorkspace(this.props.user._id).then(workspaces => this.setState({ workspaces }));
+    editWorkspace(this.props.user._id, this.props.workspaceId).then(workspaces =>
+      this.setState({ workspaces })
+    );
   }
 
   handleSwipeLeft() {
     return this.props.history.push('./dashboard');
+  }
+
+  handleEmailToggle() {
+    this.setState({
+      emailToggle: !this.state.emailToggle
+    });
   }
 
   render() {
@@ -33,26 +48,41 @@ class ShareWorkspace extends Component {
           </Link>
           <h2>Share Workspace</h2>
         </nav>
-
-        {this.state.workspaces.map(workspace => (
-          <div className="workspaceSettings" key={workspace._id}>
-            <h3>{workspace.name}</h3>
-            <QRCode value={`http://192.168.1.64:3000/forWorkspaceApproval/${workspace._id}`} />
-            <a
-              href={`https://api.whatsapp.com/send?text=Please follow the link: http://www.localhost:3000/forWorkspaceApproval/${workspace._id} to join the ${workspace.names} workspace`}
-              target="_blank"
-            >
-              <img
-                src="./../images/IcWhatsApp.svg"
-                width="35"
-                height="35"
-                border="0"
-                alt="Recomende este produto pelo WhatsApp"
+        <div className="shareMenu">
+          {this.state.workspaces.map(workspace => (
+            <div className="workspaceShare" key={workspace._id}>
+              <h3>{workspace.name}</h3>
+              <QRCode
+                value={`https://ironhack-project3-teste.herokuapp.com/forWorkspaceApproval/${workspace._id}`}
               />
-            </a>
-          </div>
-        ))}
-        <h1>{this.state.qrCode}</h1>
+              <article>
+                <a
+                  href={`https://api.whatsapp.com/send?text=Please follow the link: https://ironhack-project3-teste.herokuapp.com/forWorkspaceApproval/${workspace._id} to join the ${workspace.names} workspace`}
+                  target="_blank"
+                >
+                  <img
+                    src="./../images/IcWhatsApp.svg"
+                    width="35"
+                    height="35"
+                    border="0"
+                    alt="Recomende este produto pelo WhatsApp"
+                  />
+                </a>
+                <a href={`#`} onClick={this.handleEmailToggle}>
+                  <img
+                    src="./../images/envelope-email.png"
+                    width="35"
+                    height="35"
+                    border="0"
+                    alt="Recomende este produto pelo WhatsApp"
+                  />
+                </a>
+              </article>
+              {this.state.emailToggle && <ShareByEmail workspace={workspace} />}
+            </div>
+          ))}
+          <h1>{this.state.qrCode}</h1>
+        </div>
       </Swipeable>
     );
   }

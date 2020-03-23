@@ -18,6 +18,7 @@ class EditWorkspace extends Component {
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
+    this.handleWorkspaceFromDropDownMenu = this.handleWorkspaceFromDropDownMenu.bind(this);
   }
 
   handleInputChange(event) {
@@ -27,6 +28,7 @@ class EditWorkspace extends Component {
     });
   }
 
+  //this will edit the workspace name
   handleFormSubmission(workspaceId) {
     const name = this.state.workspaceName;
     if (!name) return;
@@ -41,14 +43,29 @@ class EditWorkspace extends Component {
         )
       );
   }
+
+  //this search all the workpsaces that the user is the operator
   componentDidMount() {
-    editWorkspace(this.props.user._id).then(workspaces => this.setState({ workspaces }));
-  }
-  removeWorkspace(workspaceId) {
-    remove(workspaceId).then(() =>
-      editWorkspace(this.props.user._id).then(workspaces => this.setState({ workspaces }))
+    editWorkspace(this.props.user._id, this.props.workspaceId).then(workspaces =>
+      this.setState({ workspaces })
     );
   }
+
+  removeWorkspace(workspaceId) {
+    remove(workspaceId).then(() =>
+      editWorkspace(this.props.user._id, this.props.workspaceId).then(workspaces =>
+        this.setState({ workspaces })
+      )
+    );
+  }
+
+  //this will update this state with the workspace that is selected in the dropdaown menu from the component WorkspaceDropdownMenu
+  handleWorkspaceFromDropDownMenu(workspaceFromDropDownMenu) {
+    this.setState({
+      workspaceFromDropDownMenu
+    });
+  }
+
   handleSwipeLeft() {
     return this.props.history.push('./dashboard');
   }

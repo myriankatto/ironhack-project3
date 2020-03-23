@@ -25,9 +25,11 @@ class App extends Component {
     super();
     this.state = {
       user: null,
-      loaded: false
+      loaded: false,
+      workspaceId: '' //this workspaceId will be connecting the component workspacedropdownmenu and the view workspace crete with the edit and list and
     };
     this.updateUserInformation = this.updateUserInformation.bind(this);
+    this.updateWorkspaceIdInformation = this.updateWorkspaceIdInformation.bind(this);
   }
 
   componentDidMount() {
@@ -42,6 +44,13 @@ class App extends Component {
     this.setState({
       loaded: true,
       user
+    });
+  }
+
+  //this function will catch the workspaceId info from the component workspacedropdownmenu and the view workspace create
+  updateWorkspaceIdInformation(workspaceId) {
+    this.setState({
+      workspaceId
     });
   }
 
@@ -79,21 +88,39 @@ class App extends Component {
                 authorized={this.state.user}
                 redirect={'/'}
                 exact
-                render={props => <EditWorkspace user={this.state.user} {...props} />}
+                render={props => (
+                  <EditWorkspace
+                    user={this.state.user}
+                    {...props}
+                    workspaceId={this.state.workspaceId}
+                  />
+                )}
               />
               <ProtectedRoute
                 path="/listWorkspaceUsers"
                 authorized={this.state.user}
                 redirect={'/'}
                 exact
-                render={props => <ListWorkspaceUsers user={this.state.user} {...props} />}
+                render={props => (
+                  <ListWorkspaceUsers
+                    user={this.state.user}
+                    {...props}
+                    workspaceId={this.state.workspaceId}
+                  />
+                )}
               />
               <ProtectedRoute
                 path="/shareWorkspace"
                 authorized={this.state.user}
                 redirect={'/'}
                 exact
-                render={props => <ShareWorkspace user={this.state.user} {...props} />}
+                render={props => (
+                  <ShareWorkspace
+                    user={this.state.user}
+                    {...props}
+                    workspaceId={this.state.workspaceId}
+                  />
+                )}
               />
               {/* end of routes from the NavBarToggleWorkspace */}
 
@@ -154,7 +181,13 @@ class App extends Component {
                 authorized={this.state.user}
                 redirect={'/'}
                 path="/dashboard/:id"
-                render={props => <WorkspaceCreate user={this.state.user} {...props} />}
+                render={props => (
+                  <WorkspaceCreate
+                    user={this.state.user}
+                    updateWorkspaceIdInformation={this.updateWorkspaceIdInformation}
+                    {...props}
+                  />
+                )}
               />
               {/* FINAL ROTA PARA WORKSPACE EM SINGLE */}
 

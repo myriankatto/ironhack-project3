@@ -8,6 +8,7 @@ import { single as CreatorTask } from '../../services/score';
 /*COMPONENTES*/
 import FooterWorkspace from '../../components/FooterWorkspace';
 import Tasks from '../../components/Task';
+import TaskDone from '../../components/TaskDone';
 
 import ApproveTasks from '../../components/ApproveTasks';
 
@@ -28,6 +29,7 @@ export default class WorkspaceCreate extends Component {
   componentDidMount() {
     this._isMounted = true;
     this.fetchData();
+    this.props.updateWorkspaceIdInformation(this.props.match.params.id); //this function will send the workspace id info to connect the droppdown menu and the edit/list/share views
   }
 
   componentDidUpdate() {}
@@ -60,16 +62,16 @@ export default class WorkspaceCreate extends Component {
       });
   }
 
-  //FUNÇÃO PARA SET STATE DO WORKSPACE SINGLE
-  toggleSelected(workspaceId) {
-    singleWorkspace(workspaceId)
-      .then(workspace => {
-        this.setState(workspace);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+  // //FUNÇÃO PARA SET STATE DO WORKSPACE SINGLE
+  // toggleSelected(workspaceId) {
+  //   singleWorkspace(workspaceId)
+  //     .then(workspace => {
+  //       this.setState(workspace);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // }
 
   // Warning: Can't perform a React state update on an unmounted component.
   // This is a no-op, but it indicates a memory leak in your application.
@@ -104,8 +106,17 @@ export default class WorkspaceCreate extends Component {
             idWorkspace={WorkspaceId}
             user={this.props.user}
             workspaceOperator={workspace.operator}
+            done={false}
           />
 
+          <h1>TASKS FEITAS</h1>
+          <TaskDone 
+            idWorkspace={WorkspaceId}
+            user={this.props.user}
+            workspaceOperator={workspace.operator}
+            done={true}
+          />
+          
           <h1>TASKS PARA APROVAR:</h1>
           <ApproveTasks
             idWorkspace={WorkspaceId}

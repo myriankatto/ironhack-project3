@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 
-import { list as listTasks }  from './../../services/task';
+import { listDone as listTasks }  from './../../services/task';
 import './style.scss';
 
 import ItemTask from '../ItemTask';
@@ -64,7 +64,7 @@ class Tasks extends Component {
     return (
       <div>
       
-        <Accordion className="dashboard__task__list" defaultActiveKey="0">
+        <Accordion className="dashboard__task__list__done" defaultActiveKey="0" aria-disabled="true">
           {  
             this.state.tasks.map(task => (
               <ItemTask  

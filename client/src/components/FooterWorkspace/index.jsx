@@ -6,10 +6,14 @@ import FooterAddTasksToggle from '../FooterAddTasksToggle';
 import FooterAddTaskButton from '../FooterAddTaskButton';
 import FooterViewScoresToggle from '../FooterViewScoresToggle';
 import FooterViewScoresButton from '../FooterViewScoresButton';
+
 import './style.scss';
 // import { loadUserInformation } from './../../services/authentication';
 
 // import { Swipeable } from 'react-swipeable';
+
+/*FUNÇÕES*/
+import HandleChangePoints from './handleChangePoints';
 
 class FooterWorkspace extends Component {
   constructor(props, context) {
@@ -18,7 +22,7 @@ class FooterWorkspace extends Component {
       visibleAddTasks: false,
       sidebarAddTasks: false,
       visibleViewScores: false,
-      sidebarViewScores: false
+      sidebarViewScores: false,
     };
 
     this.handleMouseUpAddTasks = this.handleMouseUpAddTasks.bind(this);
@@ -28,10 +32,12 @@ class FooterWorkspace extends Component {
     this.toggleViewScores = this.toggleViewScores.bind(this);
     this.toggleSwipeViewScores = this.toggleSwipeViewScores.bind(this);
   }
+
   //for the Toggle AddTask Form
   handleMouseUpAddTasks() {
     this.toggleAddTasks();
   }
+
 
   toggleAddTasks() {
     this.setState({
@@ -60,9 +66,10 @@ class FooterWorkspace extends Component {
     });
   }
 
-  componentWillUnmount() {}
-
+  
   render() {
+    
+    
     // console.log('FOOTER WORKSPACE PROP', this.props.idWorkspace);
     return (
       <footer className="footer-style">
@@ -78,10 +85,12 @@ class FooterWorkspace extends Component {
           score={this.props.score}
         />
 
-        <h5>
-          <small>Your Score:</small> {this.props.score} <br/>
-          <small>Workspace Score:</small> {this.props.workspace.score}
-        </h5>
+       
+        <HandleChangePoints  
+          idWorkspace={this.props.idWorkspace}
+          user={this.props.user}
+        />
+      
         <FooterAddTasksToggle
           handleMouseUp={this.handleMouseUpAddTasks}
           menuVisibility={this.state.visibleAddTasks}

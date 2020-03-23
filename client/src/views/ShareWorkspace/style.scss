@@ -1,0 +1,41 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+.navPlusMenu {
+  display: flex;
+  background-color: #544bd8f3;
+  img {
+    width: 1.5em;
+    float: right;
+    position: relative;
+    margin: 1em;
+  }
+  h2 {
+    color: white;
+    align-self: center;
+    margin: 0 auto;
+    font-size: 1.3em;
+    font-weight: 400;
+    padding: 1em;
+  }
+}
+.shareMenu {
+  margin: 0% auto;
+  padding: 2em 0em;
+  h3 {
+    color: white;
+    align-self: center;
+    margin: 0 auto;
+    font-size: 1.3em;
+    font-weight: 400;
+    padding: 1em;
+  }
+  article {
+    display: flex;
+    justify-content: center;
+  }
+  a {
+    margin: 1em;
+  }
+}
