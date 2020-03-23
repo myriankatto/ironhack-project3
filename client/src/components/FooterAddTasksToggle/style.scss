@@ -11,7 +11,7 @@ $lightGrey: #e2e2e2;
   left: 0;
   padding: 1em 2em;
   transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
-  overflow: hidden auto;
+  overflow:hidden auto;
   z-index: 1000;
   margin: 0 auto;
   display: flex;
@@ -21,6 +21,21 @@ $lightGrey: #e2e2e2;
     width: 100%;
     form {
       width: 100%;
+    }
+    .addTask_form__frequency {
+      margin: 1em auto;
+      display: flex;
+      flex-direction: column;
+   
+      .input_frequency {
+        border: $purple 1px solid;
+        border-radius: 2em;
+        color: $darkColor;
+        font-size: 0.9em;
+        padding: 0.3em 1em;
+        margin: 0.5em 0;
+
+      }
     }
     .addTask_form__item {
       margin: 1em auto;
@@ -51,14 +66,7 @@ $lightGrey: #e2e2e2;
     flex-grow: 1;
     display: block;
   }
-  .input_frequency {
-    border: $purple 1px solid;
-    border-radius: 2em;
-    color: $darkColor;
-    font-size: 0.9em;
-    padding: 0.3em 1em;
-    width: 5em;
-  }
+
   select {
     border: $purple 1px solid;
     border-radius: 2em;
@@ -67,7 +75,6 @@ $lightGrey: #e2e2e2;
     padding: 0.3em 1em;
     background-color: white;
     flex-grow: 1;
-
   }
   .input-btn,
   button {
@@ -109,7 +116,7 @@ $lightGrey: #e2e2e2;
 
 #flyoutMenu_AddTask.show {
   transform: translate3d(-0vw, 0, 0);
-  overflow: hidden;
+  overflow: hidden auto;
 }
 
 #flyoutMenu_AddTask h2 a {

@@ -41,8 +41,8 @@ class SignIn extends Component {
     return (
       <div className="signin__container">
         <h3>Welcome to</h3>
-        <img style={{ width: '25%' }} src="./../../images/tasksy.svg" alt="tasksy" />
-        <p>Description phrase</p>
+        <img style={{ width: '60%' }} src="./../../images/tasksy.svg" alt="tasksy" />
+  
 
         <form onSubmit={this.handleFormSubmission} className="signin__form">
           <h2>Log in to your account to continue</h2>
@@ -69,7 +69,7 @@ class SignIn extends Component {
         <img
           className="home__img-signin"
           src="./../../../images/home.svg"
-          alt="working space ilustration"
+          alt="working space"
         />
       </div>
     );

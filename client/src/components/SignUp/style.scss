@@ -4,9 +4,9 @@ $lightGrey: #e2e2e2;
 .signup__container {
   margin: 2em 0 0 0;
   h3 {
-    color: $purple;
+    color: $darkColor;
     font-weight: 200;
-    font-size: 1.6em;
+    font-size: 1.3em;
   }
   p {
     color: $darkColor;
@@ -25,7 +25,7 @@ $lightGrey: #e2e2e2;
     box-shadow: 0 0 1.8em -0.5em rgb(209, 209, 209);
     border-radius: 0.5em;
     overflow: hidden;
-    margin: 2em;
+    margin: 1em 2em;
     padding: 1em;
     position: relative;
     background-color: white;
