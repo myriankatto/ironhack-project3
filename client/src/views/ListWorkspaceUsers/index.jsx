@@ -8,19 +8,21 @@ class ListWorkspaceUsers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      workspaces: [],
+      workspaces: [], // if the user is the same as the operator we will have workspaces
       userWorkspacesApproved: []
     };
     this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
   }
 
   componentDidMount() {
-    userWorkspacesApproved(this.props.user._id).then(userWorkspacesApproved =>
-      this.setState({ userWorkspacesApproved })
-    );
-    editWorkspace(this.props.user._id, this.props.workspaceId).then(workspaces =>
-      this.setState({ workspaces })
-    );
+    userWorkspacesApproved(this.props.user._id)
+      .then(userWorkspacesApproved => this.setState({ userWorkspacesApproved }))
+      .then(
+        () =>
+          editWorkspace(this.props.user._id, this.props.workspaceId).then(workspaces =>
+            this.setState({ workspaces })
+          ) // if the user is the same as the operator we will have workspaces
+      );
   }
   handleSwipeLeft() {
     return this.props.history.push('./dashboard');
