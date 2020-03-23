@@ -36,15 +36,13 @@ const approvedUser = async workspaceId => {
 };
 
 //route to approve the users
-const usersApproved = async data => {
- 
+const usersApproved = async (userId, userWorkspaceId) => {
 
-  const userId = data.userId;
-  const userWorkspaceId = data.userWorkspaceId;
-  
   const result = await instance.put(`/accept/${userId}/${userWorkspaceId}`);
   return result.data;
+
 };
+
 //route to reject the users that were never approved. pending users
 const usersReject = async (userId, userWorkspaceId) => {
   const result = await instance.put(`/reject/${userId}/${userWorkspaceId}`);

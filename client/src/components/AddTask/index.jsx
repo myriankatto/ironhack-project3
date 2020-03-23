@@ -35,8 +35,6 @@ class AddTask extends Component {
     this.setState({
       [name]: value
     });
-
-    console.log('THIS STATE 1',this.state)
     
   }
 

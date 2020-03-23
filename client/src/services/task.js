@@ -120,7 +120,7 @@ const single = async id => {
 //Service para Delete Task
 const remove = async id => {
   try{
-    const result = await instance.delete(`/${id}`);
+    await instance.delete(`/${id}`);
   }catch (error) {
     throw error;
   }

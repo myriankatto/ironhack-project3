@@ -38,7 +38,7 @@ class CreateWorkspace extends Component {
     const userId = newWorkspace.data.operator;
     const userWorkspaceId = newWorkspace.data._id;
 
-    await usersApproved({userId, userWorkspaceId});
+    await usersApproved(userId, userWorkspaceId);
     
     //Operador recebe score igual à 0 quando é criado o Workspace:
     const workspace =  userWorkspaceId;

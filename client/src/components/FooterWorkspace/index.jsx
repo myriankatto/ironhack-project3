@@ -37,8 +37,8 @@ class FooterWorkspace extends Component {
   handleMouseUpAddTasks() {
     this.toggleAddTasks();
   }
-
-
+  
+ 
   toggleAddTasks() {
     this.setState({
       visibleAddTasks: !this.state.visibleAddTasks
@@ -66,9 +66,17 @@ class FooterWorkspace extends Component {
     });
   }
 
+  // componentDidMount(){
+  //   const workspace = this.props.workspace;
+  //   const WorkspaceId = this.props.WorkspaceId;
+  //   console.log('workspace',workspace)
+  //   console.log('WorkspaceId',WorkspaceId)
+  //   HandleChangePoints({workspace});
+  // }
+
   
   render() {
-    
+    //console.log('FOOTER WORKSPACE', this.props.workspace);
     
     // console.log('FOOTER WORKSPACE PROP', this.props.idWorkspace);
     return (
@@ -87,9 +95,11 @@ class FooterWorkspace extends Component {
 
        
         <HandleChangePoints  
-          idWorkspace={this.props.idWorkspace}
+          workspace={this.props.workspace}
           user={this.props.user}
-        />
+          idWorkspace={this.props.idWorkspace}
+
+        /> 
       
         <FooterAddTasksToggle
           handleMouseUp={this.handleMouseUpAddTasks}

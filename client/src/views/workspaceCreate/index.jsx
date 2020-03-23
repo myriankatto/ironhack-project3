@@ -62,17 +62,7 @@ export default class WorkspaceCreate extends Component {
       });
   }
 
-  // //FUNÇÃO PARA SET STATE DO WORKSPACE SINGLE
-  // toggleSelected(workspaceId) {
-  //   singleWorkspace(workspaceId)
-  //     .then(workspace => {
-  //       this.setState(workspace);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
-
+  
   // Warning: Can't perform a React state update on an unmounted component.
   // This is a no-op, but it indicates a memory leak in your application.
   // To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method
@@ -98,7 +88,7 @@ export default class WorkspaceCreate extends Component {
           user={this.props.user}
           workspaceOperator={workspace.operator}
           workspace={this.state.workspace}
-          // toggleSelected={this.toggleSelected}
+          
         />
 
         <div className="dashboard__content mt-2">
@@ -126,7 +116,7 @@ export default class WorkspaceCreate extends Component {
 
           <FooterWorkspace
             idWorkspace={WorkspaceId}
-            workspace={workspace}
+            workspace={this.state.workspace}
             user={this.props.user}
             score={this.state.scoreUser}
             workspaceOperator={workspace.operator}
