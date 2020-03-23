@@ -32,6 +32,8 @@ router.get('/:workspaceid', (req, res, next) => {
 
 //rota para criar workspace
 router.post('/create', (req, res, next) => {
+  console.log('REQ BODY NAME',req.body.name,'REQ USER ',req.user._id);
+  
   Workspace.create({
     name: req.body.name,
     operator: req.user._id

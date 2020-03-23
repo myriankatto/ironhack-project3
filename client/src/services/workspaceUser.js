@@ -36,7 +36,12 @@ const approvedUser = async workspaceId => {
 };
 
 //route to approve the users
-const usersApproved = async (userId, userWorkspaceId) => {
+const usersApproved = async data => {
+  console.log('data userApproved', data);
+  
+  const userId = data.userId;
+  const userWorkspaceId = data.userWorkspaceId;
+  
   const result = await instance.put(`/accept/${userId}/${userWorkspaceId}`);
   return result.data;
 };
