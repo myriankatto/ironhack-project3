@@ -49,6 +49,7 @@ class CreateWorkspace extends Component {
     //the user in App.jsx needs to be updated with the new info
     const updatedUser = await loadUserInformation();
     await this.props.updateUserInformation(updatedUser);
+    this.props.handleRedirectAfterCreateWorkspace(userWorkspaceId);
   }
 
   render() {
