@@ -1,55 +1,18 @@
 import React, { Component } from 'react';
 import { Accordion, Card, Button } from 'react-bootstrap';
 
-import './style.scss'
-import {pending as PendingTasks } from '../../services/task';
+import './style.scss';
 
 import ItemTask from '../ItemTask';
 
 export default class ApproveTasks extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasksPending: []
-    };
-  }
-
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  componentDidUpdate(prevProps,prevState){
-    if(prevState.tasksPending.length !== this.state.tasksPending.length){
-      this.fetchData();
-    }
-  }
-      
-    
-  
-
-  fetchData() {
-    const id = this.props.idWorkspace;
-    // console.log('hello: ', id);
-    PendingTasks(id)
-      .then(tasksPending => {
-        if (tasksPending != this.state.tasksPending) {
-          this.setState({
-            tasksPending
-          });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
   render() {
     return (
       <div>
         <Accordion className="dashboard__task__list" defaultActiveKey="0">
-        {
-          this.state.tasksPending.map( task => (
-            <ItemTask  
-              key={task._id} 
+          {this.props.tasks.map(task => (
+            <ItemTask
+              key={task._id}
               name={task.name}
               description={task.description}
               toggle={task._id}
@@ -60,6 +23,7 @@ export default class ApproveTasks extends Component {
               workspaceOperator={this.props.workspaceOperator}
               approved={task.approved}
               // updateTotalTasks={this.fetchData}
+              triggerTasksUpdate={this.props.triggerTasksUpdate}
             />
           ))}
         </Accordion>

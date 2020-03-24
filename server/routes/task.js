@@ -6,12 +6,12 @@ const routeGuard = require('./../middleware/route-guard');
 
 const Task = require('./../models/task');
 
-
 //rota para tasks APROVADAS geral e não feitas
 router.get('/list/:workspaceId', (req, res, next) => {
   const id = req.params.workspaceId;
-  
-  Task.find({ "$and": [{"workspace": id}, {"approved": "true"}, {"done": "false"}]})
+
+  // Task.find({ "$and": [{"workspace": id}, {"approved": "true"}, {"done": "false"}]})
+  Task.find({ workspace: id, approved: true, done: false })
     .populate('owner', 'creator')
     .then(tasks => {
       res.json(tasks);
@@ -24,8 +24,8 @@ router.get('/list/:workspaceId', (req, res, next) => {
 //rota para tasks APROVADAS geral e feitas
 router.get('/listdone/:workspaceId', (req, res, next) => {
   const id = req.params.workspaceId;
-  
-  Task.find({ "$and": [{"workspace": id}, {"approved": "true"}, {"done": "true"}]})
+
+  Task.find({ workspace: id, approved: true, done: true })
     .populate('owner', 'creator')
     .then(tasks => {
       res.json(tasks);
@@ -38,8 +38,8 @@ router.get('/listdone/:workspaceId', (req, res, next) => {
 //rota para tasks em estágio de APROVAÇÃO geral
 router.get('/list/pending/:workspaceId', (req, res, next) => {
   const id = req.params.workspaceId;
-  
-  Task.find({ "$and": [{"workspace": id}, {"approved": "false"}]})
+
+  Task.find({ workspace: id, approved: false })
     .populate('owner', 'creator')
     .then(tasks => {
       res.json(tasks);
@@ -61,8 +61,6 @@ router.get('/:taskid', (req, res, next) => {
     });
 });
 
-
-
 //rota para criar task
 router.post('/create/:id', (req, res, next) => {
   console.log(req.body);
@@ -70,18 +68,17 @@ router.post('/create/:id', (req, res, next) => {
   Task.create({
     name: req.body.name,
     frequency: req.body.frequency,
-    level:req.body.level,
+    level: req.body.level,
     personal: req.body.personal,
-    urgency:req.body.urgency,
-    creator:req.user._id,
-    workspace:req.params.id,
+    urgency: req.body.urgency,
+    creator: req.user._id,
+    workspace: req.params.id,
     description: req.body.description,
-    approved:req.body.approved,
+    approved: req.body.approved,
     repetition: req.body.repetition,
     howlong: req.body.howlong
   })
     .then(task => {
-      
       res.json(task);
     })
     .catch(error => {
@@ -91,8 +88,6 @@ router.post('/create/:id', (req, res, next) => {
 
 //rota para editar Task - Apenas Operador pode faze-lo
 router.put('/edit/:taskid', (req, res, next) => {
-  
-
   Task.findByIdAndUpdate(req.params.taskid, req.body, { new: true })
     .then(task => {
       res.json(task);

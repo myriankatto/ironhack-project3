@@ -12,67 +12,69 @@ import TaskDone from '../../components/TaskDone';
 
 import ApproveTasks from '../../components/ApproveTasks';
 
-export default class WorkspaceCreate extends Component {
-  //Solucao para erro: Can't perform a React state update on an unmounted component:
-  _isMounted = false;
+import {
+  listDone as listDoneTasks,
+  list as listTasks,
+  pending as listPendingTasks
+} from '../../services/task';
 
+export default class WorkspaceCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
       workspace: [],
       workspaceId: this.props.match.params.id,
-      scoreUser: 0
+      scoreUser: 0,
+      tasks: [],
+      tasksDone: [],
+      tasksPending: []
     };
+    this.triggerTasksUpdate = this.triggerTasksUpdate.bind(this);
   }
 
-  componentDidMount() {
-    this._isMounted = true;
-    this.fetchData();
+  async componentDidMount() {
+    await this.fetchData();
+    await this.fetchListData();
     this.props.updateWorkspaceIdInformation(this.props.match.params.id); //this function will send the workspace id info to connect the droppdown menu and the edit/list/share views
   }
 
-  componentDidUpdate() {}
-
-  fetchData() {
+  async fetchData() {
     if (this.state.workspaceId !== this.props.match.params.id) {
       this.setState({ workspaceId: this.props.match.params.id });
     }
-    singleWorkspace(this.state.workspaceId)
-      .then(workspace => {
-        this.setState(workspace);
-      })
-      .catch(error => {
-        console.log(error);
-      });
 
-    CreatorTask(this.props.user._id)
-      .then(user => {
-        const scoreObjUser = user.scoreUser.find(
-          element => element.workspace === this.state.workspaceId
-        );
+    const workspace = await singleWorkspace(this.state.workspaceId);
+    this.setState(workspace);
 
-        if (scoreObjUser !== undefined) {
-          const scoreUser = scoreObjUser.score;
-          this.setState({ scoreUser });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    const user = await CreatorTask(this.props.user._id);
+    const scoreObjUser = user.scoreUser.find(
+      element => element.workspace === this.state.workspaceId
+    );
+
+    if (scoreObjUser !== undefined) {
+      const scoreUser = scoreObjUser.score;
+      this.setState({ scoreUser });
+    }
   }
 
-  // Warning: Can't perform a React state update on an unmounted component.
-  // This is a no-op, but it indicates a memory leak in your application.
-  // To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method
-  componentWillUnmount() {
-    this._isMounted = false;
+  async fetchListData() {
+    const id = this.props.match.params.id;
+    const tasks = await listTasks(id);
+    const tasksDone = await listDoneTasks(id);
+    const tasksPending = await listPendingTasks(id);
+    this.setState({
+      tasks,
+      tasksDone,
+      tasksPending
+    });
+  }
+
+  triggerTasksUpdate() {
+    this.fetchListData();
   }
 
   render() {
-    let workspace;
-    if (this.state.workspace !== []) {
-      workspace = this.state.workspace;
-    }
+    let workspace = this.state.workspace;
 
     const WorkspaceId = this.state.workspaceId;
 
@@ -95,8 +97,10 @@ export default class WorkspaceCreate extends Component {
             user={this.props.user}
             workspaceOperator={workspace.operator}
             done={false}
+            tasks={this.state.tasks}
+            triggerTasksUpdate={this.triggerTasksUpdate}
           />
-          <hr/>
+          <hr />
 
           <h1>TASKS ALREADY DONE</h1>
           <TaskDone
@@ -104,13 +108,17 @@ export default class WorkspaceCreate extends Component {
             user={this.props.user}
             workspaceOperator={workspace.operator}
             done={true}
+            tasks={this.state.tasksDone}
+            triggerTasksUpdate={this.triggerTasksUpdate}
           />
- <hr/>
+          <hr />
           <h1>TASKS TO APROVE</h1>
           <ApproveTasks
             idWorkspace={WorkspaceId}
             user={this.props.user}
             workspaceOperator={workspace.operator}
+            tasks={this.state.tasksPending}
+            triggerTasksUpdate={this.triggerTasksUpdate}
           />
 
           <FooterWorkspace

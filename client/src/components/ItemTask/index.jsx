@@ -58,11 +58,12 @@ export default class ItemTask extends Component {
     }
   }
 
-  handleTaskComplete() {
+  async handleTaskComplete() {
     const id = this.props.taskId;
     const user = this.props.user;
 
-    handleTaskComplete({ id, user });
+    await handleTaskComplete({ id, user });
+    this.props.triggerTasksUpdate();
   }
 
   toogleWorkspace() {
@@ -75,7 +76,7 @@ export default class ItemTask extends Component {
     const id = this.props.taskId;
     const user = this.props.user;
 
-    await this.setState(previousState => ({
+    this.setState(previousState => ({
       handleToDoTask: !previousState.handleToDoTask
     }));
 
@@ -90,22 +91,22 @@ export default class ItemTask extends Component {
     this.setState({
       ownerTaskPic: singleUser.picture
     });
+
+    this.props.triggerTasksUpdate();
   }
 
-  handleDeleteTask() {
+  async handleDeleteTask() {
     const id = this.props.taskId;
 
-    DeleteTask(id)
-      .then()
-      .catch(error => {
-        console.log(error);
-      });
+    await DeleteTask(id);
+    this.props.triggerTasksUpdate();
   }
 
-  handleApproveTask() {
+  async handleApproveTask() {
     const id = this.props.taskId;
 
-    handleApproveTask({ id }); //.then(() => this.props.updateTotalTasks());
+    await handleApproveTask({ id }); //.then(() => this.props.updateTotalTasks());
+    this.props.triggerTasksUpdate();
   }
 
   render() {
