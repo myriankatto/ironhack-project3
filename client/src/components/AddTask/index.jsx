@@ -111,6 +111,7 @@ class AddTask extends Component {
       repetition: false,
       forever: false
     });
+    this.props.handleMouseUp();
   }
 
   resetTotal() {

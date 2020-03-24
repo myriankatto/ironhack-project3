@@ -33,6 +33,7 @@ class FooterAddTasksToggle extends Component {
             user={this.props.user}
             workspaceOperator={this.props.workspaceOperator}
             triggerTasksUpdate={this.props.triggerTasksUpdate}
+            handleMouseUp={this.props.handleMouseUp}
           />
         </div>
       </Swipeable>

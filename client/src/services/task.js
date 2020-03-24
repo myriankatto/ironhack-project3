@@ -4,12 +4,10 @@ const instance = axios.create({
   baseURL: '/api/task'
 });
 
-
 //service para criar uma task com base no id do workspace
 const create = async data => {
-  
-  console.log('CREATE DATA ',data);
-  console.log('WORKSPACE', data.id);
+  // console.log('CREATE DATA ',data);
+  // console.log('WORKSPACE', data.id);
 
   const name = data.name;
   const level = data.level;
@@ -17,14 +15,24 @@ const create = async data => {
   const personal = data.personal;
   const category = data.category;
   const frequency = data.frequency;
-  const description = data.description
+  const description = data.description;
   const approved = data.approved;
-  const howlong= data.howlong;
-  const repetition= data.repetition;
-  
+  const howlong = data.howlong;
+  const repetition = data.repetition;
+
   try {
-   await instance.post(`/create/${data.id}`, 
-    { name, frequency, level, personal, urgency, description, category , approved, repetition, howlong});
+    await instance.post(`/create/${data.id}`, {
+      name,
+      frequency,
+      level,
+      personal,
+      urgency,
+      description,
+      category,
+      approved,
+      repetition,
+      howlong
+    });
     // const newTask = result.data;
     // return newTask;
   } catch (error) {
@@ -32,42 +40,38 @@ const create = async data => {
   }
 };
 
-
 //Service para listar as tasks aprovadas e não feitas
 const list = async id => {
- 
-  try{
+  try {
     const result = await instance.get(`/list/${id}`);
     const tasks = result.data;
     return tasks;
-  }catch (error) {
+  } catch (error) {
     throw error;
   }
-}
+};
 
 //Service para listar as tasks aprovadas e não feitas
 const listDone = async id => {
- 
-  try{
+  try {
     const result = await instance.get(`/listdone/${id}`);
     const tasks = result.data;
     return tasks;
-  }catch (error) {
+  } catch (error) {
     throw error;
   }
-}
+};
 
 //Service para listar as tasks pendentes:
 const pending = async id => {
-  try{
+  try {
     const result = await instance.get(`/list/pending/${id}`);
     const tasks = result.data;
     return tasks;
-  }catch (error) {
+  } catch (error) {
     throw error;
   }
-}
-
+};
 
 //service para editar um Task
 const edit = async data => {
@@ -79,8 +83,8 @@ const edit = async data => {
   const frequency = data.frequency;
   const description = data.description;
   const owner = data.owner;
-  const howlong= data.howlong;
-  const repetition= data.repetition;
+  const howlong = data.howlong;
+  const repetition = data.repetition;
   const done = data.done;
 
   // let done;
@@ -90,7 +94,7 @@ const edit = async data => {
   //   done= false;
   // }
 
-  const approved =data.approved;
+  const approved = data.approved;
   /*
   let approved;
   if(data.approved === true){
@@ -98,37 +102,46 @@ const edit = async data => {
   }else{
      approved = false;
   }*/
-  
-  const result = await instance.put(`/edit/${data.id}`, 
-  {name, frequency, level, personal, urgency, description, category, approved, owner, howlong, repetition, done});
+
+  const result = await instance.put(`/edit/${data.id}`, {
+    name,
+    frequency,
+    level,
+    personal,
+    urgency,
+    description,
+    category,
+    approved,
+    owner,
+    howlong,
+    repetition,
+    done
+  });
   const task = result.data;
   return task;
 };
 
 //service single para Taks
 const single = async id => {
- 
-  try{
+  try {
     const result = await instance.get(`/${id}`);
     const task = result.data;
     return task;
-  }catch (error) {
+  } catch (error) {
     throw error;
   }
-}
+};
 
 //Service para Delete Task
 const remove = async id => {
-  try{
+  try {
     await instance.delete(`/${id}`);
-  }catch (error) {
+  } catch (error) {
     throw error;
   }
-  
+
   // const workspace = result.data;
   // return workspace;
 };
-
-
 
 export { create, list, edit, single, remove, pending, listDone };
