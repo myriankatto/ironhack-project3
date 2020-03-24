@@ -9,38 +9,36 @@ class FooterViewScoresToggle extends Component {
     super(props);
     this.state = {
       approvedUsers: [],
-      approvedUsersOrganized:[]
+      approvedUsersOrganized: []
     };
 
     this.OrganizedByScores = this.OrganizedByScores.bind(this);
   }
 
   componentDidMount() {
-    approvedUser(this.props.idWorkspace)
-      .then(users => 
-        this.setState({ approvedUsers: users }));
-
-    
-    
+    approvedUser(this.props.idWorkspace).then(users => this.setState({ approvedUsers: users }));
   }
 
   //FUNÇÃO QUE IRÁ ORGANIZAR OS SCORES DE ORDEM DECRESCENTE
-  async OrganizedByScores(){
-
+  async OrganizedByScores() {
     const approvedUser = await approvedUser(this.props.idWorkspace);
 
-    console.log('approvedUser',approvedUser);
+    console.log('approvedUser', approvedUser);
     const OrganizedByScores = this.state.approvedUsers;
     //console.log('OrganizedByScores',this.state.approvedUsers);
 
-    OrganizedByScores.sort( function(a,b){
-      if(a.scoreUser.find(element => element.workspace == this.props.idWorkspace).score >
-      b.scoreUser.find(element => element.workspace == this.props.idWorkspace).score){
+    OrganizedByScores.sort(function(a, b) {
+      if (
+        a.scoreUser.find(element => element.workspace == this.props.idWorkspace).score >
+        b.scoreUser.find(element => element.workspace == this.props.idWorkspace).score
+      ) {
         return 1;
       }
-      if(a.scoreUser.find(element => element.workspace == this.props.idWorkspace).score <
-        b.scoreUser.find(element => element.workspace == this.props.idWorkspace).score){
-          return -1;
+      if (
+        a.scoreUser.find(element => element.workspace == this.props.idWorkspace).score <
+        b.scoreUser.find(element => element.workspace == this.props.idWorkspace).score
+      ) {
+        return -1;
       }
 
       return 0;
@@ -50,9 +48,6 @@ class FooterViewScoresToggle extends Component {
       approvedUsersOrganized: OrganizedByScores
     });
   }
-  
-    
-    
 
   componentDidUpdate() {
     //approvedUser(this.props.idWorkspace).then(users => this.setState({ approvedUsers: users }));
@@ -61,7 +56,6 @@ class FooterViewScoresToggle extends Component {
   showOperatorViewScores() {}
 
   render() {
-   
     //console.log('PROP NO FOOTER ADD', this.props.idWorkspace)
     var visibility = 'hide';
     if (this.props.menuVisibility) {
@@ -73,7 +67,7 @@ class FooterViewScoresToggle extends Component {
     return (
       <Swipeable onSwipedDown={this.props.handleMouseUp}>
         <div id="flyoutMenu_ViewScores" className={visibility}>
-        <a onMouseUp={this.props.handleMouseUp}>
+          <a onMouseUp={this.props.handleMouseUp}>
             {' '}
             <img className="down-icon" src="./../images/down-white.svg" alt="go down icon" />
           </a>
@@ -84,12 +78,9 @@ class FooterViewScoresToggle extends Component {
             alt="winner illustration"
           />
 
-          <ol className="users__scores__list">
+          <ul className="users__scores__list">
             {this.state.approvedUsers.map(approvedUser => (
-              
-
               <Fragment key={approvedUser._id}>
-              
                 <li className="userScore_Single">
                   <div className="scores_picture">
                     {' '}
@@ -100,18 +91,21 @@ class FooterViewScoresToggle extends Component {
                     />
                   </div>
                   <div className="scores_name">
-                    <h5>{approvedUser.name}</h5> 
+                    <h5>{approvedUser.name}</h5>
                     <small>
-                      { approvedUser.scoreUser.find(element => element.workspace == this.props.idWorkspace) !== undefined ?
-                        approvedUser.scoreUser.find(element => element.workspace == this.props.idWorkspace).score : 0}
+                      {approvedUser.scoreUser.find(
+                        element => element.workspace == this.props.idWorkspace
+                      ) !== undefined
+                        ? approvedUser.scoreUser.find(
+                            element => element.workspace == this.props.idWorkspace
+                          ).score
+                        : 0}
                     </small>
                   </div>
                 </li>
               </Fragment>
             ))}
-          </ol>
-
-   
+          </ul>
         </div>
       </Swipeable>
     );

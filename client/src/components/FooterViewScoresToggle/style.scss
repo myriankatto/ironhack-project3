@@ -25,7 +25,7 @@ small {
     max-width: 90%;
     min-width: 80%;
     list-style: none;
-    counter-reset: item;
+    // counter-reset: item;
 
     .userScore_Single {
       background-color: #6b63ff4b;
@@ -35,7 +35,7 @@ small {
       border-radius: 0.5em;
       text-align: left;
       padding: 0.5em 1em;
-      counter-increment: item;
+      // counter-increment: item;
       margin-bottom: 0.4em;
       display: flex;
       align-content: center;
@@ -43,11 +43,11 @@ small {
       .scores_name {
         margin-left: auto;
       }
-      &:first-child {
-        background-color: #6b63ff9f;
-      }
+      // &:first-child {
+      //   background-color: #6b63ff9f;
+      // }
       &:before {
-        content: counter(item);
+        // content: counter(item);
         background: #3f3d5633;
         border-radius: 50%;
         color: white;
