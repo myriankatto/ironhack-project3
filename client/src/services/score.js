@@ -45,6 +45,14 @@ const editUSerPull = async data => {
   return user;
 };
 
+//score total:
+const scoreTotal = async data => {
+  const workspace = data.workspace;
+
+  const result = await instance.get(`/list/totalScore/${workspace}`);
+  const workspaceUpdate = result.data;
+  return workspaceUpdate;
+}
 
 //service para editar um workspace para score
 const editWorkspace = async data => {
@@ -57,4 +65,4 @@ const editWorkspace = async data => {
   return workspaceUpdate;
 };
 
-export {single, editUSerPull, editUSerPush, editWorkspace}; 
+export {single, editUSerPull, editUSerPush, editWorkspace, scoreTotal}; 

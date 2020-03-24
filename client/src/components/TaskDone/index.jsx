@@ -31,10 +31,11 @@ class Tasks extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot){ 
-    const id = this.props.idWorkspace;
-    const tasks = await listTasks(id);
-
-    if(prevState.tasks !== tasks ){
+   
+   const id = this.props.idWorkspace;
+   const tasks = await listTasks(id);
+   
+    if(prevState.tasks.length !== tasks.length ){
       this.setState({
         tasks
       });

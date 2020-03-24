@@ -19,7 +19,12 @@ export default class ApproveTasks extends Component {
     this.fetchData();
   };
 
-  componentDidUpdate(){
+  componentDidUpdate(prevProps,prevState){
+    if(prevState.tasksPending.length !== this.state.tasksPending.length){
+      this.fetchData();
+    }
+      
+    
    // this.fetchData();
   }
 

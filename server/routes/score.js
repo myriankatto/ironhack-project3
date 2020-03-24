@@ -67,6 +67,17 @@ router.put('/edit/pull/:userId', (req, res, next) => {
 
 });
 
+//ROTA PARA ORGANIZAR USUÁRIOS
+router.get('/list/totalScore/:workspaceId', (req,res,next) => {
+  User.find({ scoreUser : { $elemMatch : { workspace: req.params.workspaceId } } } )
+    .then( user => {
+      res.json(user);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
 
 //rota para editar Workspace
 router.put('/editWorspace/:workspaceId', (req, res, next) => {
