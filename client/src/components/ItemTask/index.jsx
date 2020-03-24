@@ -50,8 +50,7 @@ export default class ItemTask extends Component {
     await handleRepetition({ singleTask });
 
     if (singleTask.owner !== null) {
-      const singleUser = await SingleUser(singleTask.owner);
-      // const singleUser = await SingleUser(singleTask.owner._id);
+      const singleUser = await SingleUser(singleTask.owner._id);
 
       this.setState({
         ownerTaskPic: singleUser.picture
@@ -85,17 +84,15 @@ export default class ItemTask extends Component {
     const handleToDoTask = this.state.handleToDoTask;
 
     await handleDoTheTask({ id, user, handleToDoTask });
-
     const singleTask = await SingleTask(id);
 
-    console.log(singleTask.owner);
-    const singleUser = await SingleUser(singleTask.owner);
-    // const singleUser = await SingleUser(singleTask.owner._id);
+    if (singleTask.owner !== null) {
+      const singleUser = await SingleUser(singleTask.owner._id);
 
-    this.setState({
-      ownerTaskPic: singleUser.picture
-    });
-
+      this.setState({
+        ownerTaskPic: singleUser.picture
+      });
+    }
     this.props.triggerTasksUpdate();
   }
 
