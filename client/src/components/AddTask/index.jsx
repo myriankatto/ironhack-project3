@@ -35,7 +35,6 @@ class AddTask extends Component {
     this.setState({
       [name]: value
     });
-    
   }
 
   changePersonal() {
@@ -94,7 +93,7 @@ class AddTask extends Component {
       howlong,
       repetition
     })
-      .then()
+      .then(() => this.props.triggerTasksUpdate())
       .catch(error => {
         console.log(error);
       });
@@ -112,6 +111,7 @@ class AddTask extends Component {
       repetition: false,
       forever: false
     });
+    this.props.handleMouseUp();
   }
 
   resetTotal() {
@@ -173,7 +173,6 @@ class AddTask extends Component {
               id={`react-switch-03`}
               type="checkbox"
               onChange={this.changeRepetition}
-              
             />
             <label
               style={{ background: this.state.repetition && '#06D6A0' }}
@@ -197,7 +196,6 @@ class AddTask extends Component {
                   onChange={this.handleInputChange}
                   placeholder="Days"
                   autoComplete="off"
-                  
                 ></input>
 
                 {/* until when */}
@@ -233,7 +231,6 @@ class AddTask extends Component {
               name="level"
               value={this.state.level}
               onChange={this.handleInputChange}
-              
             >
               <option>Easy</option>
               <option>Medium</option>

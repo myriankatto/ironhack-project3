@@ -14,6 +14,7 @@ export default class WorkspaceDashboard extends Component {
       active: false
     };
     this.toogleWorkspace = this.toogleWorkspace.bind(this);
+    this.handleRedirectAfterCreateWorkspace = this.handleRedirectAfterCreateWorkspace.bind(this);
   }
 
   toogleWorkspace() {
@@ -22,6 +23,9 @@ export default class WorkspaceDashboard extends Component {
     }));
   }
 
+  handleRedirectAfterCreateWorkspace(userWorkspaceId) {
+    this.props.history.push(`/dashboard/${userWorkspaceId}`);
+  }
   render() {
     return (
       <div className="dashboard">
@@ -47,6 +51,7 @@ export default class WorkspaceDashboard extends Component {
               <CreateWorkspace
                 user={this.props.user}
                 updateUserInformation={this.props.updateUserInformation}
+                handleRedirectAfterCreateWorkspace={this.handleRedirectAfterCreateWorkspace}
               />
             )}
           </div>
