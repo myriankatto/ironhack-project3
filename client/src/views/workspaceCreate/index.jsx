@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './style.scss';
 import NavBar from '../../components/NavBar';
 
 import { single as singleWorkspace } from '../../services/workspace';
@@ -23,7 +23,6 @@ export default class WorkspaceCreate extends Component {
       workspaceId: this.props.match.params.id,
       scoreUser: 0
     };
-    
   }
 
   componentDidMount() {
@@ -62,7 +61,6 @@ export default class WorkspaceCreate extends Component {
       });
   }
 
-  
   // Warning: Can't perform a React state update on an unmounted component.
   // This is a no-op, but it indicates a memory leak in your application.
   // To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method
@@ -88,17 +86,17 @@ export default class WorkspaceCreate extends Component {
           user={this.props.user}
           workspaceOperator={workspace.operator}
           workspace={this.state.workspace}
-          
         />
 
-        <div className="dashboard__content mt-2">
-        <h1>TASKS TO DO</h1>
+        <div className="dashboard__content">
+          <h1>TASKS TO DO</h1>
           <Tasks
             idWorkspace={WorkspaceId}
             user={this.props.user}
             workspaceOperator={workspace.operator}
             done={false}
           />
+          <hr/>
 
           <h1>TASKS ALREADY DONE</h1>
           <TaskDone
@@ -107,7 +105,7 @@ export default class WorkspaceCreate extends Component {
             workspaceOperator={workspace.operator}
             done={true}
           />
-
+ <hr/>
           <h1>TASKS TO APROVE</h1>
           <ApproveTasks
             idWorkspace={WorkspaceId}

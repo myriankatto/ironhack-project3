@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Accordion, Card, Button } from 'react-bootstrap';
 
-
+import './style.scss'
 import {pending as PendingTasks } from '../../services/task';
 
 import ItemTask from '../ItemTask';
@@ -40,7 +40,7 @@ export default class ApproveTasks extends Component {
   render() {
     return (
       <div>
-        <Accordion defaultActiveKey="0">
+        <Accordion className="dashboard__task__list" defaultActiveKey="0">
         {
           this.state.tasksPending.map( task => (
             <ItemTask  
