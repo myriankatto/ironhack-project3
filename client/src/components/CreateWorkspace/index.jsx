@@ -16,14 +16,12 @@ class CreateWorkspace extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
   }
-
   handleInputChange(event) {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
   }
-
   async handleFormSubmission(event) {
     event.preventDefault();
     const name = this.state.workspaceName;
