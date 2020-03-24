@@ -31,6 +31,7 @@ class Tasks extends Component {
               approved={task.approved}
               done={this.props.done}
               triggerTasksUpdate={this.props.triggerTasksUpdate}
+              triggerScoreUpdate={this.props.triggerScoreUpdate}
             />
           ))}
         </Accordion>

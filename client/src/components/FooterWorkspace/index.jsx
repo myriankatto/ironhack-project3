@@ -86,7 +86,7 @@ class FooterWorkspace extends Component {
           workspace={this.props.workspace}
           user={this.props.user}
           idWorkspace={this.props.idWorkspace}
-          fetchDataUpdate={this.props.fetchDataUpdate}
+          triggerScoreUpdate={this.props.triggerScoreUpdate}
           scoreUser={this.props.score}
         />
 

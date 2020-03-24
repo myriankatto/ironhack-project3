@@ -50,7 +50,8 @@ export default class ItemTask extends Component {
     await handleRepetition({ singleTask });
 
     if (singleTask.owner !== null) {
-      const singleUser = await SingleUser(singleTask.owner._id);
+      const singleUser = await SingleUser(singleTask.owner);
+      // const singleUser = await SingleUser(singleTask.owner._id);
 
       this.setState({
         ownerTaskPic: singleUser.picture
@@ -64,6 +65,7 @@ export default class ItemTask extends Component {
 
     await handleTaskComplete({ id, user });
     this.props.triggerTasksUpdate();
+    this.props.triggerScoreUpdate();
   }
 
   toogleWorkspace() {
@@ -86,7 +88,9 @@ export default class ItemTask extends Component {
 
     const singleTask = await SingleTask(id);
 
-    const singleUser = await SingleUser(singleTask.owner._id);
+    console.log(singleTask.owner);
+    const singleUser = await SingleUser(singleTask.owner);
+    // const singleUser = await SingleUser(singleTask.owner._id);
 
     this.setState({
       ownerTaskPic: singleUser.picture

@@ -30,6 +30,7 @@ export default class WorkspaceCreate extends Component {
       tasksPending: []
     };
     this.triggerTasksUpdate = this.triggerTasksUpdate.bind(this);
+    this.triggerScoreUpdate = this.triggerScoreUpdate.bind(this);
   }
 
   async componentDidMount() {
@@ -72,6 +73,9 @@ export default class WorkspaceCreate extends Component {
   triggerTasksUpdate() {
     this.fetchListData();
   }
+  triggerScoreUpdate() {
+    this.fetchData();
+  }
 
   render() {
     let workspace = this.state.workspace;
@@ -99,6 +103,7 @@ export default class WorkspaceCreate extends Component {
             done={false}
             tasks={this.state.tasks}
             triggerTasksUpdate={this.triggerTasksUpdate}
+            triggerScoreUpdate={this.triggerScoreUpdate}
           />
           <hr />
 
@@ -128,7 +133,7 @@ export default class WorkspaceCreate extends Component {
             score={this.state.scoreUser}
             workspaceOperator={workspace.operator}
             triggerTasksUpdate={this.triggerTasksUpdate}
-            fetchDataUpdate={this.fetchData}
+            triggerScoreUpdate={this.triggerScoreUpdate}
           />
         </div>
       </div>
