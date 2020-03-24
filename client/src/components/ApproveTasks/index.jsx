@@ -1,39 +1,44 @@
 import React, { Component } from 'react';
-import {Accordion, Card, Button } from 'react-bootstrap';
+import { Accordion, Card, Button } from 'react-bootstrap';
 
 import './style.scss'
 import {pending as PendingTasks } from '../../services/task';
 
 import ItemTask from '../ItemTask';
 
-
 export default class ApproveTasks extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      tasksPending:[]
-    }
-  };
-
-  componentDidMount(){
-    this.fetchData();
-  };
-
-  componentDidUpdate(){
-   // this.fetchData();
+    this.state = {
+      tasksPending: []
+    };
   }
 
-  fetchData(){
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  componentDidUpdate(prevProps,prevState){
+    if(prevState.tasksPending.length !== this.state.tasksPending.length){
+      this.fetchData();
+    }
+  }
+      
+    
+  
+
+  fetchData() {
     const id = this.props.idWorkspace;
+    // console.log('hello: ', id);
     PendingTasks(id)
-      .then( tasksPending =>{
-        if(tasksPending != this.state.tasksPending){
+      .then(tasksPending => {
+        if (tasksPending != this.state.tasksPending) {
           this.setState({
             tasksPending
           });
         }
       })
-      .catch( error => {
+      .catch(error => {
         console.log(error);
       });
   }
@@ -46,7 +51,7 @@ export default class ApproveTasks extends Component {
             <ItemTask  
               key={task._id} 
               name={task.name}
-              description={task.description} 
+              description={task.description}
               toggle={task._id}
               level={task.level}
               frequency={task.frequency}
@@ -54,11 +59,11 @@ export default class ApproveTasks extends Component {
               user={this.props.user}
               workspaceOperator={this.props.workspaceOperator}
               approved={task.approved}
+              // updateTotalTasks={this.fetchData}
             />
-          ))
-        }
+          ))}
         </Accordion>
       </div>
-    )
+    );
   }
 }

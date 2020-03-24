@@ -54,7 +54,7 @@ class Tasks extends Component {
     
     const id = this.props.idWorkspace;
     const tasks = await listTasks(id);
-
+    
     if(prevState.tasks !== tasks ){
       this.setState({
         tasks

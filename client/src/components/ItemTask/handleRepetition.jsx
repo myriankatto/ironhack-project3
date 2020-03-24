@@ -60,7 +60,7 @@ export const handleRepetition = async (props) => {
   
   return (
     <div>
-      {console.log('handleRepetition chamado')}
+    
     </div>
   )
 }

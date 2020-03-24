@@ -16,18 +16,20 @@ class FooterViewScoresToggle extends Component {
   }
 
   componentDidMount() {
-    approvedUser(this.props.idWorkspace).then(users => 
-      this.setState({ approvedUsers: users }));
+    approvedUser(this.props.idWorkspace)
+      .then(users => 
+        this.setState({ approvedUsers: users }));
 
-    // this.setState({
-    //   approvedUsersOrganized.sort(this.OrganizedByScores(a,b))
-    // })
-
-    this.OrganizedByScores();
+    
+    
   }
 
   //FUNÇÃO QUE IRÁ ORGANIZAR OS SCORES DE ORDEM DECRESCENTE
-  OrganizedByScores(){
+  async OrganizedByScores(){
+
+    const approvedUser = await approvedUser(this.props.idWorkspace);
+
+    console.log('approvedUser',approvedUser);
     const OrganizedByScores = this.state.approvedUsers;
     //console.log('OrganizedByScores',this.state.approvedUsers);
 
@@ -53,7 +55,7 @@ class FooterViewScoresToggle extends Component {
     
 
   componentDidUpdate() {
-    approvedUser(this.props.idWorkspace).then(users => this.setState({ approvedUsers: users }));
+    //approvedUser(this.props.idWorkspace).then(users => this.setState({ approvedUsers: users }));
   }
 
   showOperatorViewScores() {}
