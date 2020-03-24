@@ -8,7 +8,8 @@ class ShareByEmail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: ''
+      query: '',
+      emailMessage: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
@@ -25,7 +26,7 @@ class ShareByEmail extends Component {
       this.props.workspace._id,
       this.props.workspace.name,
       this.state.query
-    ).then(message => alert(message.msg));
+    ).then(message => this.setState({ emailMessage: message.msg }));
   }
 
   render() {
@@ -44,6 +45,7 @@ class ShareByEmail extends Component {
             />
           </form>
         </div>
+        <article>{this.state.emailMessage}</article>
         <button className="workspace__btn" onClick={this.handleEmail}>
           Share Workspace
         </button>

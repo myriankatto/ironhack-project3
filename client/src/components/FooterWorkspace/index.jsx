@@ -22,7 +22,7 @@ class FooterWorkspace extends Component {
       visibleAddTasks: false,
       sidebarAddTasks: false,
       visibleViewScores: false,
-      sidebarViewScores: false,
+      sidebarViewScores: false
     };
 
     this.handleMouseUpAddTasks = this.handleMouseUpAddTasks.bind(this);
@@ -37,8 +37,7 @@ class FooterWorkspace extends Component {
   handleMouseUpAddTasks() {
     this.toggleAddTasks();
   }
-  
- 
+
   toggleAddTasks() {
     this.setState({
       visibleAddTasks: !this.state.visibleAddTasks
@@ -66,19 +65,7 @@ class FooterWorkspace extends Component {
     });
   }
 
-  // componentDidMount(){
-  //   const workspace = this.props.workspace;
-  //   const WorkspaceId = this.props.WorkspaceId;
-  //   console.log('workspace',workspace)
-  //   console.log('WorkspaceId',WorkspaceId)
-  //   HandleChangePoints({workspace});
-  // }
-
-  
   render() {
-    //console.log('FOOTER WORKSPACE', this.props.workspace);
-    
-    // console.log('FOOTER WORKSPACE PROP', this.props.idWorkspace);
     return (
       <footer className="footer-style">
         <FooterViewScoresButton
@@ -91,22 +78,25 @@ class FooterWorkspace extends Component {
           idWorkspace={this.props.idWorkspace}
           workspaceName={this.props.workspace.name}
           score={this.props.score}
+          workspaceOperator={this.props.workspaceOperator}
+          triggerTasksUpdate={this.props.triggerTasksUpdate}
         />
 
-       
-        <HandleChangePoints  
+        <HandleChangePoints
           workspace={this.props.workspace}
           user={this.props.user}
           idWorkspace={this.props.idWorkspace}
+          fetchDataUpdate={this.props.fetchDataUpdate}
+          scoreUser={this.props.score}
+        />
 
-        /> 
-      
         <FooterAddTasksToggle
           handleMouseUp={this.handleMouseUpAddTasks}
           menuVisibility={this.state.visibleAddTasks}
           idWorkspace={this.props.idWorkspace}
           user={this.props.user}
           workspaceOperator={this.props.workspaceOperator}
+          triggerTasksUpdate={this.props.triggerTasksUpdate}
         />
         <FooterAddTaskButton
           handleMouseUp={this.handleMouseUpAddTasks}

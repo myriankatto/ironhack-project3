@@ -127,6 +127,8 @@ export default class WorkspaceCreate extends Component {
             user={this.props.user}
             score={this.state.scoreUser}
             workspaceOperator={workspace.operator}
+            triggerTasksUpdate={this.triggerTasksUpdate}
+            fetchDataUpdate={this.fetchData}
           />
         </div>
       </div>

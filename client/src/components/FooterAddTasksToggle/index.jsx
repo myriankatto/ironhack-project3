@@ -17,22 +17,23 @@ class FooterAddTasksToggle extends Component {
       visibility = 'show';
     }
 
-    
     return (
       <Swipeable onSwipedRight={this.props.handleMouseUp}>
         <div id="flyoutMenu_AddTask" className={visibility}>
-          <h2>Create a new task
+          <h2>
+            Create a new task
             <a onMouseUp={this.props.handleMouseUp}>
               {' '}
-              <img  className="arrow-icon" src="./../images/close.svg" alt="close" />
-            </a></h2>
-       
-          <AddTask 
-          idWorkspace={this.props.idWorkspace}
-          user={this.props.user}
-          workspaceOperator={this.props.workspaceOperator}
-          />
+              <img className="arrow-icon" src="./../images/close.svg" alt="close" />
+            </a>
+          </h2>
 
+          <AddTask
+            idWorkspace={this.props.idWorkspace}
+            user={this.props.user}
+            workspaceOperator={this.props.workspaceOperator}
+            triggerTasksUpdate={this.props.triggerTasksUpdate}
+          />
         </div>
       </Swipeable>
     );
