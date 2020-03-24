@@ -43,7 +43,12 @@ export default class WorkspaceDashboard extends Component {
                 <img className="arrow-icon" src="./../images/down.svg" alt="down" />
               )}
             </button>
-            {this.state.active && <CreateWorkspace user={this.props.user} />}
+            {this.state.active && (
+              <CreateWorkspace
+                user={this.props.user}
+                updateUserInformation={this.props.updateUserInformation}
+              />
+            )}
           </div>
           <p>
             <span>or</span>

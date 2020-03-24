@@ -185,6 +185,7 @@ class App extends Component {
                   <WorkspaceCreate
                     user={this.state.user}
                     updateWorkspaceIdInformation={this.updateWorkspaceIdInformation}
+                    updateUserInformation={this.updateUserInformation}
                     {...props}
                   />
                 )}
