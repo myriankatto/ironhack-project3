@@ -1,0 +1,40 @@
+$darkColor: #3f3d56;
+$purple: #6c63ff;
+$lightGrey: #e2e2e2;
+
+
+.success-msg{
+  margin: 5em 1em 0 1em;
+  img{
+    width: 70%;
+    margin-bottom: 2em;
+  }
+  h2{
+    color: $purple;
+    font-size: 2.3em;
+    font-weight: 200;
+    margin: 0;
+  }
+  p{
+    color: $darkColor;
+    font-size: 1em;
+    font-weight: 200;
+  }
+  span{
+    color: $darkColor;
+    font-size: 0.7em;
+    font-weight: 200;
+  }
+  a{
+    background-color: $purple;
+    border-radius: 1em;
+    border: none;
+    color: white;
+    font-size: 1em;
+    display: block;
+    margin: 1em auto 0 auto;
+    padding: 0.2em 1em;
+    text-align: center;
+    width:50%;
+  }
+}

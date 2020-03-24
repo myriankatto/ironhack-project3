@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { askPermissionWorkspace } from './../../services/workspaceUser';
 import { Link } from 'react-router-dom';
 import { single } from '../../services/workspace';
-
+import './style.scss';
 class RouteShareWorkpace extends Component {
   constructor(props) {
     super(props);
@@ -20,11 +20,14 @@ class RouteShareWorkpace extends Component {
 
   render() {
     return (
-      <div>
-        <h3>
-          {this.props.user.name} been sucessufly added to the {this.state.workspaceName}
-        </h3>
-        <p>Please wait for administarator approval.</p>
+      <div className="success-msg">
+        <img src="./../images/success.svg" alt="succes" />
+        <h2>{this.props.user.name} </h2>
+        <p> has been sucessufly added to the </p>
+
+        <h2> {this.state.workspaceName} </h2>
+
+        <span>Please wait for administarator approval.</span>
         <Link to={'/'}>Return</Link>
       </div>
     );
