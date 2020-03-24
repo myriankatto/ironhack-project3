@@ -105,7 +105,7 @@ export default class ItemTask extends Component {
   handleApproveTask() {
     const id = this.props.taskId;
 
-    handleApproveTask({ id });
+    handleApproveTask({ id }); //.then(() => this.props.updateTotalTasks());
   }
 
   render() {
@@ -195,10 +195,9 @@ export default class ItemTask extends Component {
 
             {/* BOTÕES DE CONTROLE De QUALQUER USUÁRIO */}
             {!this.props.done /*CASO A TASK JÁ FOI FEITO NÃO VAI APARECER OS CONTROLES*/ && (
-
               <div className="user_task">
-              <hr />
-              <h6>Manage Task</h6>
+                <hr />
+                <h6>Manage Task</h6>
 
                 <div className="row">
                   {' '}
@@ -239,14 +238,16 @@ export default class ItemTask extends Component {
                   {/*  ROW 3 */}
                   <div className="col">
                     {(this.props.owner === null || userIsOwner) && (
-                      <button className="btn-task" onClick={this.handleTaskComplete}>Task Done</button>
+                      <button className="btn-task" onClick={this.handleTaskComplete}>
+                        Task Done
+                      </button>
                     )}
                   </div>
                 </div>
                 {/* FINAL DA ROW 3*/}
                 {/* BOTÕES DE CONTROLE DO OPERADOR */}
                 <div className="row manage__task">
-                <hr />
+                  <hr />
                   <div className="col">
                     {operator && (
                       <Link to={`/edit/task/${taskId}`}>

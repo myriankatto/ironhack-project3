@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { create } from './../../services/workspace';
 import { usersApproved } from './../../services/workspaceUser';
 import { editUSerPush as EditUser } from './../../services/score';
+import { loadUserInformation } from './../../services/authentication';
 
 import './style.scss';
 
@@ -36,17 +37,20 @@ class CreateWorkspace extends Component {
     const userWorkspaceId = newWorkspace.data._id;
 
     const workspaceApprovedForOperator = await usersApproved(userId, userWorkspaceId);
-    
+
     //Operador recebe score igual à 0 quando é criado o Workspace:
     const workspace = userWorkspaceId;
-    await EditUser({creatorId, workspace, score});
-
+    await EditUser({ creatorId, workspace, score });
 
     this.setState({
       workspaceName: ''
     });
 
+    //the user in App.jsx needs to be updated with the new info
+    const updatedUser = await loadUserInformation();
+    await this.props.updateUserInformation(updatedUser);
   }
+
   render() {
     return (
       <form className="form" onSubmit={this.handleFormSubmission}>

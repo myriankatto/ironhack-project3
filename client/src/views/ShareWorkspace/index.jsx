@@ -50,11 +50,11 @@ class ShareWorkspace extends Component {
             <div className="workspaceShare" key={workspace._id}>
               <h3>{workspace.name}</h3>
               <QRCode
-                value={`https://ironhack-project3-teste.herokuapp.com/forWorkspaceApproval/${workspace._id}`}
+                value={`https://tasksyapp.herokuapp.com/forWorkspaceApproval/${workspace._id}`}
               />
               <article>
                 <a
-                  href={`https://api.whatsapp.com/send?text=Please follow the link: https://https://tasksyapp.herokuapp.com/forWorkspaceApproval/${workspace._id} to join the ${workspace.names} workspace`}
+                  href={`https://api.whatsapp.com/send?text=Please follow the link: https://tasksyapp.herokuapp.com/forWorkspaceApproval/${workspace._id} to join the ${workspace.names} workspace`}
                   target="_blank"
                 >
                   <img
