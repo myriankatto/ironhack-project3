@@ -40,6 +40,15 @@ $lightGrey: #e2e2e2;
       color: white;
       font-weight: 600;
       float: right;
+      margin: 1% auto;
     }
   }
+}
+#emailMessageRed {
+  margin: 1% auto;
+  //color: red;  please check the index.jsx because it doesn't recognize the message
+}
+#emailMessageGreen {
+  margin: 1% auto;
+  color: green;
 }
