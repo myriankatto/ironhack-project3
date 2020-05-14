@@ -14,3 +14,12 @@ $lightGrey: #e2e2e2;
   display: block;
   margin-bottom: 0.1em;
 }
+
+
+@media only screen and (min-width: 450px) {
+ 
+  .home-btn{
+    width: 20%;
+margin-top: 10px;
+  }
+}

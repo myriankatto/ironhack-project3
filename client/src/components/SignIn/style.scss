@@ -4,6 +4,9 @@ $lightGrey: #e2e2e2;
 .signin__container {
   margin: 2em 0 0 0;
   background-color: green($color: #000000);
+  .logo-img {
+    width: 60%;
+  }
   h3 {
     color: $darkColor;
     font-weight: 200;
@@ -70,4 +73,22 @@ select:-webkit-autofill:focus {
   -webkit-text-fill-color: $darkColor;
   -webkit-box-shadow: 0 0 0px 1000px rgb(248, 248, 248) inset;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+@media only screen and (min-width: 450px) {
+  .signin__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .logo-img {
+      width: 15%;
+    }
+    .signin__form {
+      width: 30%;
+    }
+    .home__img-signin {
+      width: 15%;
+      margin-top: 10px;
+    }
+  }
 }

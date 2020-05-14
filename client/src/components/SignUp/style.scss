@@ -68,3 +68,23 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px rgb(248, 248, 248) inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+
+@media only screen and (min-width: 450px) {
+  .signup__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .logo-img {
+      width: 15%;
+    }
+    .signup__form {
+      width: 30%;
+    }
+    .home__img{
+      width: 15%;
+      margin-top: 0;
+    }
+  }
+}

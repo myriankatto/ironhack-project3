@@ -43,7 +43,7 @@ class SignUp extends Component {
     return (
       <div className="signup__container">
         <h3>Welcome to</h3>
-        <img style={{ width: '60%' }} src="./../../images/tasksy.svg" alt="tasksy" />
+        <img className="logo-img" src="./../../images/tasksy.svg" alt="tasksy" />
 
         <form onSubmit={this.handleFormSubmission} className="signup__form">
           <h2>Create an account to get started</h2>
